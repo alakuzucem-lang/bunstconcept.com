@@ -44,19 +44,13 @@ header {
   color: #333;
 }
 
-.social-footer p {
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-
-.social-icon {
-  width: 28px;
-  height: 28px;
-  margin: 0 8px;
-  vertical-align: middle;
+.social-footer i {
+  margin: 0 10px;
+  color: #333;
   transition: transform 0.3s ease;
 }
 
-.social-icon:hover {
+.social-footer i:hover {
   transform: scale(1.2);
+  color: #000;
 }
