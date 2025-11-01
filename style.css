@@ -49,3 +49,14 @@ header {
 .social-icon:hover {
   transform: scale(1.2);
 }
+.social-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+  vertical-align: middle;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
