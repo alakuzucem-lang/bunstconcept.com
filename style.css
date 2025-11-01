@@ -34,3 +34,18 @@ header {
   font-weight: bold;
   text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
   }
+.social-footer {
+  text-align: center;
+  padding: 30px;
+  background-color: #222;
+}
+
+.social-icon {
+  width: 40px;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
