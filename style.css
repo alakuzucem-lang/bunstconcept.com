@@ -273,12 +273,13 @@ html, body {
 }
 
 .kontakt-form-section {
-  background-color: #1f2a38;
+  background-color: #f2f3f5; /* Açık gri */
   padding: 40px;
   border-radius: 12px;
   max-width: 600px;
   margin: auto;
-  color: white;
+  color: #1f2a38;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .kontakt-form-section h2 {
