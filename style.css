@@ -278,7 +278,7 @@ html, body {
   border-radius: 12px;
   max-width: 600px;
   margin: auto;
-  color: #1f2a38;
+  color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -306,7 +306,7 @@ form button {
   margin-top: 20px;
   padding: 12px 24px;
   background-color: #ffffff;
-  color: #1f2a38;
+  color: #ffffff;
   font-weight: bold;
   border: none;
   border-radius: 6px;
