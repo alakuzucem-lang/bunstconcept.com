@@ -320,7 +320,6 @@ form button:hover {
 body {
   margin: 0;
   padding: 0;
-  background-color: #f2f3f5; /* Koyu arka plan */
-  color: #f2f3f5;
+  background-color: #f2f3f5; /* Açık gri */
   font-family: sans-serif;
 }
