@@ -55,15 +55,20 @@
     </a>
   </footer>
 
- <section class="kontakt-section">
-  <div class="kontakt-box">
-    <h2><span class="mail-icon">📧</span> Kontakt</h2>
-    <p>
-      Sie haben Fragen oder möchten ein Angebot? Kontaktieren Sie uns für schnelle und kompetente Beratung.
-    </p>
-    <a href="mailto:conceptbunst@gmail.com" target="_blank" class="kontakt-button">JETZT KONTAKTIEREN</a>
-  </div>
-  </div>
+ <section class="kontakt-form-section">
+  <h2>Kontaktformular</h2>
+  <form action="https://formspree.io/f/xwpwyndo" method="POST">
+    <label for="vorname">Vorname:</label>
+    <input type="text" id="vorname" name="Vorname" required>
+
+    <label for="nachname">Nachname:</label>
+    <input type="text" id="nachname" name="Nachname" required>
+
+    <label for="nachricht">Nachricht:</label>
+    <textarea id="nachricht" name="Nachricht" rows="5" required></textarea>
+
+    <button type="submit">JETZT KONTAKTIEREN</button>
+  </form>
 </section>
   
   <footer class="copyright-footer">
