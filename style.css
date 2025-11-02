@@ -1,6 +1,5 @@
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f4f4f4;
   color: #333;
   text-align: center;
   padding: 50px;
@@ -68,7 +67,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #fff; /* Siyah arka planı kaldırır */
+  background-color: #fff;
 }
 .full-screen-image {
   width: 100vw;
