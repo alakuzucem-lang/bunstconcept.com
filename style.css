@@ -277,33 +277,50 @@ html, body {
   object-fit: cover;
   }
 
-#contact-form {
-  background-color: #f9f9f9;
-  padding: 20px;
+.kontakt-section {
+  background-color: #1f2a38; /* Koyu arka plan */
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.kontakt-box {
+  background-color: #ffffff;
+  padding: 30px;
   border-radius: 8px;
-  max-width: 500px;
+  max-width: 600px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.kontakt-box h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #1f2a38;
 }
 
-.button-style {
-  background-color: #0077cc; /* Jetzt Gestalten butonunun rengi */
+.phone-icon {
+  margin-right: 10px;
+}
+
+.kontakt-box p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.kontakt-button {
+  display: inline-block;
+  background-color: #1f2a38;
   color: white;
   padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  text-decoration: none;
   font-weight: bold;
-  cursor: pointer;
+  border-radius: 6px;
   transition: background-color 0.3s ease;
 }
 
-.button-style:hover {
-  background-color: #005fa3; /* Hover efekti */
+.kontakt-button:hover {
+  background-color: #0077cc;
 }
