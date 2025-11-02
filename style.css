@@ -12,6 +12,12 @@ header {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #ffffff; /* Beyaz arka plan */
+}
 .banner-container {
   position: relative;
   text-align: center;
