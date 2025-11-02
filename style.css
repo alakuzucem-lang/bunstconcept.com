@@ -278,42 +278,39 @@ html, body {
   }
 
 .kontakt-section {
-  background-color: #1f2a38; /* Koyu arka plan */
+  background-color: #1f2a38; /* Sayfa arka planı ile uyumlu koyu renk */
   padding: 60px 20px;
   display: flex;
   justify-content: center;
 }
 
 .kontakt-box {
-  background-color: #ffffff;
+  background-color: #1f2a38; /* Kutunun arka planı da aynı koyu renk */
   padding: 30px;
-  border-radius: 8px;
+  border-radius: 12px;
   max-width: 600px;
   text-align: left;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid #2c3e50; /* Hafif çerçeve efekti */
 }
 
 .kontakt-box h2 {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #1f2a38;
-}
-
-.phone-icon {
-  margin-right: 10px;
+  color: #ffffff; /* Beyaz başlık */
 }
 
 .kontakt-box p {
   font-size: 16px;
-  color: #333;
+  color: #f0f0f0; /* Açık beyaz metin */
   margin-bottom: 30px;
   line-height: 1.6;
 }
 
 .kontakt-button {
   display: inline-block;
-  background-color: #1f2a38;
-  color: white;
+  background-color: #ffffff;
+  color: #1f2a38;
   padding: 12px 24px;
   text-decoration: none;
   font-weight: bold;
@@ -322,5 +319,5 @@ html, body {
 }
 
 .kontakt-button:hover {
-  background-color: #0077cc;
+  background-color: #e0e0e0;
 }
