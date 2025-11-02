@@ -95,6 +95,16 @@ html, body {
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
+@media only screen and (max-width: 768px) {
+  .cta-button {
+    font-size: 1em;
+    padding: 12px 20px;
+  }
+
+  .button-overlay {
+    top: 60%;
+  }
+}
 
 .cta-button:hover {
   background-color: #f0f0f0;
