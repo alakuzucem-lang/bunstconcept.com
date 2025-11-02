@@ -44,25 +44,6 @@
     </div>
   </div>
 </section>
-
-<!-- Bize Ulaşın Butonu -->
-<button onclick="document.getElementById('contact-form').style.display='block'">Kontaktieren Sie uns</button>
-
-<!-- Form Alanı -->
-<div id="contact-form" style="display:none; margin-top:20px;">
-  <form action="https://formspree.io/f/xyzabc" method="POST">
-    <label for="name">İsim:</label><br>
-    <input type="text" id="Vorname" name="name" required><br><br>
-
-    <label for="surname">Nachname:</label><br>
-    <input type="text" id="surname" name="surname" required><br><br>
-
-    <label for="message">Beschreibung:</label><br>
-    <textarea id="message" name="message" rows="5" required></textarea><br><br>
-
-    <button type="submit">Gönder</button>
-  </form>
-</div>
   
 <footer class="social-footer">
     <p>Folge uns:</p>
@@ -73,6 +54,25 @@
       <i class="fab fa-facebook fa-lg"></i>
     </a>
   </footer>
+
+  <!-- Bize Ulaşın Butonu -->
+<button onclick="document.getElementById('contact-form').style.display='block'">Kontaktieren Sie uns</button>
+
+<!-- Form Alanı -->
+<div id="contact-form" style="display:none; margin-top:20px;">
+  <form action="https://formspree.io/f/xyzabc" method="POST">
+    <label for="name">Vorname:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="surname">Nachname:</label><br>
+    <input type="text" id="surname" name="surname" required><br><br>
+
+    <label for="message">Beschreibung:</label><br>
+    <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+    <button type="submit">Absenden</button>
+  </form>
+</div>
 
   <footer class="copyright-footer">
     <p>Copyright 2025 – Alle Rechte vorbehalten</p>
