@@ -54,13 +54,11 @@ header {
   transform: scale(1.2);
   color: #000;
 }
-.hero-banner {
-  background-image: url('main-banner.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.full-image {
   width: 100vw;
   height: 100vh;
+  object-fit: cover;
+  display: block;
   margin: 0;
   padding: 0;
 }
