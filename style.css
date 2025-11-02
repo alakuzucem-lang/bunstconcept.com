@@ -320,11 +320,7 @@ form button:hover {
 body {
   margin: 0;
   padding: 0;
-  background-color: #1f2a38; /* Koyu arka plan */
+  background-color: #f2f3f5; /* Koyu arka plan */
   color: white;
   font-family: sans-serif;
 }
-
-footer, header, .kontakt-form-section, .social-section {
-  background-color: #1f2a38; /* Tüm bölümler aynı koyu ton */
-  color: 
