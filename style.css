@@ -316,3 +316,15 @@ form button {
 form button:hover {
   background-color: #e0e0e0;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1f2a38; /* Koyu arka plan */
+  color: white;
+  font-family: sans-serif;
+}
+
+footer, header, .kontakt-form-section, .social-section {
+  background-color: #1f2a38; /* Tüm bölümler aynı koyu ton */
+  color: 
