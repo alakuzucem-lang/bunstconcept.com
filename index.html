@@ -45,6 +45,25 @@
   </div>
 </section>
 
+<!-- Bize Ulaşın Butonu -->
+<button onclick="document.getElementById('contact-form').style.display='block'">Bize Ulaşın</button>
+
+<!-- Form Alanı -->
+<div id="contact-form" style="display:none; margin-top:20px;">
+  <form action="https://formspree.io/f/xyzabc" method="POST">
+    <label for="name">İsim:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="surname">Soyisim:</label><br>
+    <input type="text" id="surname" name="surname" required><br><br>
+
+    <label for="message">Açıklama:</label><br>
+    <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+    <button type="submit">Gönder</button>
+  </form>
+</div>
+  
 <footer class="social-footer">
     <p>Folge uns:</p>
     <a href="https://www.instagram.com/bunstconcept" target="_blank">
