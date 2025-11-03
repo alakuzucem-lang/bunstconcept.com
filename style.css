@@ -177,8 +177,8 @@ html, body {
 .produkte-link {
  display: inline-block;
   padding: 14px 28px;
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #0000;
+  color: #ffffff;
   font-size: 1.2em;
   font-weight: bold;
   text-decoration: none;
@@ -189,11 +189,6 @@ html, body {
 
 .produkte-link:hover {
   color: #ccc;
-}
-
-.transparent-button {
-  background-color: transparent; /* Arka planı kaldırır */
-  color: #ffffff; /* Yazı beyaz */
 }
 
 .cta-button:hover {
