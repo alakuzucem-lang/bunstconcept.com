@@ -187,6 +187,11 @@ html, body {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.mission-section,
+.produkte-section {
+  padding: 40px;
+}
+
 .produkte-link:hover {
   color: #ccc;
 }
