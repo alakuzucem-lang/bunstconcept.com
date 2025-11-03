@@ -191,9 +191,8 @@ html, body {
 
 /* Tıklanabilir başlık bağlantısı */
 .produkte-link {
-  color: inherit;              /* Başlık rengini alır */
-  text-decoration: none;       /* Alt çizgi yok */
-  transition: color 0.3s ease;
+  font-size: 1.5em;       /* Yazı boyutunu büyütür */
+  font-weight: 700;       /* Daha güçlü bold görünüm */
 }
 
 .produkte-link:hover {
