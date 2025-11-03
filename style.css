@@ -44,16 +44,6 @@ html, body {
   background-position: center;
 }
 
-.hero-image {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* Tam ekran yüksekliği */
-  background-image: url('main-banner.png'); /* Ana ekran görselinin yolu */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .welcome-overlay {
   position: absolute;
   top: 40px;
