@@ -11,7 +11,7 @@ body {
 
 /* Sayfa içeriğini daha okunabilir hale getirmek için yarı saydam katman */
 .overlay {
-  background-color: rgba(0, 0, 0, 0.6); /* Siyah yarı saydam katman */
+  background-color: rgba(0, 0, 0, 0); /* saydam katman */
   min-height: 100vh;
   padding: 80px 40px;
 }
@@ -26,7 +26,7 @@ body {
 
 /* Her kategori kutusu */
 .category-item {
-  background-color: rgba(17, 17, 17, 0.8);
+  background-color: rgba(0,0,0,0);
   padding: 30px;
   border-radius: 12px;
   width: 280px;
