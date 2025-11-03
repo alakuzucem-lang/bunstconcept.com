@@ -1,4 +1,12 @@
-/* Kategori bölümü */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000; /* Tam siyah arka plan */
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+}
+
+/* Kategori bölümü yan yana */
 .category-section {
   display: flex;
   justify-content: center;
@@ -6,23 +14,26 @@
   padding: 80px 40px;
 }
 
-/* Her kategori kutusu */
+/* Kategori kutusu */
 .category-item {
   background-color: #111;
   padding: 30px;
   border-radius: 12px;
-  width: 300px;
+  width: 280px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   text-align: left;
 }
 
+/* Başlık: küçük harfli ve sade */
 .category-title {
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 1.2em;              /* Daha küçük yazı */
+  font-weight: normal;           /* Bold değil */
+  text-transform: lowercase;     /* Küçük harfe zorlar */
   margin-bottom: 15px;
   color: #ffffff;
 }
 
+/* Açıklama metni */
 .category-item p {
   font-size: 1em;
   line-height: 1.6;
