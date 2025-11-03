@@ -35,10 +35,28 @@ html, body {
   border-radius: 8px;
 }
 
-.welcome-text {
-  color: #000; /* Siyah yazı */
-  margin: 0;
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Tam ekran yüksekliği */
+  background-image: url('ana-ekran-fotografi.jpg'); /* Fotoğrafın yolu */
+  background-size: cover;
+  background-position: center;
 }
+
+.welcome-text {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.5); /* Yarı saydam arka plan */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 300px;
+  line-height: 1.5;
+  }
 
 /* Sosyal medya ikonları */
 .social-footer {
