@@ -22,6 +22,9 @@ body {
 .category-item {
   width: 280px;
   text-align: left;
+  background-color: transparent !important; /* Siyah kutuyu zorla kaldırır */
+  box-shadow: none !important;              /* Gölgeyi de kaldırır */
+  border: none !important;                  /* Kenarlık varsa kaldırır */
 }
 
 /* Başlık */
