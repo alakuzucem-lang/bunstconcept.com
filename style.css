@@ -386,24 +386,20 @@ body {
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Sağ üst köşedeki bilgi */
-.status-label {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #ccc;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000; /* Tam siyah arka plan */
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
 }
 
 /* Kategori bölümü */
 .category-section {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 40px;
-  padding: 100px 40px 60px;
-  max-width: 1000px;
-  margin: auto;
+  padding: 80px 40px;
 }
 
 /* Her kategori kutusu */
@@ -411,22 +407,34 @@ body {
   background-color: #111;
   padding: 30px;
   border-radius: 12px;
+  width: 300px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  text-align: left;
 }
 
 .category-title {
-  font-size: 2.5em;
+  font-size: 2em;
   font-weight: bold;
   margin-bottom: 15px;
-  background-color: #000;
   color: #ffffff;
 }
 
-.category-text p {
+.category-item p {
   font-size: 1em;
   line-height: 1.6;
-  background-color: #000;
   color: #ccc;
+}
+
+/* Mobil uyum */
+@media (max-width: 768px) {
+  .category-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .category-item {
+    width: 90%;
+  }
 }
 
   .category-title {
