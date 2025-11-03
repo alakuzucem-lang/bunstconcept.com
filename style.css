@@ -185,32 +185,19 @@ html, body {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.produkte-link:hover {
-  color: #ccc;
+.text-link {
+  color: #ffffff;            /* Beyaz yazı */
+  text-decoration: none;     /* Alt çizgi yok */
+  font-weight: inherit;      /* Başlıkla uyumlu */
+}
+
+.text-link:hover {
+  text-decoration: underline; /* Hover'da alt çizgi (isteğe bağlı) */
 }
 
 .produkte-section {
   padding: 40px;
-}
-
-.produkte-heading {
-  font-size: 3em;            /* Başlığı büyütür */
-  font-weight: bold;
-  color: #ffffff;
-  margin-bottom: 20px;
-  text-align: left;          /* Paragrafla hizalar */
-  padding-left: 0;           /* Gereksiz boşluk varsa sıfırla */
-}
-
-.produkte-text {
-  font-size: 1em;
-  line-height: 1.6;
-  color: #ccc;
-  text-align: left;
-  padding-left: 0;
-}
-
-.section-title {
+.section-title
   font-size: 2.5em;
   font-weight: bold;
   color: #ffffff;
