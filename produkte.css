@@ -1,22 +1,32 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #000; /* Tam siyah arka plan */
+  background-image: url('produkte.png'); /* Görselin adı burada */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font-family: 'Segoe UI', sans-serif;
   color: #fff;
 }
 
-/* Kategori bölümü yan yana */
+/* Sayfa içeriğini daha okunabilir hale getirmek için yarı saydam katman */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6); /* Siyah yarı saydam katman */
+  min-height: 100vh;
+  padding: 80px 40px;
+}
+
+/* Kategoriler yan yana */
 .category-section {
   display: flex;
   justify-content: center;
   gap: 40px;
-  padding: 80px 40px;
+  flex-wrap: wrap;
 }
 
-/* Kategori kutusu */
+/* Her kategori kutusu */
 .category-item {
-  background-color: #111;
+  background-color: rgba(17, 17, 17, 0.8);
   padding: 30px;
   border-radius: 12px;
   width: 280px;
@@ -24,16 +34,14 @@ body {
   text-align: left;
 }
 
-/* Başlık: küçük harfli ve sade */
 .category-title {
-  font-size: 1.2em;              /* Daha küçük yazı */
-  font-weight: normal;           /* Bold değil */
-  text-transform: lowercase;     /* Küçük harfe zorlar */
+  font-size: 1.2em;
+  font-weight: normal;
+  text-transform: lowercase;
   margin-bottom: 15px;
   color: #ffffff;
 }
 
-/* Açıklama metni */
 .category-item p {
   font-size: 1em;
   line-height: 1.6;
@@ -49,10 +57,5 @@ body {
 
   .category-item {
     width: 90%;
-  }
-}
-
-  .category-title {
-    font-size: 2em;
   }
 }
