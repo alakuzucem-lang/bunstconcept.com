@@ -9,18 +9,17 @@ body {
   color: #fff;
 }
 
-/* Kategori bölümü yan yana */
+/* Kategori bölümü */
 .category-section {
   display: flex;
   justify-content: center;
   gap: 40px;
-  padding: 80px 40px;
+  padding: 100px 40px;
   flex-wrap: wrap;
 }
 
-/* Kategori kutusu — arka plan kaldırıldı */
+/* Kategori kutusu — arka plan yok */
 .category-item {
-  padding: 20px;
   width: 280px;
   text-align: left;
 }
@@ -32,6 +31,7 @@ body {
   text-transform: lowercase;
   margin-bottom: 10px;
   color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* Görsel üstünde okunabilirlik için gölge */
 }
 
 /* Açıklama metni */
@@ -39,6 +39,7 @@ body {
   font-size: 1em;
   line-height: 1.6;
   color: #ccc;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 /* Mobil uyum */
