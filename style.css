@@ -21,6 +21,26 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  .welcome-overlay {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4); /* İsteğe bağlı yarı saydam arka plan */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+}
+
+.welcome-overlay h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.welcome-overlay p {
+  font-size: 18px;
+  line-height: 1.4;
+}
 }
 
 .hero-text {
@@ -42,27 +62,6 @@ html, body {
   background-image: url('main-banner.png'); /* Fotoğrafın yolu */
   background-size: cover;
   background-position: center;
-}
-
-.welcome-overlay {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.4); /* İsteğe bağlı yarı saydam arka plan */
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-}
-
-.welcome-overlay h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.welcome-overlay p {
-  font-size: 18px;
-  line-height: 1.4;
 }
 
 /* Sosyal medya ikonları */
