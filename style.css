@@ -39,7 +39,7 @@ html, body {
   position: relative;
   width: 100%;
   height: 100vh; /* Tam ekran yüksekliği */
-  background-image: url('ana-ekran-fotografi.jpg'); /* Fotoğrafın yolu */
+  background-image: url('main-banner.png'); /* Fotoğrafın yolu */
   background-size: cover;
   background-position: center;
 }
@@ -48,7 +48,7 @@ html, body {
   position: relative;
   width: 100%;
   height: 100vh; /* Tam ekran yüksekliği */
-  background-image: url('dein-bild.jpg'); /* Ana ekran görselinin yolu */
+  background-image: url('main-banner.png'); /* Ana ekran görselinin yolu */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
