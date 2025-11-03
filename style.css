@@ -44,19 +44,36 @@ html, body {
   background-position: center;
 }
 
-.welcome-text {
+.hero-image {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Tam ekran yüksekliği */
+  background-image: url('dein-bild.jpg'); /* Ana ekran görselinin yolu */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.welcome-overlay {
   position: absolute;
-  top: 30px;
-  left: 30px;
+  top: 40px;
+  left: 40px;
   color: white;
-  font-size: 20px;
-  font-weight: 500;
-  background-color: rgba(0, 0, 0, 0.5); /* Yarı saydam arka plan */
+  background-color: rgba(0, 0, 0, 0.4); /* İsteğe bağlı yarı saydam arka plan */
   padding: 20px;
   border-radius: 8px;
-  max-width: 300px;
-  line-height: 1.5;
-  }
+  max-width: 400px;
+}
+
+.welcome-overlay h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.welcome-overlay p {
+  font-size: 18px;
+  line-height: 1.4;
+}
 
 /* Sosyal medya ikonları */
 .social-footer {
