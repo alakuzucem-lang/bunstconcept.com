@@ -191,6 +191,11 @@ html, body {
   color: #ccc;
 }
 
+.transparent-button {
+  background-color: transparent; /* Arka planı kaldırır */
+  color: #ffffff; /* Yazı beyaz */
+}
+
 .cta-button:hover {
   background-color: #f0f0f0;
   transform: scale(1.05);
