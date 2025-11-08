@@ -1,50 +1,48 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bunst Concept – Produkte</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Kategorien</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Üst Menü -->
-  <nav class="main-nav">
-    <ul class="nav-list">
-      <li class="nav-item dropdown">
-        <a href="#">T-Shirts</a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Damen</a></li>
-          <li><a href="#">Herren</a></li>
-          <li><a href="#">Kinder</a></li>
-          <li><a href="#">Unisex</a></li>
-        </ul>
-      </li>
-      <li class="nav-item"><a href="#">Tragetasche</a></li>
-      <li class="nav-item"><a href="#">Heimtextilien</a></li>
-    </ul>
-  </nav>
 
-  <!-- Sayfa İçeriği -->
-  <main class="content-area">
-    <!-- Ürün Alanı -->
-    <section class="product-display">
-      <h2>Alle Produkte</h2>
-      <!-- Ürünler buraya gelecek -->
-    </section>
-
-    <!-- Sağ Filtreler -->
-    <aside class="filter-panel">
-      <h3>Filter</h3>
-      <ul class="filter-list">
-        <li><label><input type="checkbox" /> Personalisierte Drucke</label></li>
-        <li><label><input type="checkbox" /> Paar-Kollektion</label></li>
-        <li><label><input type="checkbox" /> Minimalistische Designs</label></li>
-        <li><label><input type="checkbox" /> Halloween</label></li>
-        <li><label><input type="checkbox" /> Weihnachtsdesigns</label></li>
-        <li><label><input type="checkbox" /> Braut & Bräutigam</label></li>
-        <li><label><input type="checkbox" /> Schuldesigns</label></li>
+  <header>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li class="dropdown">
+          <a href="#">T-Shirts</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Damen</a></li>
+            <li><a href="#">Herren</a></li>
+            <li><a href="#">Kinder</a></li>
+            <li><a href="#">Unisex</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Tragetasche</a></li>
+        <li><a href="#">Heimtextilien</a></li>
       </ul>
+    </nav>
+  </header>
+
+  <main>
+    <aside class="filter-box">
+      <h3>Filter</h3>
+      <label><input type="checkbox"> Personalisierte Drucke</label>
+      <label><input type="checkbox"> Paar-Kollektion</label>
+      <label><input type="checkbox"> Minimalistische Designs</label>
+      <label><input type="checkbox"> Halloween</label>
+      <label><input type="checkbox"> Weihnachtsdesigns</label>
+      <label><input type="checkbox"> Braut & Bräutigam</label>
+      <label><input type="checkbox"> Schuldesigns</label>
     </aside>
+
+    <section class="content">
+      <h1>Willkommen in unserem Shop!</h1>
+      <p>Wähle eine Kategorie oder verwende die Filter auf der linken Seite.</p>
+    </section>
   </main>
+
 </body>
 </html>
