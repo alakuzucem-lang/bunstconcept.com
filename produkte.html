@@ -12,40 +12,69 @@
       color: #fff;
     }
 
-    /* Üst Menü */
     .main-nav {
       background-color: #111;
       padding: 20px 0;
       text-align: center;
-      box-shadow: 0 2px 6px rgba(255,255,255,0.1);
     }
 
     .nav-list {
       list-style: none;
-      margin: 0;
-      padding: 0;
       display: inline-flex;
       gap: 60px;
       justify-content: center;
+      margin: 0;
+      padding: 0;
     }
 
     .nav-list li a {
-      text-decoration: none;
-      font-size: 1.1em;
-      font-weight: bold;
       color: #fff;
-      padding: 8px 12px;
-      transition: color 0.3s ease;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
     }
 
     .nav-list li a:hover {
       color: #ffd700;
     }
 
-    /* Ürün Alanı */
     .product-area {
       padding: 40px;
       text-align: center;
+    }
+
+    .filter-box {
+      margin: 20px auto;
+      max-width: 600px;
+      background-color: #111;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    .filter-box h3 {
+      margin-bottom: 15px;
+      color: #ffd700;
+    }
+
+    .filter-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+    }
+
+    .filter-list li label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95em;
+    }
+
+    .filter-list input[type="checkbox"] {
+      accent-color: #ffd700;
     }
 
     .product-grid {
@@ -88,38 +117,82 @@
   <!-- Ürün Alanı -->
   <main class="product-area">
     <h2>Produkte</h2>
-    <div class="product-grid">
-      <div class="product-card" data-category="t-shirts">
+
+    <!-- Filtre Kutuları -->
+    <div class="filter-box" id="filter-box" style="display:none;">
+      <h3>Filter</h3>
+      <ul class="filter-list">
+        <li><label><input type="checkbox" value="personalisierte" /> Personalisierte Drucke</label></li>
+        <li><label><input type="checkbox" value="paar" /> Paar-Kollektion</label></li>
+        <li><label><input type="checkbox" value="minimal" /> Minimalistische Designs</label></li>
+        <li><label><input type="checkbox" value="halloween" /> Halloween</label></li>
+        <li><label><input type="checkbox" value="weihnachten" /> Weihnachtsdesigns</label></li>
+        <li><label><input type="checkbox" value="braut" /> Braut & Bräutigam</label></li>
+        <li><label><input type="checkbox" value="schule" /> Schuldesigns</label></li>
+      </ul>
+    </div>
+
+    <!-- Ürünler -->
+    <div class="product-grid" id="product-grid">
+      <div class="product-card" data-category="t-shirts" data-tags="personalisierte minimal">
         <h3>Basic T-Shirt</h3>
         <p>100% Baumwolle</p>
       </div>
-      <div class="product-card" data-category="tragetasche">
+      <div class="product-card" data-category="t-shirts" data-tags="paar weihnachten">
+        <h3>Couple Shirt</h3>
+        <p>Für Paare – Weihnachtsmotiv</p>
+      </div>
+      <div class="product-card" data-category="t-shirts" data-tags="braut schule">
+        <h3>Unisex T-Shirt</h3>
+        <p>Ideal für Schule oder Hochzeit</p>
+      </div>
+      <div class="product-card" data-category="tragetasche" data-tags="minimal">
         <h3>Tragetasche Bio</h3>
         <p>Recyceltes Material</p>
       </div>
-      <div class="product-card" data-category="heimtextilien">
+      <div class="product-card" data-category="heimtextilien" data-tags="weihnachten">
         <h3>Kissenbezug</h3>
-        <p>Weiches Mikrofaser</p>
-      </div>
-      <div class="product-card" data-category="t-shirts">
-        <h3>Oversized T-Shirt</h3>
-        <p>Unisex Schnitt</p>
+        <p>Weihnachtsdesign</p>
       </div>
     </div>
   </main>
 
-  <!-- JavaScript doğrudan HTML içinde -->
+  <!-- JavaScript -->
   <script>
     const categoryLinks = document.querySelectorAll('.nav-list a');
     const productCards = document.querySelectorAll('.product-card');
+    const filterBox = document.getElementById('filter-box');
+    const checkboxes = filterBox.querySelectorAll('input[type="checkbox"]');
 
     categoryLinks.forEach(link => {
       link.addEventListener('click', e => {
         e.preventDefault();
         const selectedCategory = link.dataset.category;
 
+        // Filtre kutusunu sadece T-Shirts için göster
+        filterBox.style.display = selectedCategory === 't-shirts' ? 'block' : 'none';
+
+        // Filtreleri sıfırla
+        checkboxes.forEach(cb => cb.checked = false);
+
+        // Ürünleri filtrele
         productCards.forEach(card => {
           card.style.display = card.dataset.category === selectedCategory ? 'block' : 'none';
+        });
+      });
+    });
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const activeTags = Array.from(checkboxes)
+          .filter(cb => cb.checked)
+          .map(cb => cb.value);
+
+        productCards.forEach(card => {
+          const tags = card.dataset.tags.split(' ');
+          const isVisible = activeTags.length === 0 || activeTags.every(tag => tags.includes(tag));
+          const isTShirt = card.dataset.category === 't-shirts';
+          card.style.display = isTShirt && isVisible ? 'block' : 'none';
         });
       });
     });
