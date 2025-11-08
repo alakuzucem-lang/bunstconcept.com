@@ -23,12 +23,15 @@ body {
   justify-content: center;
 }
 
+.nav-item {
+  position: relative;
+}
+
 .nav-item a {
   text-decoration: none;
   font-size: 1.1em;
   font-weight: bold;
   color: #fff;
-  position: relative;
   padding: 8px 12px;
   transition: color 0.3s ease;
 }
@@ -50,6 +53,7 @@ body {
   box-shadow: 0 4px 8px rgba(255,255,255,0.2);
   border-radius: 6px;
   z-index: 1000;
+  min-width: 160px;
 }
 
 .dropdown-menu li {
