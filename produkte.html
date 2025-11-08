@@ -38,18 +38,14 @@
       color: #ffd700;
     }
 
-    .product-area {
-      padding: 40px;
-      text-align: center;
-    }
-
     .filter-box {
-      margin: 20px auto;
-      max-width: 600px;
+      margin: 20px auto 0;
+      max-width: 800px;
       background-color: #111;
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      text-align: center;
     }
 
     .filter-box h3 {
@@ -75,6 +71,11 @@
 
     .filter-list input[type="checkbox"] {
       accent-color: #ffd700;
+    }
+
+    .product-area {
+      padding: 40px;
+      text-align: center;
     }
 
     .product-grid {
@@ -114,25 +115,23 @@
     </ul>
   </nav>
 
+  <!-- Filtre Kutuları -->
+  <div class="filter-box" id="filter-box" style="display:none;">
+    <h3>Filter</h3>
+    <ul class="filter-list">
+      <li><label><input type="checkbox" value="personalisierte" /> Personalisierte Drucke</label></li>
+      <li><label><input type="checkbox" value="paar" /> Paar-Kollektion</label></li>
+      <li><label><input type="checkbox" value="minimal" /> Minimalistische Designs</label></li>
+      <li><label><input type="checkbox" value="halloween" /> Halloween</label></li>
+      <li><label><input type="checkbox" value="weihnachten" /> Weihnachtsdesigns</label></li>
+      <li><label><input type="checkbox" value="braut" /> Braut & Bräutigam</label></li>
+      <li><label><input type="checkbox" value="schule" /> Schuldesigns</label></li>
+    </ul>
+  </div>
+
   <!-- Ürün Alanı -->
   <main class="product-area">
     <h2>Produkte</h2>
-
-    <!-- Filtre Kutuları -->
-    <div class="filter-box" id="filter-box" style="display:none;">
-      <h3>Filter</h3>
-      <ul class="filter-list">
-        <li><label><input type="checkbox" value="personalisierte" /> Personalisierte Drucke</label></li>
-        <li><label><input type="checkbox" value="paar" /> Paar-Kollektion</label></li>
-        <li><label><input type="checkbox" value="minimal" /> Minimalistische Designs</label></li>
-        <li><label><input type="checkbox" value="halloween" /> Halloween</label></li>
-        <li><label><input type="checkbox" value="weihnachten" /> Weihnachtsdesigns</label></li>
-        <li><label><input type="checkbox" value="braut" /> Braut & Bräutigam</label></li>
-        <li><label><input type="checkbox" value="schule" /> Schuldesigns</label></li>
-      </ul>
-    </div>
-
-    <!-- Ürünler -->
     <div class="product-grid" id="product-grid">
       <div class="product-card" data-category="t-shirts" data-tags="personalisierte minimal">
         <h3>Basic T-Shirt</h3>
@@ -169,13 +168,9 @@
         e.preventDefault();
         const selectedCategory = link.dataset.category;
 
-        // Filtre kutusunu sadece T-Shirts için göster
         filterBox.style.display = selectedCategory === 't-shirts' ? 'block' : 'none';
-
-        // Filtreleri sıfırla
         checkboxes.forEach(cb => cb.checked = false);
 
-        // Ürünleri filtrele
         productCards.forEach(card => {
           card.style.display = card.dataset.category === selectedCategory ? 'block' : 'none';
         });
