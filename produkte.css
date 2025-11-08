@@ -75,6 +75,26 @@ body {
   display: block;
 }
 
+.design-button {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: bold;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1.1em;
+  border: 2px solid #000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Hover efekti */
+.design-button:hover {
+  transform: scale(1.05);
+  background-color: #f0f0f0;
+}
+
 /* Sol filtre kutusu */
 .filter-box {
   width: 220px;
