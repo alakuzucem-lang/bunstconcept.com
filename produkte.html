@@ -4,39 +4,125 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bunst Concept – Produkte</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    /* Üst Menü */
+    .main-nav {
+      background-color: #111;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+    }
+
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: inline-flex;
+      gap: 60px;
+      justify-content: center;
+    }
+
+    .nav-list li a {
+      text-decoration: none;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #fff;
+      padding: 8px 12px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-list li a:hover {
+      color: #ffd700;
+    }
+
+    /* Ürün Alanı */
+    .product-area {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .product-card {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 8px;
+      width: 220px;
+      box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+    }
+
+    .product-card h3 {
+      margin-top: 0;
+      font-size: 1.2em;
+    }
+
+    .product-card p {
+      font-size: 0.95em;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
   <!-- Üst Menü -->
- <body>
-  <div class="category-links">
-    <a href="/produkte/t-shirts" class="category-link">T-Shirts</a>
-    <a href="/produkte/tragetasche" class="category-link">Tragetasche</a>
-    <a href="/produkte/heimtextilien" class="category-link">Heimtextilien</a>
-  </div>
-</body>
+  <nav class="main-nav">
+    <ul class="nav-list">
+      <li><a href="#" data-category="t-shirts">T-Shirts</a></li>
+      <li><a href="#" data-category="tragetasche">Tragetasche</a></li>
+      <li><a href="#" data-category="heimtextilien">Heimtextilien</a></li>
+    </ul>
+  </nav>
 
-  <!-- Sayfa İçeriği -->
-  <main class="content-area">
-    <!-- Sol Filtreler -->
-    <aside class="filter-panel">
-      <h3>Filter</h3>
-      <ul class="filter-list">
-        <li><label><input type="checkbox" /> Personalisierte Drucke</label></li>
-        <li><label><input type="checkbox" /> Paar-Kollektion</label></li>
-        <li><label><input type="checkbox" /> Minimalistische Designs</label></li>
-        <li><label><input type="checkbox" /> Halloween</label></li>
-        <li><label><input type="checkbox" /> Weihnachtsdesigns</label></li>
-        <li><label><input type="checkbox" /> Braut & Bräutigam</label></li>
-        <li><label><input type="checkbox" /> Schuldesigns</label></li>
-      </ul>
-    </aside>
-
-    <!-- Ürün Alanı -->
-    <section class="product-display">
-      <h2>Alle Produkte</h2>
-      <!-- Ürünler buraya gelecek -->
-    </section>
+  <!-- Ürün Alanı -->
+  <main class="product-area">
+    <h2>Produkte</h2>
+    <div class="product-grid">
+      <div class="product-card" data-category="t-shirts">
+        <h3>Basic T-Shirt</h3>
+        <p>100% Baumwolle</p>
+      </div>
+      <div class="product-card" data-category="tragetasche">
+        <h3>Tragetasche Bio</h3>
+        <p>Recyceltes Material</p>
+      </div>
+      <div class="product-card" data-category="heimtextilien">
+        <h3>Kissenbezug</h3>
+        <p>Weiches Mikrofaser</p>
+      </div>
+      <div class="product-card" data-category="t-shirts">
+        <h3>Oversized T-Shirt</h3>
+        <p>Unisex Schnitt</p>
+      </div>
+    </div>
   </main>
+
+  <!-- JavaScript doğrudan HTML içinde -->
+  <script>
+    const categoryLinks = document.querySelectorAll('.nav-list a');
+    const productCards = document.querySelectorAll('.product-card');
+
+    categoryLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const selectedCategory = link.dataset.category;
+
+        productCards.forEach(card => {
+          card.style.display = card.dataset.category === selectedCategory ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
