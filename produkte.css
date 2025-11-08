@@ -1,63 +1,83 @@
+/* Sayfa arka planı */
 body {
   margin: 0;
   padding: 0;
-  background-image: url('produkte.png'); /* Görselin yolu */
+  background-image: url('produkte.png'); /* Arka plan görselin yolu */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   font-family: 'Segoe UI', sans-serif;
   color: #fff;
-}
-
-/* Görsel üzerine yazı */
-.hero-container {
-  position: relative;
-  width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-text {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: #000;
-  font-size: 1.2em;
-  font-weight: 500;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 10px 15px;
-  border-radius: 8px;
+/* Kategori bölümü */
+.category-section {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+  text-align: center;
+  padding: 40px;
 }
 
-/* Başlık */
-.category-title {
-  font-size: 1.2em;
-  font-weight: normal;
-  margin-bottom: 10px;
+/* Her kategori bloğu */
+.category-block {
+  max-width: 300px;
+  background-color: transparent;
+}
+
+/* Bağlantı başlıkları */
+.category-link {
+  font-size: 2em;
+  font-weight: bold;
   color: #ffffff;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
+  text-decoration: none;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+  display: block;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover efekti */
+.category-link:hover {
+  transform: scale(1.05);
+  color: #ffd700; /* Altın sarısı hover rengi */
 }
 
 /* Açıklama metni */
-.category-item p {
+.category-block p {
   font-size: 1em;
-  line-height: 1.6;
   color: #ccc;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  margin: 0;
 }
 
 /* Mobil uyum */
 @media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 60px;
+  }
+
   .category-section {
     flex-direction: column;
     align-items: center;
+    gap: 40px;
   }
 
-  .category-item {
-    width: 90%;
+  .category-block {
+    max-width: 90%;
+  }
+
+  .category-link {
+    font-size: 1.8em;
+  }
+
+  .category-block p {
+    font-size: 0.95em;
   }
 }
