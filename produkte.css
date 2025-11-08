@@ -9,22 +9,24 @@ body {
   color: #fff;
 }
 
-/* Kategori bölümü */
-.category-section {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 100px 40px;
-  flex-wrap: wrap;
+/* Görsel üzerine yazı */
+.hero-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* Kategori kutusu — arka plan yok */
-.category-item {
-  width: 280px;
-  text-align: left;
-  background-color: transparent !important; /* Siyah kutuyu zorla kaldırır */
-  box-shadow: none !important;              /* Gölgeyi de kaldırır */
-  border: none !important;                  /* Kenarlık varsa kaldırır */
+.hero-text {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #000;
+  font-size: 1.2em;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px 15px;
+  border-radius: 8px;
 }
 
 /* Başlık */
