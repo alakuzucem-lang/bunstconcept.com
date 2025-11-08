@@ -9,13 +9,17 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #000;
+      background-image: url('produkte-main-img.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: #fff;
     }
 
     /* SAYFA BAŞLIĞI */
     .site-header {
-      background-color: #000;
+      background-color: rgba(0, 0, 0, 0.7);
       padding: 30px 0 10px;
       text-align: center;
     }
@@ -30,7 +34,7 @@
 
     /* ÜST MENÜ */
     .main-nav {
-      background-color: #111;
+      background-color: rgba(17, 17, 17, 0.8);
       padding: 15px 0;
       text-align: center;
     }
@@ -60,7 +64,7 @@
     .filter-box {
       margin: 20px auto;
       padding: 20px;
-      background-color: #111;
+      background-color: rgba(17, 17, 17, 0.85);
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(255,255,255,0.1);
       max-width: 100%;
@@ -116,7 +120,7 @@
     }
 
     .product-card {
-      background-color: #222;
+      background-color: rgba(34, 34, 34, 0.9);
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(255,255,255,0.1);
@@ -132,7 +136,7 @@
       color: #ccc;
     }
 
-    /* SCROLLBAR GİZLEME (opsiyonel) */
+    /* SCROLLBAR GİZLEME */
     .filter-row::-webkit-scrollbar {
       display: none;
     }
@@ -163,12 +167,11 @@
     <ul class="filter-row">
       <li><label><input type="checkbox" value="personalisierte" /> Personalisierte Drucke</label></li>
       <li><label><input type="checkbox" value="paar" /> Paar-Kollektion</label></li>
+      <li><label><input type="checkbox" value="minimal" /> Minimalistische Designs</label></li>
+      <li><label><input type="checkbox" value="halloween" /> Halloween</label></li>
+      <li><label><input type="checkbox" value="weihnachten" /> Weihnachtsdesigns</label></li>
       <li><label><input type="checkbox" value="braut" /> Braut & Bräutigam</label></li>
       <li><label><input type="checkbox" value="schule" /> Schuldesigns</label></li>
-      <li><label><input type="checkbox" value="minimal" /> Minimalistische Designs</label></li>
-      <li><label><input type="checkbox" value="halloween" /> Halloweendesigns</label></li>
-      <li><label><input type="checkbox" value="weihnachten" /> Weihnachtsdesigns</label></li>
-      <li><label><input type="checkbox" value="schule" /> Designs für Alle</label></li>
     </ul>
   </div>
 
