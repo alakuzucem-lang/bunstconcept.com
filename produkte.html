@@ -109,31 +109,36 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
       justify-content: center;
     }
 
     .product-card {
       background-color: rgba(34, 34, 34, 0.9);
-      padding: 20px;
+      padding: 15px;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+      text-align: center;
     }
 
     .product-card img {
-      width: 100%;
+      width: 160px;
+      height: auto;
       border-radius: 6px;
       margin-bottom: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .product-card h3 {
       margin-top: 0;
-      font-size: 1.2em;
+      font-size: 1em;
     }
 
     .product-card p {
-      font-size: 0.95em;
+      font-size: 0.85em;
       color: #ccc;
     }
 
@@ -178,21 +183,30 @@
     <h2>Produkte</h2>
     <div class="product-grid" id="product-grid">
       <!-- Halloween T-Shirts (1–11) -->
-      <!-- Aşağıdaki ürünler sadece T-Shirts sekmesi + Halloween filtresi ile görünür -->
       <!-- Görseller images klasöründe olmalı -->
-      <!-- Örnek: images/Halloween-1.png -->
+      <!-- Örnek: images/Halloween-1.jpg -->
 
-      <!-- Ürün kartları -->
-      <!-- Tek tek eklenmiş örnekler -->
-      <!-- ... -->
-      <!-- Örnek: -->
+      <!-- Örnek ürün kartları -->
       <div class="product-card" data-category="t-shirts" data-tags="halloween">
-        <img src="images/Halloween-1.png" alt="Halloween T-Shirt 1" />
+        <img src="images/Halloween-1.jpg" alt="Halloween T-Shirt 1" />
         <h3>Halloween T-Shirt 1</h3>
         <p>Gruseliges Design für Halloween</p>
       </div>
-      <!-- Devamı: Halloween-2.png ... Halloween-11.png -->
-      <!-- Aynı yapıda 11 ürün kartı eklenmeli -->
+
+      <div class="product-card" data-category="t-shirts" data-tags="halloween">
+        <img src="images/Halloween-2.jpg" alt="Halloween T-Shirt 2" />
+        <h3>Halloween T-Shirt 2</h3>
+        <p>Unisex Kürbis-Motiv</p>
+      </div>
+
+      <div class="product-card" data-category="t-shirts" data-tags="halloween">
+        <img src="images/Halloween-3.jpg" alt="Halloween T-Shirt 3" />
+        <h3>Halloween T-Shirt 3</h3>
+        <p>Glow-in-the-dark Effekt</p>
+      </div>
+
+      <!-- Devamı: Halloween-4.jpg ... Halloween-11.jpg -->
+      <!-- Aynı yapıda eklenebilir -->
     </div>
   </main>
 
@@ -232,3 +246,4 @@
     });
   </script>
 </body>
+</html>
