@@ -33,6 +33,9 @@ body {
   font-weight: normal;
   margin-bottom: 10px;
   color: #ffffff;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 /* Açıklama metni */
@@ -40,6 +43,9 @@ body {
   font-size: 1em;
   line-height: 1.6;
   color: #ccc;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 /* Mobil uyum */
