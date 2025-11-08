@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bunst Concept – Produkte</title>
   <style>
-    /* GENEL STİL */
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-image: url('produkte-main-img.jpg');
+      background-image: url('images/produkte-main-img.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -17,7 +16,6 @@
       color: #fff;
     }
 
-    /* SAYFA BAŞLIĞI */
     .site-header {
       background-color: rgba(0, 0, 0, 0.7);
       padding: 30px 0 10px;
@@ -32,7 +30,6 @@
       letter-spacing: 1px;
     }
 
-    /* ÜST MENÜ */
     .main-nav {
       background-color: rgba(17, 17, 17, 0.8);
       padding: 15px 0;
@@ -60,7 +57,6 @@
       color: #ffd700;
     }
 
-    /* FİLTRE KUTULARI */
     .filter-box {
       margin: 20px auto;
       padding: 20px;
@@ -101,7 +97,6 @@
       accent-color: #ffd700;
     }
 
-    /* ÜRÜN ALANI */
     .product-area {
       padding: 20px;
       text-align: center;
@@ -126,6 +121,12 @@
       box-shadow: 0 2px 6px rgba(255,255,255,0.1);
     }
 
+    .product-card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
     .product-card h3 {
       margin-top: 0;
       font-size: 1.2em;
@@ -136,10 +137,10 @@
       color: #ccc;
     }
 
-    /* SCROLLBAR GİZLEME */
     .filter-row::-webkit-scrollbar {
       display: none;
     }
+
     .filter-row {
       -ms-overflow-style: none;
       scrollbar-width: none;
@@ -147,12 +148,10 @@
   </style>
 </head>
 <body>
-  <!-- SAYFA BAŞLIĞI -->
   <header class="site-header">
     <h1>Bunst Concept</h1>
   </header>
 
-  <!-- ÜST MENÜ -->
   <nav class="main-nav">
     <ul class="nav-list">
       <li><a href="#" data-category="t-shirts">T-Shirts</a></li>
@@ -161,7 +160,6 @@
     </ul>
   </nav>
 
-  <!-- FİLTRELER -->
   <div class="filter-box" id="filter-box" style="display:none;">
     <h3>Filter</h3>
     <ul class="filter-row">
@@ -176,34 +174,28 @@
     </ul>
   </div>
 
-  <!-- ÜRÜNLER -->
   <main class="product-area">
     <h2>Produkte</h2>
     <div class="product-grid" id="product-grid">
-      <div class="product-card" data-category="t-shirts" data-tags="personalisierte minimal">
-        <h3>Basic T-Shirt</h3>
-        <p>100% Baumwolle</p>
+      <!-- Halloween T-Shirts (1–11) -->
+      <!-- Aşağıdaki ürünler sadece T-Shirts sekmesi + Halloween filtresi ile görünür -->
+      <!-- Görseller images klasöründe olmalı -->
+      <!-- Örnek: images/Halloween-1.png -->
+
+      <!-- Ürün kartları -->
+      <!-- Tek tek eklenmiş örnekler -->
+      <!-- ... -->
+      <!-- Örnek: -->
+      <div class="product-card" data-category="t-shirts" data-tags="halloween">
+        <img src="images/Halloween-1.png" alt="Halloween T-Shirt 1" />
+        <h3>Halloween T-Shirt 1</h3>
+        <p>Gruseliges Design für Halloween</p>
       </div>
-      <div class="product-card" data-category="t-shirts" data-tags="paar weihnachten">
-        <h3>Couple Shirt</h3>
-        <p>Für Paare – Weihnachtsmotiv</p>
-      </div>
-      <div class="product-card" data-category="t-shirts" data-tags="braut schule">
-        <h3>Unisex T-Shirt</h3>
-        <p>Ideal für Schule oder Hochzeit</p>
-      </div>
-      <div class="product-card" data-category="tragetasche" data-tags="minimal">
-        <h3>Tragetasche Bio</h3>
-        <p>Recyceltes Material</p>
-      </div>
-      <div class="product-card" data-category="heimtextilien" data-tags="weihnachten">
-        <h3>Kissenbezug</h3>
-        <p>Weihnachtsdesign</p>
-      </div>
+      <!-- Devamı: Halloween-2.png ... Halloween-11.png -->
+      <!-- Aynı yapıda 11 ürün kartı eklenmeli -->
     </div>
   </main>
 
-  <!-- JAVASCRIPT -->
   <script>
     const categoryLinks = document.querySelectorAll('.nav-list a');
     const productCards = document.querySelectorAll('.product-card');
@@ -240,4 +232,3 @@
     });
   </script>
 </body>
-</html>
