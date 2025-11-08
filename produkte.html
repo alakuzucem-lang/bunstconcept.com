@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="de">
 <body>
-  <header>
-    <h1>Unsere Produkte</h1>
-    <nav class="top-category-menu">
-      <label for="product-select"></label>
-      <select id="product-select">
-        <option value="T-Shirts">T-Shirts</option>
-        <option value="Tragetasche">Tragetasche</option>
-        <option value="Heimtextilien">Heimtextilien</option>
-      </select>
-      <label for="gender-select"></label>
-      <select id="gender-select">
-        <option value="herren">Herren</option>
-        <option value="damen">Damen</option>
-        <option value="kinder">Kinder</option>
-        <option value="unisex">Unisex</option>
-      </select>
-    </nav>
-  </header>
+  <nav class="main-nav">
+  <ul class="nav-list">
+    <li class="nav-item dropdown">
+      <a href="#">T-Shirts</a>
+      <ul class="dropdown-menu">
+        <li><a href="/produkte/t-shirts/damen">Damen</a></li>
+        <li><a href="/produkte/t-shirts/herren">Herren</a></li>
+        <li><a href="/produkte/t-shirts/kinder">Kinder</a></li>
+        <li><a href="/produkte/t-shirts/unisex">Unisex</a></li>
+      </ul>
+    </li>
+    <li class="nav-item"><a href="/produkte/tragetasche">Tragetasche</a></li>
+    <li class="nav-item"><a href="/produkte/heimtextilien">Heimtextilien</a></li>
+  </ul>
+</nav>
 
   <main class="product-layout">
     <!-- Sol filtre kutuları -->
@@ -26,12 +23,12 @@
       <h3>Filter</h3>
       <ul>
         <li><input type="checkbox" id="custom" /><label for="custom">Personalisierte Drucke</label></li>
-        <li><input type="checkbox" id="couples" /><label for="couples">Çiftler için</label></li>
-        <li><input type="checkbox" id="minimal" /><label for="minimal">Minimal Tasarımlar</label></li>
+        <li><input type="checkbox" id="couples" /><label for="couples">Paar-Kollektion</label></li>
+        <li><input type="checkbox" id="minimal" /><label for="minimal">Minimalistische Designs</label></li>
         <li><input type="checkbox" id="halloween" /><label for="halloween">Halloween</label></li>
-        <li><input type="checkbox" id="christmas" /><label for="christmas">Christmas</label></li>
-        <li><input type="checkbox" id="bride" /><label for="bride">Bride & Grom</label></li>
-        <li><input type="checkbox" id="school" /><label for="school">Schule</label></li>
+        <li><input type="checkbox" id="christmas" /><label for="christmas">Weihnachtsdesigns</label></li>
+        <li><input type="checkbox" id="bride" /><label for="bride">Braut & Bräutigam</label></li>
+        <li><input type="checkbox" id="school" /><label for="school">Schuldesigns</label></li>
       </ul>
     </aside>
 
