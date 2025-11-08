@@ -12,6 +12,7 @@
       color: #fff;
     }
 
+    /* Üst Menü */
     .main-nav {
       background-color: #111;
       padding: 20px 0;
@@ -38,41 +39,46 @@
       color: #ffd700;
     }
 
+    /* Filtre Kutuları */
     .filter-box {
-      margin: 20px auto 0;
-      max-width: 800px;
-      background-color: #111;
+      margin: 20px auto;
       padding: 20px;
+      background-color: #111;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(255,255,255,0.1);
-      text-align: center;
+      max-width: 100%;
+      overflow-x: auto;
     }
 
     .filter-box h3 {
       margin-bottom: 15px;
       color: #ffd700;
+      text-align: center;
     }
 
-    .filter-list {
+    .filter-row {
       list-style: none;
+      display: flex;
+      gap: 30px;
       padding: 0;
       margin: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 10px;
+      justify-content: center;
+      flex-wrap: nowrap;
     }
 
-    .filter-list li label {
+    .filter-row li label {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       font-size: 0.95em;
+      white-space: nowrap;
     }
 
-    .filter-list input[type="checkbox"] {
+    .filter-row input[type="checkbox"] {
       accent-color: #ffd700;
     }
 
+    /* Ürün Alanı */
     .product-area {
       padding: 40px;
       text-align: center;
@@ -118,7 +124,7 @@
   <!-- Filtre Kutuları -->
   <div class="filter-box" id="filter-box" style="display:none;">
     <h3>Filter</h3>
-    <ul class="filter-list">
+    <ul class="filter-row">
       <li><label><input type="checkbox" value="personalisierte" /> Personalisierte Drucke</label></li>
       <li><label><input type="checkbox" value="paar" /> Paar-Kollektion</label></li>
       <li><label><input type="checkbox" value="minimal" /> Minimalistische Designs</label></li>
