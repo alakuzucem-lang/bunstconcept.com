@@ -1,120 +1,128 @@
 /* Genel Sayfa Ayarları */
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: #000;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Üst Menü */
-.main-nav {
-  background-color: #111;
+header {
+  background-color: #000;
   padding: 20px 0;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+  border-bottom: 1px solid #333;
 }
 
-.nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: inline-flex;
-  gap: 60px;
+.navbar {
+  display: flex;
   justify-content: center;
 }
 
-.nav-item {
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 60px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
   position: relative;
 }
 
-.nav-item a {
+.nav-links a {
   text-decoration: none;
-  font-size: 1.1em;
-  font-weight: bold;
   color: #fff;
-  padding: 8px 12px;
+  font-size: 18px;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
-.nav-item a:hover {
-  color: #ffd700;
+.nav-links a:hover {
+  color: #ffcc00;
 }
 
 /* Dropdown Menü */
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: 35px;
   left: 0;
-  background-color: #222;
+  background-color: #111;
   list-style: none;
   padding: 10px 0;
   margin: 0;
-  box-shadow: 0 4px 8px rgba(255,255,255,0.2);
-  border-radius: 6px;
-  z-index: 1000;
-  min-width: 160px;
+  border-radius: 5px;
+  min-width: 150px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.6);
 }
 
 .dropdown-menu li {
-  padding: 6px 20px;
+  padding: 8px 20px;
 }
 
 .dropdown-menu li a {
   color: #fff;
-  font-weight: normal;
-  font-size: 0.95em;
-  text-decoration: none;
+  font-size: 16px;
+}
+
+.dropdown-menu li a:hover {
+  color: #ffcc00;
 }
 
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 
-/* Sayfa İçeriği */
-.content-area {
+/* Ana içerik yapısı */
+main {
   display: flex;
-  justify-content: space-between;
-  padding: 40px;
-}
-
-/* Ürün Alanı */
-.product-display {
   flex: 1;
-  padding-right: 40px;
+  padding: 20px;
+  gap: 40px;
 }
 
-.product-display h2 {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-}
-
-/* Filtre Paneli */
-.filter-panel {
-  width: 240px;
+/* Sol filtre kutusu */
+.filter-box {
+  width: 220px;
   background-color: #111;
   padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  border-radius: 8px;
+  height: fit-content;
 }
 
-.filter-panel h3 {
-  margin-bottom: 20px;
-  font-size: 1.2em;
-  color: #ffd700;
+.filter-box h3 {
+  color: #ffcc00;
+  margin-bottom: 15px;
+  font-size: 18px;
+  text-align: center;
 }
 
-.filter-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.filter-box label {
+  display: block;
+  margin: 10px 0;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-.filter-list li {
-  margin-bottom: 12px;
-}
-
-.filter-list input[type="checkbox"] {
+.filter-box input[type="checkbox"] {
+  accent-color: #ffcc00;
   margin-right: 10px;
-  accent-color: #ffd700;
+}
+
+/* İçerik Alanı */
+.content {
+  flex: 1;
+  background-color: #111;
+  padding: 40px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.content h1 {
+  color: #ffcc00;
+  margin-bottom: 10px;
 }
