@@ -125,6 +125,7 @@
     .product-card img {
       width: 160px;
       height: auto;
+      object-fit: contain;
       border-radius: 6px;
       margin-bottom: 10px;
       display: block;
@@ -183,106 +184,105 @@
     <h2>Produkte</h2>
     <div class="product-grid" id="product-grid">
       <!-- Halloween T-Shirts (1–11) -->
+      <!-- PNG formatlı görseller -->
       <!-- Görseller images klasöründe olmalı -->
-      <!-- Örnek: images/Halloween-1.png -->
 
-      <!-- Örnek ürün kartları -->
+      <!-- Ürün kartları -->
+      <!-- Otomatik örnekleme -->
+      <!-- Her biri küçük boyutlu ve düzgün hizalanmış -->
+      <!-- Örnek: -->
       <div class="product-card" data-category="t-shirts" data-tags="halloween">
         <img src="images/Halloween-1.png" alt="Halloween T-Shirt 1" />
         <h3>Halloween T-Shirt 1</h3>
-        <p>Gruseliges Design für Halloween</p>
+        <p>Glow-in-the-dark Effekt</p>
       </div>
-
       <div class="product-card" data-category="t-shirts" data-tags="halloween">
         <img src="images/Halloween-2.png" alt="Halloween T-Shirt 2" />
         <h3>Halloween T-Shirt 2</h3>
-        <p>Unisex Kürbis-Motiv</p>
+        <p>Spooky Skull Design</p>
       </div>
-
       <div class="product-card" data-category="t-shirts" data-tags="halloween">
         <img src="images/Halloween-3.png" alt="Halloween T-Shirt 3" />
         <h3>Halloween T-Shirt 3</h3>
-        <p>Glow-in-the-dark Effekt</p>
+        <p>Hexen-Motiv</p>
       </div>
-
       <div class="product-card" data-category="t-shirts" data-tags="halloween">
         <img src="images/Halloween-4.png" alt="Halloween T-Shirt 4" />
         <h3>Halloween T-Shirt 4</h3>
-        <p>Glow-in-the-dark Effekt</p>
-
+        <p>Vampir Grafik</p>
+      </div>
       <div class="product-card" data-category="t-shirts" data-tags="halloween">
         <img src="images/Halloween-5.png" alt="Halloween T-Shirt 5" />
         <h3>Halloween T-Shirt 5</h3>
         <p>Glow-in-the-dark Effekt</p>
-
+      </div>
       <div class="product-card" data-category="t-shirts" data-tags="halloween">
         <img src="images/Halloween-6.png" alt="Halloween T-Shirt 6" />
         <h3>Halloween T-Shirt 6</h3>
-        <p>Glow-in-the-dark Effekt</p>
-
-      <div class="product-card" data-category="t-shirts" data-tags="halloween">
-        <img src="images/Halloween-7.png" alt="Halloween T-Shirt 7" />
-        <h3>Halloween T-Shirt 7</h3>
-        <p>Glow-in-the-dark Effekt</p>
-
-      <div class="product-card" data-category="t-shirts" data-tags="halloween">
-        <img src="images/Halloween-8.png" alt="Halloween T-Shirt 8" />
-        <h3>Halloween T-Shirt 8</h3>
-        <p>Glow-in-the-dark Effekt</p>
-
-      <div class="product-card" data-category="t-shirts" data-tags="halloween">
-        <img src="images/Halloween-9.png" alt="Halloween T-Shirt 9" />
-        <h3>Halloween T-Shirt 9</h3>
-        <p>Glow-in-the-dark Effekt</p>
-
-      <div class="product-card" data-category="t-shirts" data-tags="halloween">
-        <img src="images/Halloween-10.png" alt="Halloween T-Shirt 10" />
-        <h3>Halloween T-Shirt 10</h3>
-        <p>Glow-in-the-dark Effekt</p>
-
-      <div class="product-card" data-category="t-shirts" data-tags="halloween">
-        <img src="images/Halloween-11.png" alt="Halloween T-Shirt 11" />
-        <h3>Halloween T-Shirt 11</h3>
-        <p>Glow-in-the-dark Effekt</p>
-      </div>
-      </div>
+        <p>Retro Horror</p>
     </div>
-  </main>
+    <div class="product-card" data-category="t-shirts" data-tags="halloween">
+      <img src="images/Halloween-7.png" alt="Halloween T-Shirt 7" />
+      <h3>Halloween T-Shirt 7</h3>
+      <p>Geisterjäger Edition</p>
+    </div>
+    <div class="product-card" data-category="t-shirts" data-tags="halloween">
+      <img src="images/Halloween-8.png" alt="Halloween T-Shirt 8" />
+      <h3>Halloween T-Shirt 8</h3>
+      <p>Limited Edition</p>
+    </div>
+    <div class="product-card" data-category="t-shirts" data-tags="halloween">
+      <img src="images/Halloween-9.png" alt="Halloween T-Shirt 9" />
+      <h3>Halloween T-Shirt 9</h3>
+      <p>Für Kinder & Erwachsene</p>
+    </div>
+    <div class="product-card" data-category="t-shirts" data-tags="halloween">
+      <img src="images/Halloween-10.png" alt="Halloween T-Shirt 10" />
+      <h3>Halloween T-Shirt 10</h3>
+      <p>Schwarz mit Neon-Print</p>
+    </div>
+    <div class="product-card" data-category="t-shirts" data-tags="halloween">
+      <img src="images/Halloween-11.png" alt="Halloween T-Shirt 11" />
+      <h3>Halloween T-Shirt 11</h3>
+      <p>Unisex Kürbis-Motiv</p>
+    </div>
+  </div>
+</main>
 
-  <script>
-    const categoryLinks = document.querySelectorAll('.nav-list a');
-    const productCards = document.querySelectorAll('.product-card');
-    const filterBox = document.getElementById('filter-box');
-    const checkboxes = filterBox.querySelectorAll('input[type="checkbox"]');
+<script>
+  const categoryLinks = document.querySelectorAll('.nav-list a');
+  const productCards = document.querySelectorAll('.product-card');
+  const filterBox = document.getElementById('filter-box');
+  const checkboxes = filterBox.querySelectorAll('input[type="checkbox"]');
 
-    categoryLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const selectedCategory = link.dataset.category;
+  categoryLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const selectedCategory = link.dataset.category;
 
-        filterBox.style.display = selectedCategory === 't-shirts' ? 'block' : 'none';
-        checkboxes.forEach(cb => cb.checked = false);
+      filterBox.style.display = selectedCategory === 't-shirts' ? 'block' : 'none';
+      checkboxes.forEach(cb => cb.checked = false);
 
-        productCards.forEach(card => {
-          card.style.display = card.dataset.category === selectedCategory ? 'block' : 'none';
-        });
+      productCards.forEach(card => {
+        card.style.display = card.dataset.category === selectedCategory ? 'block' : 'none';
       });
     });
+  });
 
-    checkboxes.forEach(cb => {
-      cb.addEventListener('change', () => {
-        const activeTags = Array.from(checkboxes)
-          .filter(cb => cb.checked)
-          .map(cb => cb.value);
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      const activeTags = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
 
-        productCards.forEach(card => {
-          const tags = card.dataset.tags.split(' ');
-          const isVisible = activeTags.length === 0 || activeTags.every(tag => tags.includes(tag));
-          const isTShirt = card.dataset.category === 't-shirts';
-          card.style.display = isTShirt && isVisible ? 'block' : 'none';
-        });
+      productCards.forEach(card => {
+        const tags = card.dataset.tags.split(' ');
+        const isVisible = activeTags.length === 0 || activeTags.every(tag => tags.includes(tag));
+        const isTShirt = card.dataset.category === 't-shirts';
+        card.style.display = isTShirt && isVisible ? 'block' : 'none';
       });
     });
-  </script>
+  });
+</script>
 </body>
 </html>
