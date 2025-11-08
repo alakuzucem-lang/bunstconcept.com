@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
-  <!-- Sayfa Başlığı -->
-  <header class="site-header">
-    <h1>Bunst Concept</h1>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bunst Concept – Produkte</title>
   <style>
+    /* GENEL STİL */
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -15,17 +13,33 @@
       color: #fff;
     }
 
-    /* Üst Menü */
+    /* SAYFA BAŞLIĞI */
+    .site-header {
+      background-color: #000;
+      padding: 30px 0 10px;
+      text-align: center;
+    }
+
+    .site-header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* ÜST MENÜ */
     .main-nav {
       background-color: #111;
-      padding: 20px 0;
+      padding: 15px 0;
       text-align: center;
     }
 
     .nav-list {
       list-style: none;
-      display: inline-flex;
-      gap: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
       justify-content: center;
       margin: 0;
       padding: 0;
@@ -35,14 +49,14 @@
       color: #fff;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1.1em;
+      font-size: 1em;
     }
 
     .nav-list li a:hover {
       color: #ffd700;
     }
 
-    /* Filtre Kutuları */
+    /* FİLTRE KUTULARI */
     .filter-box {
       margin: 20px auto;
       padding: 20px;
@@ -57,23 +71,25 @@
       margin-bottom: 15px;
       color: #ffd700;
       text-align: center;
+      font-size: 1.2em;
     }
 
     .filter-row {
       list-style: none;
       display: flex;
-      gap: 30px;
+      gap: 20px;
       padding: 0;
       margin: 0;
-      justify-content: center;
+      justify-content: flex-start;
       flex-wrap: nowrap;
+      overflow-x: auto;
     }
 
     .filter-row li label {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.95em;
+      font-size: 0.9em;
       white-space: nowrap;
     }
 
@@ -81,25 +97,28 @@
       accent-color: #ffd700;
     }
 
-    /* Ürün Alanı */
+    /* ÜRÜN ALANI */
     .product-area {
-      padding: 40px;
+      padding: 20px;
       text-align: center;
     }
 
+    .product-area h2 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
     .product-grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       justify-content: center;
-      margin-top: 20px;
     }
 
     .product-card {
       background-color: #222;
       padding: 20px;
       border-radius: 8px;
-      width: 220px;
       box-shadow: 0 2px 6px rgba(255,255,255,0.1);
     }
 
@@ -112,10 +131,24 @@
       font-size: 0.95em;
       color: #ccc;
     }
+
+    /* SCROLLBAR GİZLEME (opsiyonel) */
+    .filter-row::-webkit-scrollbar {
+      display: none;
+    }
+    .filter-row {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 <body>
-  <!-- Üst Menü -->
+  <!-- SAYFA BAŞLIĞI -->
+  <header class="site-header">
+    <h1>Bunst Concept</h1>
+  </header>
+
+  <!-- ÜST MENÜ -->
   <nav class="main-nav">
     <ul class="nav-list">
       <li><a href="#" data-category="t-shirts">T-Shirts</a></li>
@@ -124,7 +157,7 @@
     </ul>
   </nav>
 
-  <!-- Filtre Kutuları -->
+  <!-- FİLTRELER -->
   <div class="filter-box" id="filter-box" style="display:none;">
     <h3>Filter</h3>
     <ul class="filter-row">
@@ -138,7 +171,7 @@
     </ul>
   </div>
 
-  <!-- Ürün Alanı -->
+  <!-- ÜRÜNLER -->
   <main class="product-area">
     <h2>Produkte</h2>
     <div class="product-grid" id="product-grid">
@@ -165,7 +198,7 @@
     </div>
   </main>
 
-  <!-- JavaScript -->
+  <!-- JAVASCRIPT -->
   <script>
     const categoryLinks = document.querySelectorAll('.nav-list a');
     const productCards = document.querySelectorAll('.product-card');
