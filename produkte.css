@@ -81,7 +81,7 @@ header {
 main {
   display: flex;
   flex: 1;
-  padding: 20px;
+  padding: 30px 40px;
   gap: 40px;
 }
 
@@ -103,7 +103,7 @@ main {
 
 .filter-box label {
   display: block;
-  margin: 10px 0;
+  margin: 12px 0;
   font-size: 15px;
   cursor: pointer;
 }
