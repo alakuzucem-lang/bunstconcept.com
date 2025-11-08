@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bunst Concept – Produkte</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
+  <!-- Üst Menü -->
   <nav class="main-nav">
-  <ul class="nav-list">
-    <li class="nav-item dropdown">
-      <a href="#">T-Shirts</a>
-      <ul class="dropdown-menu">
-        <li><a href="/produkte/t-shirts/damen">Damen</a></li>
-        <li><a href="/produkte/t-shirts/herren">Herren</a></li>
-        <li><a href="/produkte/t-shirts/kinder">Kinder</a></li>
-        <li><a href="/produkte/t-shirts/unisex">Unisex</a></li>
-      </ul>
-    </li>
-    <li class="nav-item"><a href="/produkte/tragetasche">Tragetasche</a></li>
-    <li class="nav-item"><a href="/produkte/heimtextilien">Heimtextilien</a></li>
-  </ul>
-</nav>
+    <ul class="nav-list">
+      <li class="nav-item dropdown">
+        <a href="#">T-Shirts</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Damen</a></li>
+          <li><a href="#">Herren</a></li>
+          <li><a href="#">Kinder</a></li>
+          <li><a href="#">Unisex</a></li>
+        </ul>
+      </li>
+      <li class="nav-item"><a href="#">Tragetasche</a></li>
+      <li class="nav-item"><a href="#">Heimtextilien</a></li>
+    </ul>
+  </nav>
 
-  <main class="product-layout">
-    <!-- Sol filtre kutuları -->
-    <aside class="sidebar-filters">
+  <!-- Sayfa İçeriği -->
+  <main class="content-area">
+    <!-- Ürün Alanı -->
+    <section class="product-display">
+      <h2>Alle Produkte</h2>
+      <!-- Ürünler buraya gelecek -->
+    </section>
+
+    <!-- Sağ Filtreler -->
+    <aside class="filter-panel">
       <h3>Filter</h3>
-      <ul>
-        <li><input type="checkbox" id="custom" /><label for="custom">Personalisierte Drucke</label></li>
-        <li><input type="checkbox" id="couples" /><label for="couples">Paar-Kollektion</label></li>
-        <li><input type="checkbox" id="minimal" /><label for="minimal">Minimalistische Designs</label></li>
-        <li><input type="checkbox" id="halloween" /><label for="halloween">Halloween</label></li>
-        <li><input type="checkbox" id="christmas" /><label for="christmas">Weihnachtsdesigns</label></li>
-        <li><input type="checkbox" id="bride" /><label for="bride">Braut & Bräutigam</label></li>
-        <li><input type="checkbox" id="school" /><label for="school">Schuldesigns</label></li>
+      <ul class="filter-list">
+        <li><label><input type="checkbox"> Personalisierte Drucke</label></li>
+        <li><label><input type="checkbox"> Paar-Kollektion</label></li>
+        <li><label><input type="checkbox"> Minimalistische Designs</label></li>
+        <li><label><input type="checkbox"> Halloween</label></li>
+        <li><label><input type="checkbox"> Weihnachtsdesigns</label></li>
+        <li><label><input type="checkbox"> Braut & Bräutigam</label></li>
+        <li><label><input type="checkbox"> Schuldesigns</label></li>
       </ul>
     </aside>
-
-    <!-- Ürün listesi -->
-    <section class="product-grid">
-      <div class="product-card" data-gender="herren" data-tags="custom minimal">
-        <img src="shirt1.png" alt="T-Shirt Classic">
-        <h3>T-Shirt Classic</h3>
-        <p>100% Baumwolle – ideal für individuelle Drucke.</p>
-        <span class="price">29 €</span>
-      </div>
-      <!-- Diğer ürünler... -->
-    </section>
   </main>
 </body>
+</html>
