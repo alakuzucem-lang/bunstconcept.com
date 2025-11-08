@@ -16,15 +16,13 @@ body {
 
 /* Ana kategori listesi */
 .nav-list {
+  color: #ffffff;
   list-style: none;
   margin: 0;
   padding: 0;
   display: inline-flex;
   gap: 60px;
   justify-content: center;
-  /* Menü bağlantıları */
-.nav-list li a {
-  color: #ffffff;              /* Beyaz yazı */
   text-decoration: none;       /* Altı çizgisiz */
   font-size: 1.1em;
   font-weight: bold;
@@ -33,8 +31,7 @@ body {
 }
 /* Hover efekti */
 .nav-list li a:hover {
-  color: #ffd700;              /* Altın sarısı hover rengi */
-}
+  color: #f0f0f0;
 }
 
 /* Ana kategori öğeleri */
