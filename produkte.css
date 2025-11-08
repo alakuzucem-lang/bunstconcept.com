@@ -31,7 +31,6 @@ body {
 .category-title {
   font-size: 1.2em;
   font-weight: normal;
-  text-transform: lowercase;
   margin-bottom: 10px;
   color: #ffffff;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* Görsel üstünde okunabilirlik için gölge */
