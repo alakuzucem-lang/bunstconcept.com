@@ -1,28 +1,41 @@
-<header>
-  <h1>Unsere Produkte</h1>
-</header>
+<body>
+  <header>
+    <h1>Unsere Produkte</h1>
+    <nav class="top-category-menu">
+      <label for="gender-select">Kategorie:</label>
+      <select id="gender-select">
+        <option value="herren">Herren</option>
+        <option value="damen">Damen</option>
+        <option value="kinder">Kinder</option>
+        <option value="unisex">Unisex</option>
+      </select>
+    </nav>
+  </header>
 
-<section class="filter-bar">
-  <select id="category-filter">
-    <option value="all">Alle Kategorien</option>
-    <option value="t-shirts">T-Shirts</option>
-    <option value="tragetasche">Tragetasche</option>
-    <option value="heimtextilien">Heimtextilien</option>
-  </select>
+  <main class="product-layout">
+    <!-- Sol filtre kutuları -->
+    <aside class="sidebar-filters">
+      <h3>Filter</h3>
+      <ul>
+        <li><input type="checkbox" id="custom" /><label for="custom">Kişiye özel baskı</label></li>
+        <li><input type="checkbox" id="couples" /><label for="couples">Çiftler için</label></li>
+        <li><input type="checkbox" id="minimal" /><label for="minimal">Minimal Tasarımlar</label></li>
+        <li><input type="checkbox" id="halloween" /><label for="halloween">Halloween</label></li>
+        <li><input type="checkbox" id="christmas" /><label for="christmas">Christmas</label></li>
+        <li><input type="checkbox" id="bride" /><label for="bride">Bride & Grom</label></li>
+        <li><input type="checkbox" id="school" /><label for="school">Schule</label></li>
+      </ul>
+    </aside>
 
-  <select id="sort-filter">
-    <option value="default">Sortieren</option>
-    <option value="price-asc">Preis: Aufsteigend</option>
-    <option value="price-desc">Preis: Absteigend</option>
-  </select>
-</section>
-
-<section class="product-grid">
-  <div class="product-card" data-category="t-shirts" data-price="29">
-    <img src="shirt1.png" alt="T-Shirt Classic">
-    <h3>T-Shirt Classic</h3>
-    <p>100% Baumwolle – ideal für individuelle Drucke.</p>
-    <span class="price">29 €</span>
-  </div>
-  <!-- Diğer ürünler... -->
-</section>
+    <!-- Ürün listesi -->
+    <section class="product-grid">
+      <div class="product-card" data-gender="herren" data-tags="custom minimal">
+        <img src="shirt1.png" alt="T-Shirt Classic">
+        <h3>T-Shirt Classic</h3>
+        <p>100% Baumwolle – ideal für individuelle Drucke.</p>
+        <span class="price">29 €</span>
+      </div>
+      <!-- Diğer ürünler... -->
+    </section>
+  </main>
+</body>
