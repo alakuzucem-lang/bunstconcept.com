@@ -1,28 +1,28 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unsere Produkte – Bunst Concept</title>
-  <link rel="stylesheet" href="produkte.css">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <section class="category-section">
-    <div class="category-block">
-      <a href="/produkte/t-shirts" class="category-link">T-Shirts</a>
-      <p>100% Baumwolle, in verschiedenen Farben und Größen erhältlich. Ideal für individuelle Drucke.</p>
-    </div>
+<header>
+  <h1>Unsere Produkte</h1>
+</header>
 
-    <div class="category-block">
-      <a href="/produkte/tragetasche" class="category-link">Tragetasche</a>
-      <p>Robuste Tragetaschen aus Baumwolle – perfekt für den Alltag und personalisierbar.</p>
-    </div>
+<section class="filter-bar">
+  <select id="category-filter">
+    <option value="all">Alle Kategorien</option>
+    <option value="t-shirts">T-Shirts</option>
+    <option value="tragetasche">Tragetasche</option>
+    <option value="heimtextilien">Heimtextilien</option>
+  </select>
 
-    <div class="category-block">
-      <a href="/produkte/heimtextilien" class="category-link">Heimtextilien</a>
-      <p>Kissenbezüge und mehr – stilvoll, nachhaltig und mit deinem Design bedruckbar.</p>
-    </div>
-  </section>
-</body>
-</html>
+  <select id="sort-filter">
+    <option value="default">Sortieren</option>
+    <option value="price-asc">Preis: Aufsteigend</option>
+    <option value="price-desc">Preis: Absteigend</option>
+  </select>
+</section>
+
+<section class="product-grid">
+  <div class="product-card" data-category="t-shirts" data-price="29">
+    <img src="shirt1.png" alt="T-Shirt Classic">
+    <h3>T-Shirt Classic</h3>
+    <p>100% Baumwolle – ideal für individuelle Drucke.</p>
+    <span class="price">29 €</span>
+  </div>
+  <!-- Diğer ürünler... -->
+</section>
