@@ -152,8 +152,8 @@ body {
 
 /* Ürün görseli */
 .product-card img {
-  width: 220px; /* Görsel genişliği artırıldı */
-  height: auto;
+  width: 250px; /* Görsel genişliği artırıldı */
+  height: 250px;
   object-fit: contain;
   display: block;
   margin: 0 auto 10px;
