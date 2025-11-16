@@ -130,21 +130,33 @@ body {
 /* İçerik Alanı */
 .content {
   flex: 1;
-  background-color: #111;
-  padding: 40px;
-  border-radius: 8px;
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 0;
   text-align: center;
 }
 
-.content {
-  background-color: rgba(34, 34, 34, 0.9);
-  padding: 15px;
-  border-radius: 8px;
-  /* box-shadow kaldırıldı */
-  text-align: center;
-}
-  
 .content h1 {
   color: #ffcc00;
   margin-bottom: 10px;
+}
+
+/* Ürün kartı */
+.product-card {
+  background-color: transparent; /* Arka planı tamamen şeffaf yapar */
+  padding: 15px;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+}
+
+/* Ürün görseli */
+.product-card img {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 10px;
+  border-radius: 6px;
+  background-color: transparent;
 }
