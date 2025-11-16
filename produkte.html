@@ -109,9 +109,10 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(3, 1fr); /* Her satırda 3 ürün */
+      gap: 30px; /* Ürünler arası boşluk */
       justify-content: center;
+      padding: 20px;
     }
 
     .product-card {
@@ -123,7 +124,7 @@
     }
 
     .product-card img {
-      width: 160px;
+      width: 220px;
       height: auto;
       object-fit: contain;
       border-radius: 6px;
