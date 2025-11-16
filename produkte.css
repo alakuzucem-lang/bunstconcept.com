@@ -167,4 +167,15 @@ body {
   gap: 30px; /* Ürünler arası boşluk */
   justify-content: center;
   padding: 20px;
+  @media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* Tablet ve küçük ekranlarda 2 sütun */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr; /* Telefonlarda tek sütun */
+  }
+}
 }
