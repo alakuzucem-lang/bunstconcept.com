@@ -152,11 +152,19 @@ body {
 
 /* Ürün görseli */
 .product-card img {
-  width: 160px;
+  width: 220px; /* Görsel genişliği artırıldı */
   height: auto;
   object-fit: contain;
   display: block;
   margin: 0 auto 10px;
   border-radius: 6px;
   background-color: transparent;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Her satırda 3 ürün */
+  gap: 30px; /* Ürünler arası boşluk */
+  justify-content: center;
+  padding: 20px;
 }
