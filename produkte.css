@@ -136,6 +136,14 @@ body {
   text-align: center;
 }
 
+.product-card {
+  background-color: rgba(34, 34, 34, 0.9);
+  padding: 15px;
+  border-radius: 8px;
+  /* box-shadow kaldırıldı */
+  text-align: center;
+}
+  
 .content h1 {
   color: #ffcc00;
   margin-bottom: 10px;
