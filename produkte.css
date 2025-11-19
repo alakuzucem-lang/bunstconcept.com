@@ -247,12 +247,14 @@ body {
 }
 
 .quantity {
-  width: 20px;
-  padding: 4px;
-  font-size: 0.85em;
+  width: 30px;
+  height: 36px;
+  padding: 0;
+  font-size: 0.9em;
   border: 1px solid #ccc;
   border-radius: 4px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .add-to-cart {
