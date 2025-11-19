@@ -241,7 +241,8 @@ body {
   justify-content: flex-end;
   align-items: center;
   gap: 8px;
-  margin-top: 10px;
+  align-self: flex-end; /* Sağ alt köşeye yaklaşır */
+  margin-top: auto;
   width: 100%;
 }
 
