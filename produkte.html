@@ -306,6 +306,44 @@ document.getElementById('sort-dropdown').addEventListener('change', function () 
   const cards = Array.from(grid.querySelectorAll('.product-card'))
     .filter(card => card.style.display !== 'none');
 
+  let allProducts = [];
+
+fetch("products.json")
+  .then(res => res.json())
+  .then(data => {
+    allProducts = data;
+    renderProducts(allProducts); // Başlangıçta tüm ürünleri göster
+  });
+
+function renderProducts(products) {
+  const grid = document.getElementById("product-grid");
+  grid.innerHTML = "";
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.innerHTML = `
+      <div class="product-frame">
+        <img src="${product.image}" alt="${product.title}" />
+        <div class="product-info">
+          <h3>${product.title}</h3>
+          <ul>
+            <li>Material: ${product.material}</li>
+            <li>Druck: ${product.print}</li>
+            <li>Größen: ${product.sizes}</li>
+          </ul>
+          <p class="price">Kontaktieren Sie uns</p>
+          <p>${product.description}</p>
+        </div>
+        <div class="cart-actions">
+          <input type="number" class="quantity" min="0" step="1" value="0" />
+          <button class="add-to-cart">🛒</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+  
   let sorted = [];
 
   switch (value) {
