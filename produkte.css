@@ -163,6 +163,23 @@ body {
   background-color: #fff !important;
 }
 
+.image-wrapper {
+  width: 250px;
+  height: 250px;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+}
+
+.image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 .product-frame {
   background-color: #fff; /* Çerçeveye beyaz zemin ver */
   border-radius: 8px;
