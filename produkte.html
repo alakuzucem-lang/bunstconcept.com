@@ -259,53 +259,9 @@
 
 <!-- JavaScript kodu -->
 <script>
-  fetch("products.json")
-    .then(response => response.json())
-    .then(products => {
-      const grid = document.getElementById("product-grid");
-      products.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-          <div class="product-frame">
-            <img src="${product.image}" alt="${product.title}" />
-            <div class="product-info">
-              <h3>${product.title}</h3>
-              <ul>
-                <li>Material: ${product.material}</li>
-                <li>Druck: ${product.print}</li>
-                <li>Größen: ${product.sizes}</li>
-              </ul>
-              <p class="price">Kontaktieren Sie uns</p>
-              <p>${product.description}</p>
-            </div>
-            <div class="cart-actions">
-              <input type="number" class="quantity quantity-square" min="0" step="1" value="0" inputmode="numeric" />
-              <button class="add-to-cart">🛒</button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    });
-</script>
-</body>
-</html>
-    
-</main>
-<script>
-  const categoryLinks = document.querySelectorAll('.nav-list a');
-  const productCards = document.querySelectorAll('.product-card');
-  const filterBox = document.getElementById('filter-box');
-  const checkboxes = filterBox.querySelectorAll('input[type="checkbox"]');
-document.getElementById('sort-dropdown').addEventListener('change', function () {
-  const value = this.value;
-  const grid = document.getElementById('product-grid');
-  const cards = Array.from(grid.querySelectorAll('.product-card'))
-    .filter(card => card.style.display !== 'none');
+let allProducts = [];
 
-  let allProducts = [];
-
+// JSON'dan ürünleri yükle
 fetch("products.json")
   .then(res => res.json())
   .then(data => {
@@ -313,12 +269,16 @@ fetch("products.json")
     renderProducts(allProducts); // Başlangıçta tüm ürünleri göster
   });
 
+// Ürünleri ekrana basan fonksiyon
 function renderProducts(products) {
   const grid = document.getElementById("product-grid");
   grid.innerHTML = "";
   products.forEach(product => {
     const card = document.createElement("div");
     card.className = "product-card";
+    card.dataset.category = product.category || "";   // JSON'da category alanı olmalı
+    card.dataset.tags = product.tags ? product.tags.join(" ") : ""; // JSON'da tags array olmalı
+
     card.innerHTML = `
       <div class="product-frame">
         <img src="${product.image}" alt="${product.title}" />
@@ -342,7 +302,8 @@ function renderProducts(products) {
   });
 }
 
-  document.querySelectorAll(".filter-checkbox").forEach(cb => {
+// Filtre kutuları
+document.querySelectorAll(".filter-checkbox").forEach(cb => {
   cb.addEventListener("change", () => {
     const activeFilters = Array.from(document.querySelectorAll(".filter-checkbox:checked"))
                                .map(cb => cb.value);
@@ -357,6 +318,21 @@ function renderProducts(products) {
     }
   });
 });
+
+// Kategori linkleri (örn. T-Shirts menüsü)
+document.querySelectorAll(".nav-list a").forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    const selectedCategory = link.dataset.category;
+
+    const filterBox = document.getElementById("filter-box");
+    filterBox.style.display = selectedCategory === "t-shirts" ? "block" : "none";
+
+    const filtered = allProducts.filter(p => p.category === selectedCategory);
+    renderProducts(filtered);
+  });
+});
+</script>
   
   let sorted = [];
 
