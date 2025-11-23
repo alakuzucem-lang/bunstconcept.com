@@ -154,13 +154,18 @@ body {
   width: 250px;
   height: 250px;
   object-fit: contain;
-  background-color: #fff;
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 15px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  background-color: transparent; /* Görselin kendi arka planını boş bırak */
+}
+
+.product-frame {
+  background-color: #fff; /* Çerçeveye beyaz zemin ver */
+  border-radius: 8px;
 }
 
 /* Ürün başlığı */
