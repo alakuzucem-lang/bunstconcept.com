@@ -343,6 +343,22 @@ function renderProducts(products) {
     grid.appendChild(card);
   });
 }
+
+  document.querySelectorAll(".filter-checkbox").forEach(cb => {
+  cb.addEventListener("change", () => {
+    const activeFilters = Array.from(document.querySelectorAll(".filter-checkbox:checked"))
+                               .map(cb => cb.value);
+
+    if (activeFilters.length === 0) {
+      renderProducts(allProducts); // Filtre yoksa hepsini göster
+    } else {
+      const filtered = allProducts.filter(product =>
+        activeFilters.some(tag => product.tags.includes(tag))
+      );
+      renderProducts(filtered);
+    }
+  });
+});
   
   let sorted = [];
 
