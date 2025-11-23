@@ -262,16 +262,15 @@
       </select>
     </div>
     
-<!-- JavaScript kodu -->
 <script>
 let allProducts = [];
 
-// JSON'dan ürünleri yükle
+// Ürünleri JSON'dan yükle
 fetch("products.json")
   .then(res => res.json())
   .then(data => {
     allProducts = data;
-    renderProducts(allProducts); // Başlangıçta tüm ürünleri göster
+    renderProducts(allProducts);
   });
 
 // Ürünleri ekrana basan fonksiyon
@@ -281,8 +280,12 @@ function renderProducts(products) {
   products.forEach(product => {
     const card = document.createElement("div");
     card.className = "product-card";
-    card.dataset.category = product.category || "";   // JSON'da category alanı olmalı
-    card.dataset.tags = product.tags ? product.tags.join(" ") : ""; // JSON'da tags array olmalı
+    card.dataset.category = product.category || "";
+    card.dataset.tags = product.tags ? product.tags.join(" ") : "";
+    card.dataset.price = product.price || "0";
+    card.dataset.name = product.title || "";
+    card.dataset.date = product.date || "2025-01-01";
+    card.dataset.rating = product.rating || "0";
 
     card.innerHTML = `
       <div class="product-frame">
@@ -313,32 +316,38 @@ document.querySelectorAll(".filter-checkbox").forEach(cb => {
     const activeFilters = Array.from(document.querySelectorAll(".filter-checkbox:checked"))
                                .map(cb => cb.value);
 
-    if (activeFilters.length === 0) {
-      renderProducts(allProducts); // Filtre yoksa hepsini göster
-    } else {
-      const filtered = allProducts.filter(product =>
+    let filtered = allProducts;
+
+    if (activeFilters.length > 0) {
+      filtered = allProducts.filter(product =>
         activeFilters.some(tag => product.tags.includes(tag))
       );
-      renderProducts(filtered);
     }
+
+    renderProducts(filtered);
   });
 });
 
-// Kategori linkleri (örn. T-Shirts menüsü)
+// Kategori linkleri
 document.querySelectorAll(".nav-list a").forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
     const selectedCategory = link.dataset.category;
-
     const filterBox = document.getElementById("filter-box");
+
     filterBox.style.display = selectedCategory === "t-shirts" ? "block" : "none";
 
     const filtered = allProducts.filter(p => p.category === selectedCategory);
     renderProducts(filtered);
   });
 });
-</script>
-  
+
+// Sıralama dropdown
+document.getElementById("sort-dropdown").addEventListener("change", function () {
+  const value = this.value;
+  const grid = document.getElementById("product-grid");
+  const cards = Array.from(grid.querySelectorAll(".product-card"));
+
   let sorted = [];
 
   switch (value) {
@@ -364,39 +373,9 @@ document.querySelectorAll(".nav-list a").forEach(link => {
       sorted = cards;
   }
 
-  // Grid'i temizle ve yeniden ekle
   grid.innerHTML = '';
   sorted.forEach(card => grid.appendChild(card));
 });
-
-  categoryLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const selectedCategory = link.dataset.category;
-
-      filterBox.style.display = selectedCategory === 't-shirts' ? 'block' : 'none';
-      checkboxes.forEach(cb => cb.checked = false);
-
-      productCards.forEach(card => {
-        card.style.display = card.dataset.category === selectedCategory ? 'block' : 'none';
-      });
-    });
-  });
-
-  checkboxes.forEach(cb => {
-    cb.addEventListener('change', () => {
-      const activeTags = Array.from(checkboxes)
-        .filter(cb => cb.checked)
-        .map(cb => cb.value);
-
-      productCards.forEach(card => {
-        const tags = card.dataset.tags.split(' ');
-        const isVisible = activeTags.length === 0 || activeTags.every(tag => tags.includes(tag));
-        const isTShirt = card.dataset.category === 't-shirts';
-        card.style.display = isTShirt && isVisible ? 'block' : 'none';
-      });
-    });
-  });
 </script>
 </body>
 </html>
