@@ -227,9 +227,11 @@
       <li><a href="#" data-category="heimtextilien">Heimtextilien</a></li>
     </ul>
   </nav>
- 
+  
+</body> 
   <div class="filter-box">
   <h3>Designs filtern</h3>
+  <ul class="filter-row">
   <label><input type="checkbox" value="personalisierte" class="filter-checkbox" /> Personalisierte Drucke</label>
   <label><input type="checkbox" value="paar" class="filter-checkbox" /> Paar Kollektionen</label>
   <label><input type="checkbox" value="braut" class="filter-checkbox" /> Braut & Bräutigam Designs</label>
@@ -238,7 +240,13 @@
   <label><input type="checkbox" value="halloween" class="filter-checkbox" /> Halloween Designs</label>
   <label><input type="checkbox" value="weihnachten" class="filter-checkbox" /> Weihnachtsdesigns</label>
   <label><input type="checkbox" value="alle" class="filter-checkbox" /> Designs für Alle</label>
+  </ul>
 </div>
+  
+  <!-- ürün grid -->
+  <div id="product-grid" class="product-grid"></div>
+  <script src="script.js"></script>
+</body>
 
   <main class="product-area">
     <div class="product-header">
@@ -254,9 +262,6 @@
       </select>
     </div>
     
-  <!-- ürün grid -->
-<div id="product-grid" class="product-grid"></div>
-
 <!-- JavaScript kodu -->
 <script>
 let allProducts = [];
