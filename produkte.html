@@ -425,7 +425,7 @@ function calculateAverage(reviews) {
   const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
   const avg = sum / reviews.length;
   const stars = [1,2,3,4,5].map(i => i <= Math.round(avg) ? "★" : "☆").join("");
-  return `${reviews.length} – ${stars}`;
+  return `${reviews.length}${stars}`;
 }
 
 // Render products
@@ -461,7 +461,7 @@ function renderProducts(products) {
         </ul>
         <p class="price">Kontaktieren Sie uns</p>
         <div class="cart-actions">
-          <input type="number" class="quantity" min="1" value="1">
+          <input type="number" class="quantity" min="0" value="1">
           <button class="add-to-cart">🛒 In den Warenkorb</button>
         </div>
       </div>
