@@ -493,31 +493,26 @@ function renderProducts(products) {
 
 <!-- Scripts -->
 <script>
-  // Fullscreen overlay (created once)
-  const overlay = document.createElement("div");
-  overlay.id = "fullscreen-overlay";
-  const overlayImg = document.createElement("img");
-  overlay.appendChild(overlayImg);
-  document.body.appendChild(overlay);
-  overlay.addEventListener("click", () => { overlay.style.display = "none"; });
-
-  // Enable zoom icons after render
-  function enableZoomIcons() {
-    document.querySelectorAll(".zoom-icon").forEach(icon => {
-      icon.addEventListener("click", (e) => {
-        e.stopPropagation(); // prevent other card clicks
-        const img = icon.parentElement.querySelector("img");
-        if (!img) return;
-        overlayImg.src = img.src;
-        overlay.style.display = "flex";
-      });
-    });
-  }
-
-  // Overlay div'i bir kez oluştur
+// Fullscreen overlay (created once)
 const overlay = document.createElement("div");
 overlay.id = "fullscreen-overlay";
+overlay.style.cssText = `
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+`;
 const overlayImg = document.createElement("img");
+overlayImg.style.cssText = `
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.25);
+`;
 overlay.appendChild(overlayImg);
 document.body.appendChild(overlay);
 
@@ -539,57 +534,59 @@ function enableZoomIcons() {
   });
 }
 
-// Sayfa yüklendiğinde çalıştır
-document.addEventListener("DOMContentLoaded", enableZoomIcons);
+// Render products
+function renderProducts(products) {
+  const grid = document.getElementById("product-grid");
+  grid.innerHTML = "";
 
-  // Render products
-  function renderProducts(products) {
-    const grid = document.getElementById("product-grid");
-    grid.innerHTML = "";
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
 
-    products.forEach(product => {
-      const card = document.createElement("div");
-      card.className = "product-card";
-
-      card.innerHTML = `
-        <div class="product-frame">
-          <div class="zoom-icon" aria-label="Bild vergrößern" title="Bild vergrößern">🔍</div>
-          <img src="${product.image}" alt="${product.title}">
-          <div class="product-info">
-            <h3>${product.title}</h3>
-            <ul>
-              <li>Material: ${product.material || ""}</li>
-              <li>Druck: ${product.print || ""}</li>
-              <li>Größen: ${product.sizes || ""}</li>
-            </ul>
-            <p class="price">Kontaktieren Sie uns</p>
-            <div class="cart-actions">
-              <input type="number" class="quantity" min="1" value="1">
-              <button class="add-to-cart">🛒 In den Warenkorb</button>
-            </div>
+    card.innerHTML = `
+      <div class="product-frame" style="position:relative;">
+        <div class="zoom-icon" aria-label="Bild vergrößern" title="Bild vergrößern"
+             style="position:absolute;top:10px;right:10px;font-size:20px;
+                    background:rgba(255,255,255,0.9);border-radius:50%;
+                    padding:6px;cursor:pointer;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+          🔍
+        </div>
+        <img src="${product.image}" alt="${product.title}">
+        <div class="product-info">
+          <h3>${product.title}</h3>
+          <ul>
+            <li>Material: ${product.material || ""}</li>
+            <li>Druck: ${product.print || ""}</li>
+            <li>Größen: ${product.sizes || ""}</li>
+          </ul>
+          <p class="price">Kontaktieren Sie uns</p>
+          <div class="cart-actions">
+            <input type="number" class="quantity" min="1" value="1">
+            <button class="add-to-cart">🛒 In den Warenkorb</button>
           </div>
         </div>
-        <div class="product-details-box" style="display:none;"></div>
-      `;
+      </div>
+      <div class="product-details-box" style="display:none;"></div>
+    `;
 
-      grid.appendChild(card);
-    });
+    grid.appendChild(card);
+  });
 
-    // Important: initialize zoom icons now
-    enableZoomIcons();
+  // initialize zoom icons now
+  enableZoomIcons();
+}
+
+// Demo data (replace with your JSON)
+const products = [
+  {
+    title: "Pumpkin Design-Unisex",
+    image: "images/Halloween-3.0.png",
+    material: "%100 Bio-Baumwolle",
+    print: "Verschiedene Farben",
+    sizes: "S/M/L/XL"
   }
+];
 
-  // Demo data (replace with your JSON)
-  const products = [
-    {
-      title: "Pumpkin Design-Unisex",
-      image: "images/Halloween-3.0.png",
-      material: "%100 Bio-Baumwolle",
-      print: "Verschiedene Farben",
-      sizes: "S/M/L/XL"
-    }
-  ];
-
-  // Init
-  renderProducts(products);
+// Init
+renderProducts(products);
 </script>
