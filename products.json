@@ -15,7 +15,8 @@
     "reviews": [
     { "user": "Anna", "rating": 5, "comment": "Super Qualität!" },
     { "user": "Tom", "rating": 4, "comment": "Sehr bequem, aber etwas groß." }
-  ]
+  ],
+    "zoomable": true
   },
   {
     "title": "Pumpkin Design-Unisex",
