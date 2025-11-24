@@ -467,28 +467,32 @@ function renderProducts(products) {
 
     // kart tıklanınca detay kutusunu aç/kapat
     card.addEventListener("click", (e) => {
-      // zoom ikonuna tıklanırsa detay açılmasın
-      if (e.target.classList.contains("zoom-icon")) return;
+      // zoom ikonuna veya sepete/adet kutusuna tıklanırsa detay açılmasın
+      if (e.target.classList.contains("zoom-icon") ||
+          e.target.classList.contains("add-to-cart") ||
+          e.target.classList.contains("quantity")) return;
 
       if (detailsBox.style.display === "none" || detailsBox.style.display === "") {
         detailsBox.innerHTML = `
-          <div class="extra-images">
-            ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" alt="Extra" />`).join("") : ""}
-          </div>
-          <div class="description">
-            <p>${product.description || ""}</p>
-          </div>
-          <div class="reviews">
-            <h4>Kundenbewertungen</h4>
-            ${product.reviews ? product.reviews.map(r => `
-              <div class="review">
-                <strong>${r.user}</strong> – ⭐ ${r.rating}/5<br/>
-                <p>${r.comment}</p>
-              </div>
-            `).join("") : "<p>Keine Bewertungen vorhanden.</p>"}
+          <div class="review-section">
+            <div class="stars">
+              ${[1,2,3,4,5].map(i => `<span class="star" data-value="${i}">☆</span>`).join("")}
+            </div>
+            <textarea class="review-input" placeholder="Ihre Bewertung schreiben..." rows="3" style="width:100%;margin-top:10px;"></textarea>
           </div>
         `;
         detailsBox.style.display = "block";
+
+        // yıldızlara tıklama işlevi
+        const stars = detailsBox.querySelectorAll(".star");
+        stars.forEach(star => {
+          star.addEventListener("click", () => {
+            const value = parseInt(star.dataset.value);
+            stars.forEach((s, idx) => {
+              s.textContent = (idx < value) ? "★" : "☆";
+            });
+          });
+        });
       } else {
         detailsBox.style.display = "none";
       }
@@ -510,13 +514,7 @@ const products = [
     image: "images/Halloween-3.0.png",
     material: "%100 Bio-Baumwolle",
     print: "Verschiedene Farben",
-    sizes: "S/M/L/XL",
-    description: "Pumpkin-Motiv",
-    extraImages: ["images/Halloween-3.1.png","images/Halloween-3.2.png"],
-    reviews: [
-      { user: "Anna", rating: 5, comment: "Super Qualität!" },
-      { user: "Tom", rating: 4, comment: "Sehr bequem, aber etwas groß." }
-    ]
+    sizes: "S/M/L/XL"
   }
 ];
 
