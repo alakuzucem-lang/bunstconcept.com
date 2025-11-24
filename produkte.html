@@ -427,7 +427,7 @@ function formatAverage(reviews) {
   const avg = sum / count;
   const roundedStars = Math.round(avg); // görsel yıldız için yuvarla
   const starsVisual = [1,2,3,4,5].map(i => i <= roundedStars ? "★" : "☆").join("");
-  return { text: `${count} – ${avg.toFixed(1)}/5★`, stars: starsVisual };
+  return { text: `${avg.toFixed(1)}/5★`, stars: starsVisual };
 }
 
 // Yıldız string oluşturma (puan için)
