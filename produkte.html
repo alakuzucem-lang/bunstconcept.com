@@ -514,6 +514,34 @@ function renderProducts(products) {
     });
   }
 
+  // Overlay div'i bir kez oluştur
+const overlay = document.createElement("div");
+overlay.id = "fullscreen-overlay";
+const overlayImg = document.createElement("img");
+overlay.appendChild(overlayImg);
+document.body.appendChild(overlay);
+
+// Overlay'e tıklayınca kapat
+overlay.addEventListener("click", () => {
+  overlay.style.display = "none";
+});
+
+// Zoom ikonlarını aktif et
+function enableZoomIcons() {
+  document.querySelectorAll(".zoom-icon").forEach(icon => {
+    icon.addEventListener("click", (e) => {
+      e.stopPropagation(); // kart tıklamasını engelle
+      const img = icon.parentElement.querySelector("img");
+      if (!img) return;
+      overlayImg.src = img.src;
+      overlay.style.display = "flex"; // tam ekran aç
+    });
+  });
+}
+
+// Sayfa yüklendiğinde çalıştır
+document.addEventListener("DOMContentLoaded", enableZoomIcons);
+
   // Render products
   function renderProducts(products) {
     const grid = document.getElementById("product-grid");
