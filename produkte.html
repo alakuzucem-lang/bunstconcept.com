@@ -425,7 +425,7 @@ function calculateAverage(reviews) {
   const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
   const avg = sum / reviews.length;
   const stars = [1,2,3,4,5].map(i => i <= Math.round(avg) ? "★" : "☆").join("");
-  return `${reviews.length} "★"`;
+  return `${reviews.length}★/5★`;
 }
 
 // Render products
