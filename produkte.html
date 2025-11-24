@@ -403,19 +403,20 @@ function renderProducts(products) {
           <li>Größen: ${product.sizes}</li>
         </ul>
         <p class="price">Kontaktieren Sie uns</p>
-        <p>${product.description}</p>
-        <button class="toggle-details">Details anzeigen</button>
       </div>
     `;
 
     const detailsBox = document.createElement("div");
     detailsBox.className = "product-details-box";
 
-    frame.querySelector(".toggle-details").addEventListener("click", () => {
-      if (detailsBox.style.display === "none") {
+    card.addEventListener("click", () => {
+      if (detailsBox.style.display === "none" || detailsBox.style.display === "") {
         detailsBox.innerHTML = `
           <div class="extra-images">
             ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" />`).join("") : ""}
+          </div>
+          <div class="description">
+            <p>${product.description}</p>
           </div>
           <div class="reviews">
             <h4>Kundenbewertungen</h4>
@@ -432,10 +433,8 @@ function renderProducts(products) {
           </div>
         `;
         detailsBox.style.display = "block";
-        frame.querySelector(".toggle-details").textContent = "Details ausblenden";
       } else {
         detailsBox.style.display = "none";
-        frame.querySelector(".toggle-details").textContent = "Details anzeigen";
       }
     });
 
