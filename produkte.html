@@ -382,6 +382,44 @@ document.getElementById("sort-dropdown").addEventListener("change", function () 
 </html>
 
 <script>
+// Fullscreen overlay
+const overlay = document.createElement("div");
+overlay.id = "fullscreen-overlay";
+overlay.style.cssText = `
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+`;
+const overlayImg = document.createElement("img");
+overlayImg.style.cssText = `
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.25);
+`;
+overlay.appendChild(overlayImg);
+document.body.appendChild(overlay);
+overlay.addEventListener("click", () => overlay.style.display = "none");
+
+// Zoom ikonlarını aktif et
+function enableZoomIcons() {
+  document.querySelectorAll(".zoom-icon").forEach(icon => {
+    icon.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const img = icon.parentElement.querySelector("img");
+      if (!img) return;
+      overlayImg.src = img.src;
+      overlay.style.display = "flex";
+    });
+  });
+}
+
+// Render products
 function renderProducts(products) {
   const grid = document.getElementById("product-grid");
   grid.innerHTML = "";
@@ -421,10 +459,13 @@ function renderProducts(products) {
     detailsBox.className = "product-details-box";
     detailsBox.style.display = "none";
 
-    // Sadece frame'e tıklanınca aç/kapat
     frame.addEventListener("click", (e) => {
-      if (e.target.classList.contains("zoom-icon") ||
-          e.target.classList.closest(".cart-actions")) return;
+      if (
+        e.target.classList.contains("zoom-icon") ||
+        e.target.closest(".cart-actions") ||
+        e.target.classList.contains("star") ||
+        e.target.classList.contains("review-input")
+      ) return;
 
       if (detailsBox.style.display === "none" || detailsBox.style.display === "") {
         const reviews = product.reviews?.slice().reverse() || [];
@@ -432,14 +473,14 @@ function renderProducts(products) {
         const hiddenReviews = reviews.slice(2);
 
         detailsBox.innerHTML = `
-          <div class="review-section">
-            <div class="stars">
-              ${[1,2,3,4,5].map(i => `<span class="star" data-value="${i}">☆</span>`).join("")}
-            </div>
-            <textarea class="review-input" placeholder="Ihre Bewertung schreiben..." rows="3" style="width:100%;margin-top:10px;"></textarea>
+          <div class="extra-images">
+            ${product.extraImages?.map(img => `<img src="${img}" alt="Extra">`).join("") || ""}
+          </div>
+          <div class="description">
+            <p>${product.description || ""}</p>
           </div>
           <div class="reviews">
-            <h4 style="margin-top:20px;">Kundenbewertungen</h4>
+            <h4>Kundenbewertungen</h4>
             ${visibleReviews.map(r => `
               <div class="review">
                 <div class="rating">
@@ -466,10 +507,16 @@ function renderProducts(products) {
               </div>
             ` : ""}
           </div>
+          <div class="review-section" style="margin-top:20px;">
+            <div class="stars">
+              ${[1,2,3,4,5].map(i => `<span class="star" data-value="${i}" style="font-size:22px;cursor:pointer;">☆</span>`).join("")}
+            </div>
+            <textarea class="review-input" placeholder="Ihre Bewertung schreiben..." rows="3"
+                      style="width:100%;margin-top:10px;padding:8px;border:1px solid #ccc;border-radius:4px;"></textarea>
+          </div>
         `;
         detailsBox.style.display = "block";
 
-        // Yıldız puanlama
         const stars = detailsBox.querySelectorAll(".star");
         stars.forEach(star => {
           star.addEventListener("click", () => {
@@ -480,7 +527,6 @@ function renderProducts(products) {
           });
         });
 
-        // Tüm yorumları göster
         const showAllBtn = detailsBox.querySelector(".show-all-reviews");
         if (showAllBtn) {
           showAllBtn.addEventListener("click", () => {
@@ -501,4 +547,25 @@ function renderProducts(products) {
 
   enableZoomIcons();
 }
+
+// Demo data
+const products = [
+  {
+    title: "Pumpkin Design-Unisex",
+    image: "images/Halloween-3.0.png",
+    material: "%100 Bio-Baumwolle",
+    print: "Verschiedene Farben",
+    sizes: "S/M/L/XL",
+    description: "Pumpkin-Motiv",
+    extraImages: ["images/Halloween-3.1.png","images/Halloween-3.2.png"],
+    reviews: [
+      { user: "Anna", rating: 5, comment: "Super Qualität!" },
+      { user: "Tom", rating: 4, comment: "Sehr bequem, aber etwas groß." },
+      { user: "Lena", rating: 5, comment: "Tolles Design!" }
+    ]
+  }
+];
+
+// Init
+renderProducts(products);
 </script>
