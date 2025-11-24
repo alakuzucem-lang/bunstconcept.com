@@ -391,33 +391,31 @@ function renderProducts(products) {
     card.dataset.category = product.category;
     card.dataset.tags = product.tags.join(" ");
 
-    card.innerHTML = `
-      <div class="product-frame">
-        <img src="${product.image}" alt="${product.title}" />
-        <div class="product-info">
-          <h3>${product.title}</h3>
-          <ul>
-            <li>Material: ${product.material}</li>
-            <li>Druck: ${product.print}</li>
-            <li>Größen: ${product.sizes}</li>
-          </ul>
-          <p class="price">Kontaktieren Sie uns</p>
-          <p>${product.description}</p>
-        </div>
+    const frame = document.createElement("div");
+    frame.className = "product-frame";
+    frame.innerHTML = `
+      <img src="${product.image}" alt="${product.title}" />
+      <div class="product-info">
+        <h3>${product.title}</h3>
+        <ul>
+          <li>Material: ${product.material}</li>
+          <li>Druck: ${product.print}</li>
+          <li>Größen: ${product.sizes}</li>
+        </ul>
+        <p class="price">Kontaktieren Sie uns</p>
+        <p>${product.description}</p>
         <button class="toggle-details">Details anzeigen</button>
-        <div class="product-details" style="display:none;"></div>
       </div>
     `;
 
-    // Detay kutusunu doldur
-    const detailsBox = card.querySelector(".product-details");
-    const toggleBtn = card.querySelector(".toggle-details");
+    const detailsBox = document.createElement("div");
+    detailsBox.className = "product-details-box";
 
-    toggleBtn.addEventListener("click", () => {
+    frame.querySelector(".toggle-details").addEventListener("click", () => {
       if (detailsBox.style.display === "none") {
         detailsBox.innerHTML = `
           <div class="extra-images">
-            ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" style="width:80px; margin:5px;" />`).join("") : ""}
+            ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" />`).join("") : ""}
           </div>
           <div class="reviews">
             <h4>Kundenbewertungen</h4>
@@ -428,15 +426,21 @@ function renderProducts(products) {
               </div>
             `).join("") : "<p>Keine Bewertungen vorhanden.</p>"}
           </div>
+          <div class="cart-actions">
+            <input type="number" class="quantity" min="1" value="1" />
+            <button class="add-to-cart">🛒 In den Warenkorb</button>
+          </div>
         `;
         detailsBox.style.display = "block";
-        toggleBtn.textContent = "Details ausblenden";
+        frame.querySelector(".toggle-details").textContent = "Details ausblenden";
       } else {
         detailsBox.style.display = "none";
-        toggleBtn.textContent = "Details anzeigen";
+        frame.querySelector(".toggle-details").textContent = "Details anzeigen";
       }
     });
 
+    card.appendChild(frame);
+    card.appendChild(detailsBox);
     grid.appendChild(card);
   });
 }
