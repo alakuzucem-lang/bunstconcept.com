@@ -445,146 +445,51 @@ function renderProducts(products) {
 }
 </script>
 
-<!-- Grid konteyner -->
-<div id="product-grid" class="product-grid"></div>
-
 <script>
-// 1) Stilleri doğru hedefe enjekte et (.product-frame img)
-function injectStyles() {
-  const style = document.createElement('style');
-  style.textContent = `
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      padding: 20px;
-    }
-    .product-card {
-      background: #f5f5f5;
-      color: #111;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
-    .product-card:hover { transform: translateY(-5px); }
-    .product-frame {
-      background: #fff;
-      border: 1px solid #000;
-      border-radius: 8px;
-      padding: 15px;
-      text-align: center;
-    }
-    .product-frame img {
-      width: 100%;
-      height: auto;
-      max-height: 360px; /* büyütülmüş görünüm */
-      object-fit: contain;
-      border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .product-card:hover .product-frame img {
-      transform: scale(1.04);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-    }
-    /* Ek görseller yan yana */
-    .extra-images {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 10px 0;
-      justify-content: center;
-    }
-    .extra-images img {
-      width: 80px; height: 80px;
-      object-fit: contain;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .product-info { text-align: left; }
-    .cart-actions {
-      margin-top: 12px;
-      display: flex; gap: 10px; justify-content: flex-end; align-items: center;
-    }
-    .quantity { width: 60px; padding: 5px; text-align: center; }
-    .add-to-cart {
-      background:#ffd700; color:#fff; border: none; padding:6px 12px; border-radius:6px; cursor:pointer;
-    }
-    .add-to-cart:hover { background:#ffcc00; }
-    @media (max-width: 768px) {
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-      .product-frame img { max-height: 280px; }
-    }
-    @media (max-width: 480px) {
-      .product-grid { grid-template-columns: 1fr; }
-      .product-frame img { max-height: 220px; }
-    }
-  `;
-  document.head.appendChild(style);
-}
+// Tam ekran overlay kutusu oluştur
+const overlay = document.createElement("div");
+overlay.id = "fullscreen-overlay";
+overlay.style.cssText = `
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+`;
+document.body.appendChild(overlay);
 
-// 2) Görselleri kart genişliğine göre dinamik optimize et
-function enhanceImages() {
-  const cards = document.querySelectorAll('.product-card');
-  cards.forEach(card => {
-    const img = card.querySelector('.product-frame img');
-    if (!img) return;
-    const cardWidth = card.getBoundingClientRect().width;
-    const targetMax = Math.max(320, Math.min(460, Math.round(cardWidth * 0.65)));
-    img.style.maxHeight = `${targetMax}px`;
-    img.style.filter = 'contrast(1.02) saturate(1.03)';
+// Görsel kutusu
+const overlayImg = document.createElement("img");
+overlayImg.style.cssText = `
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+`;
+overlay.appendChild(overlayImg);
+
+// Kapatmak için tıklama
+overlay.addEventListener("click", () => {
+  overlay.style.display = "none";
+});
+
+// Her zoom-icon’a tıklama ekle
+function enableZoomIcons() {
+  document.querySelectorAll(".zoom-icon").forEach(icon => {
+    icon.addEventListener("click", (e) => {
+      e.stopPropagation(); // kart tıklamasını engelle
+      const img = icon.nextElementSibling;
+      overlayImg.src = img.src;
+      overlay.style.display = "flex";
+    });
   });
 }
 
-// 3) Kartları render et (DOĞRU container: #product-grid)
-function renderProducts(products) {
-  const grid = document.getElementById('product-grid');
-  grid.innerHTML = '';
-
-  products.forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.dataset.category = product.category || '';
-    card.dataset.tags = (product.tags || []).join(' ');
-
-    card.innerHTML = `
-      <div class="product-frame">
-        <img src="${product.image}" alt="${product.title}">
-        <div class="product-info">
-          <h3>${product.title}</h3>
-          <ul>
-            <li>Material: ${product.material || ''}</li>
-            <li>Druck: ${product.print || ''}</li>
-            <li>Größen: ${product.sizes || ''}</li>
-          </ul>
-          <p class="price">Kontaktieren Sie uns</p>
-          <div class="cart-actions">
-            <input type="number" class="quantity" min="1" value="1">
-            <button class="add-to-cart">🛒 In den Warenkorb</button>
-          </div>
-        </div>
-      </div>
-      <div class="extra-images">
-        ${(product.extraImages || []).map(img => `<img src="${img}" alt="Extra">`).join('')}
-      </div>
-      <div class="description"><p>${product.description || ''}</p></div>
-      <div class="reviews">
-        <h4>Kundenbewertungen</h4>
-        ${(product.reviews || []).map(r => `
-          <div class="review"><strong>${r.user}</strong> – ⭐ ${r.rating}/5<br><p>${r.comment}</p></div>
-        `).join('') || '<p>Keine Bewertungen vorhanden.</p>'}
-      </div>
-    `;
-
-    grid.appendChild(card);
-  });
-
-  enhanceImages();
-}
-
-// 4) Başlat: stilleri enjekte et ve render sonrası optimize et
-injectStyles();
-// renderProducts(allProducts); // ürünleri yükledikten sonra çağır
-window.addEventListener('resize', enhanceImages);
-</script>
+// renderProducts sonunda çağır
+// renderProducts(...); sonra:
+enableZoomIcons();
+<script>
