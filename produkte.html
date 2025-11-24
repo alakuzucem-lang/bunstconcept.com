@@ -382,117 +382,6 @@ document.getElementById("sort-dropdown").addEventListener("change", function () 
 </html>
 
 <script>
-function renderProducts(products) {
-  const grid = document.getElementById("product-grid");
-  grid.innerHTML = "";
-
-  products.forEach(product => {
-    const card = document.createElement("div");
-    card.className = "product-card";
-    card.dataset.category = product.category;
-    card.dataset.tags = product.tags.join(" ");
-
-    const frame = document.createElement("div");
-    frame.className = "product-frame";
-    frame.innerHTML = `
-      <img src="${product.image}" alt="${product.title}" />
-      <div class="product-info">
-        <h3>${product.title}</h3>
-        <ul>
-          <li>Material: ${product.material}</li>
-          <li>Druck: ${product.print}</li>
-          <li>Größen: ${product.sizes}</li>
-        </ul>
-        <p class="price">Kontaktieren Sie uns</p>
-        <div class="cart-actions">
-          <input type="number" class="quantity" min="1" value="1" />
-          <button class="add-to-cart">🛒 In den Warenkorb</button>
-        </div>
-      </div>
-    `;
-
-    const detailsBox = document.createElement("div");
-    detailsBox.className = "product-details-box";
-
-    card.addEventListener("click", () => {
-      if (detailsBox.style.display === "none" || detailsBox.style.display === "") {
-        detailsBox.innerHTML = `
-          <div class="extra-images">
-            ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" alt="Extra" />`).join("") : ""}
-          </div>
-          <div class="description">
-            <p>${product.description}</p>
-          </div>
-          <div class="reviews">
-            <h4>Kundenbewertungen</h4>
-            ${product.reviews ? product.reviews.map(r => `
-              <div class="review">
-                <strong>${r.user}</strong> – ⭐ ${r.rating}/5<br/>
-                <p>${r.comment}</p>
-              </div>
-            `).join("") : "<p>Keine Bewertungen vorhanden.</p>"}
-          </div>
-        `;
-        detailsBox.style.display = "block";
-      } else {
-        detailsBox.style.display = "none";
-      }
-    });
-
-    card.appendChild(frame);
-    card.appendChild(detailsBox);
-    grid.appendChild(card);
-  });
-}
-</script>
-
-</style>
-/* Zoom icon */
-  .zoom-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 18px;
-    line-height: 1;
-    background: rgba(255,255,255,0.9);
-    color: #111;
-    border-radius: 50%;
-    padding: 6px;
-    cursor: pointer;
-    z-index: 5;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    user-select: none;
-  }
-  .zoom-icon:hover { transform: scale(1.12); }
-
-  /* Fullscreen overlay */
-  #fullscreen-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.92);
-    display: none;          /* toggled to flex on open */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  #fullscreen-overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.25);
-  }
-
-  /* Reviews, etc. (optional baseline) */
-  .extra-images { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 12px 0; }
-  .extra-images img { width: 80px; height: 80px; object-fit: contain; border: 1px solid #ccc; border-radius: 4px; }
-
-  @media (max-width: 768px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr; } }
-</style>
-
-<!-- Scripts -->
-<script>
 // Fullscreen overlay (created once)
 const overlay = document.createElement("div");
 overlay.id = "fullscreen-overlay";
@@ -543,32 +432,64 @@ function renderProducts(products) {
     const card = document.createElement("div");
     card.className = "product-card";
 
-    card.innerHTML = `
-      <div class="product-frame" style="position:relative;">
-        <div class="zoom-icon" aria-label="Bild vergrößern" title="Bild vergrößern"
-             style="position:absolute;top:10px;right:10px;font-size:20px;
-                    background:rgba(255,255,255,0.9);border-radius:50%;
-                    padding:6px;cursor:pointer;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,0.2);">
-          🔍
-        </div>
-        <img src="${product.image}" alt="${product.title}">
-        <div class="product-info">
-          <h3>${product.title}</h3>
-          <ul>
-            <li>Material: ${product.material || ""}</li>
-            <li>Druck: ${product.print || ""}</li>
-            <li>Größen: ${product.sizes || ""}</li>
-          </ul>
-          <p class="price">Kontaktieren Sie uns</p>
-          <div class="cart-actions">
-            <input type="number" class="quantity" min="1" value="1">
-            <button class="add-to-cart">🛒 In den Warenkorb</button>
-          </div>
+    // ürün çerçevesi
+    const frame = document.createElement("div");
+    frame.className = "product-frame";
+    frame.style.position = "relative";
+    frame.innerHTML = `
+      <div class="zoom-icon" aria-label="Bild vergrößern" title="Bild vergrößern">🔍</div>
+      <img src="${product.image}" alt="${product.title}">
+      <div class="product-info">
+        <h3>${product.title}</h3>
+        <ul>
+          <li>Material: ${product.material || ""}</li>
+          <li>Druck: ${product.print || ""}</li>
+          <li>Größen: ${product.sizes || ""}</li>
+        </ul>
+        <p class="price">Kontaktieren Sie uns</p>
+        <div class="cart-actions">
+          <input type="number" class="quantity" min="1" value="1">
+          <button class="add-to-cart">🛒 In den Warenkorb</button>
         </div>
       </div>
-      <div class="product-details-box" style="display:none;"></div>
     `;
 
+    // detay kutusu
+    const detailsBox = document.createElement("div");
+    detailsBox.className = "product-details-box";
+    detailsBox.style.display = "none";
+
+    // kart tıklanınca detay kutusunu aç/kapat
+    card.addEventListener("click", (e) => {
+      // zoom ikonuna tıklanırsa detay açılmasın
+      if (e.target.classList.contains("zoom-icon")) return;
+
+      if (detailsBox.style.display === "none" || detailsBox.style.display === "") {
+        detailsBox.innerHTML = `
+          <div class="extra-images">
+            ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" alt="Extra" />`).join("") : ""}
+          </div>
+          <div class="description">
+            <p>${product.description || ""}</p>
+          </div>
+          <div class="reviews">
+            <h4>Kundenbewertungen</h4>
+            ${product.reviews ? product.reviews.map(r => `
+              <div class="review">
+                <strong>${r.user}</strong> – ⭐ ${r.rating}/5<br/>
+                <p>${r.comment}</p>
+              </div>
+            `).join("") : "<p>Keine Bewertungen vorhanden.</p>"}
+          </div>
+        `;
+        detailsBox.style.display = "block";
+      } else {
+        detailsBox.style.display = "none";
+      }
+    });
+
+    card.appendChild(frame);
+    card.appendChild(detailsBox);
     grid.appendChild(card);
   });
 
@@ -583,7 +504,13 @@ const products = [
     image: "images/Halloween-3.0.png",
     material: "%100 Bio-Baumwolle",
     print: "Verschiedene Farben",
-    sizes: "S/M/L/XL"
+    sizes: "S/M/L/XL",
+    description: "Pumpkin-Motiv",
+    extraImages: ["images/Halloween-3.1.png","images/Halloween-3.2.png"],
+    reviews: [
+      { user: "Anna", rating: 5, comment: "Super Qualität!" },
+      { user: "Tom", rating: 4, comment: "Sehr bequem, aber etwas groß." }
+    ]
   }
 ];
 
