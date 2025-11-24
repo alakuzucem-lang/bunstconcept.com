@@ -446,51 +446,122 @@ function renderProducts(products) {
 }
 </script>
 
+</style>
+/* Zoom icon */
+  .zoom-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    line-height: 1;
+    background: rgba(255,255,255,0.9);
+    color: #111;
+    border-radius: 50%;
+    padding: 6px;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    user-select: none;
+  }
+  .zoom-icon:hover { transform: scale(1.12); }
+
+  /* Fullscreen overlay */
+  #fullscreen-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    display: none;          /* toggled to flex on open */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  #fullscreen-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.25);
+  }
+
+  /* Reviews, etc. (optional baseline) */
+  .extra-images { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 12px 0; }
+  .extra-images img { width: 80px; height: 80px; object-fit: contain; border: 1px solid #ccc; border-radius: 4px; }
+
+  @media (max-width: 768px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr; } }
+</style>
+
+<!-- Scripts -->
 <script>
-// Tam ekran overlay kutusu oluştur
-const overlay = document.createElement("div");
-overlay.id = "fullscreen-overlay";
-overlay.style.cssText = `
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-`;
-document.body.appendChild(overlay);
+  // Fullscreen overlay (created once)
+  const overlay = document.createElement("div");
+  overlay.id = "fullscreen-overlay";
+  const overlayImg = document.createElement("img");
+  overlay.appendChild(overlayImg);
+  document.body.appendChild(overlay);
+  overlay.addEventListener("click", () => { overlay.style.display = "none"; });
 
-// Görsel kutusu
-const overlayImg = document.createElement("img");
-overlayImg.style.cssText = `
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.3);
-`;
-overlay.appendChild(overlayImg);
-
-// Kapatmak için tıklama
-overlay.addEventListener("click", () => {
-  overlay.style.display = "none";
-});
-
-// Her zoom-icon’a tıklama ekle
-function enableZoomIcons() {
-  document.querySelectorAll(".zoom-icon").forEach(icon => {
-    icon.addEventListener("click", (e) => {
-      e.stopPropagation(); // kart tıklamasını engelle
-      const img = icon.nextElementSibling;
-      overlayImg.src = img.src;
-      overlay.style.display = "flex";
+  // Enable zoom icons after render
+  function enableZoomIcons() {
+    document.querySelectorAll(".zoom-icon").forEach(icon => {
+      icon.addEventListener("click", (e) => {
+        e.stopPropagation(); // prevent other card clicks
+        const img = icon.parentElement.querySelector("img");
+        if (!img) return;
+        overlayImg.src = img.src;
+        overlay.style.display = "flex";
+      });
     });
-  });
-}
+  }
 
-// renderProducts sonunda çağır
-// renderProducts(...); sonra:
-enableZoomIcons();
-<script>
+  // Render products
+  function renderProducts(products) {
+    const grid = document.getElementById("product-grid");
+    grid.innerHTML = "";
+
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+
+      card.innerHTML = `
+        <div class="product-frame">
+          <div class="zoom-icon" aria-label="Bild vergrößern" title="Bild vergrößern">🔍</div>
+          <img src="${product.image}" alt="${product.title}">
+          <div class="product-info">
+            <h3>${product.title}</h3>
+            <ul>
+              <li>Material: ${product.material || ""}</li>
+              <li>Druck: ${product.print || ""}</li>
+              <li>Größen: ${product.sizes || ""}</li>
+            </ul>
+            <p class="price">Kontaktieren Sie uns</p>
+            <div class="cart-actions">
+              <input type="number" class="quantity" min="1" value="1">
+              <button class="add-to-cart">🛒 In den Warenkorb</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-details-box" style="display:none;"></div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+    // Important: initialize zoom icons now
+    enableZoomIcons();
+  }
+
+  // Demo data (replace with your JSON)
+  const products = [
+    {
+      title: "Pumpkin Design-Unisex",
+      image: "images/Halloween-3.0.png",
+      material: "%100 Bio-Baumwolle",
+      print: "Verschiedene Farben",
+      sizes: "S/M/L/XL"
+    }
+  ];
+
+  // Init
+  renderProducts(products);
+</script>
