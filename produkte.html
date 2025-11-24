@@ -392,11 +392,13 @@ document.getElementById("sort-dropdown").addEventListener("change", function () 
 function renderProducts(products) {
   const grid = document.getElementById("product-grid");
   grid.innerHTML = "";
+
   products.forEach(product => {
     const card = document.createElement("div");
     card.className = "product-card";
     card.dataset.category = product.category;
     card.dataset.tags = product.tags.join(" ");
+
     card.innerHTML = `
       <div class="product-frame">
         <img src="${product.image}" alt="${product.title}" />
@@ -410,42 +412,40 @@ function renderProducts(products) {
           <p class="price">Kontaktieren Sie uns</p>
           <p>${product.description}</p>
         </div>
+        <button class="toggle-details">Details anzeigen</button>
+        <div class="product-details" style="display:none;"></div>
       </div>
     `;
-    card.addEventListener("click", () => openModal(product));
+
+    // Detay kutusunu doldur
+    const detailsBox = card.querySelector(".product-details");
+    const toggleBtn = card.querySelector(".toggle-details");
+
+    toggleBtn.addEventListener("click", () => {
+      if (detailsBox.style.display === "none") {
+        detailsBox.innerHTML = `
+          <div class="extra-images">
+            ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" style="width:80px; margin:5px;" />`).join("") : ""}
+          </div>
+          <div class="reviews">
+            <h4>Kundenbewertungen</h4>
+            ${product.reviews ? product.reviews.map(r => `
+              <div class="review">
+                <strong>${r.user}</strong> – ⭐ ${r.rating}/5<br/>
+                <p>${r.comment}</p>
+              </div>
+            `).join("") : "<p>Keine Bewertungen vorhanden.</p>"}
+          </div>
+        `;
+        detailsBox.style.display = "block";
+        toggleBtn.textContent = "Details ausblenden";
+      } else {
+        detailsBox.style.display = "none";
+        toggleBtn.textContent = "Details anzeigen";
+      }
+    });
+
     grid.appendChild(card);
   });
 }
-
-function openModal(product) {
-  const modal = document.getElementById("product-modal");
-  const details = document.getElementById("modal-details");
-
-  details.innerHTML = `
-    <h2>${product.title}</h2>
-    <img src="${product.image}" alt="${product.title}" style="width:100%; max-height:300px; object-fit:contain;" />
-    <p><strong>Material:</strong> ${product.material}</p>
-    <p><strong>Druck:</strong> ${product.print}</p>
-    <p><strong>Größen:</strong> ${product.sizes}</p>
-    <p>${product.description}</p>
-    <div class="extra-images">
-      ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" style="width:80px; margin:5px;" />`).join("") : ""}
-    </div>
-    <div class="reviews">
-      <h3>Kundenbewertungen</h3>
-      ${product.reviews ? product.reviews.map(r => `
-        <div class="review">
-          <strong>${r.user}</strong> – ⭐ ${r.rating}/5<br/>
-          <p>${r.comment}</p>
-        </div>
-      `).join("") : "<p>Keine Bewertungen vorhanden.</p>"}
-    </div>
-  `;
-
-  modal.style.display = "flex";
-}
-
-document.querySelector(".close-button").addEventListener("click", () => {
-  document.getElementById("product-modal").style.display = "none";
-});
 </script>
