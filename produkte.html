@@ -437,7 +437,13 @@ function renderProducts(products) {
     frame.className = "product-frame";
     frame.style.position = "relative";
     frame.innerHTML = `
-      <div class="zoom-icon" aria-label="Bild vergrößern" title="Bild vergrößern">🔍</div>
+      <div class="zoom-icon" aria-label="Bild vergrößern" title="Bild vergrößern"
+           style="position:absolute;top:10px;right:10px;font-size:20px;
+                  background:rgba(255,255,255,0.9);border-radius:50%;
+                  padding:6px;cursor:pointer;z-index:5;
+                  box-shadow:0 2px 6px rgba(0,0,0,0.2);user-select:none;">
+        🔍
+      </div>
       <img src="${product.image}" alt="${product.title}">
       <div class="product-info">
         <h3>${product.title}</h3>
