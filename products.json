@@ -2,12 +2,20 @@
   {
     "title": "Pumpkin Design-Unisex",
     "image": "images/Halloween-3.0.png",
+    "extraImages": [
+    "images/Halloween-3.1.png",
+    "images/Halloween-3.2.png"
+  ],
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
     "sizes": "S/M/L/XL",
     "description": "Pumpkin-Motiv",
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
+    "reviews": [
+    { "user": "Anna", "rating": 5, "comment": "Super Qualität!" },
+    { "user": "Tom", "rating": 4, "comment": "Sehr bequem, aber etwas groß." }
+  ]
   },
   {
     "title": "Pumpkin Design-Unisex",
