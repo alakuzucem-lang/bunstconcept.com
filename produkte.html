@@ -380,6 +380,66 @@ document.getElementById("sort-dropdown").addEventListener("change", function () 
 </body>
 </html>
 
+function renderProducts(products) {
+  const grid = document.getElementById("product-grid");
+  grid.innerHTML = "";
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.dataset.category = product.category;
+    card.dataset.tags = product.tags.join(" ");
+    card.innerHTML = `
+      <div class="product-frame">
+        <img src="${product.image}" alt="${product.title}" />
+        <div class="product-info">
+          <h3>${product.title}</h3>
+          <ul>
+            <li>Material: ${product.material}</li>
+            <li>Druck: ${product.print}</li>
+            <li>Größen: ${product.sizes}</li>
+          </ul>
+          <p class="price">Kontaktieren Sie uns</p>
+          <p>${product.description}</p>
+        </div>
+      </div>
+    `;
+    card.addEventListener("click", () => openModal(product));
+    grid.appendChild(card);
+  });
+}
+
+function openModal(product) {
+  const modal = document.getElementById("product-modal");
+  const details = document.getElementById("modal-details");
+
+  details.innerHTML = `
+    <h2>${product.title}</h2>
+    <img src="${product.image}" alt="${product.title}" style="width:100%; max-height:300px; object-fit:contain;" />
+    <p><strong>Material:</strong> ${product.material}</p>
+    <p><strong>Druck:</strong> ${product.print}</p>
+    <p><strong>Größen:</strong> ${product.sizes}</p>
+    <p>${product.description}</p>
+    <div class="extra-images">
+      ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" style="width:80px; margin:5px;" />`).join("") : ""}
+    </div>
+    <div class="reviews">
+      <h3>Kundenbewertungen</h3>
+      ${product.reviews ? product.reviews.map(r => `
+        <div class="review">
+          <strong>${r.user}</strong> – ⭐ ${r.rating}/5<br/>
+          <p>${r.comment}</p>
+        </div>
+      `).join("") : "<p>Keine Bewertungen vorhanden.</p>"}
+    </div>
+  `;
+
+  modal.style.display = "flex";
+}
+
+document.querySelector(".close-button").addEventListener("click", () => {
+  document.getElementById("product-modal").style.display = "none";
+});
+
 <div id="product-modal" class="modal" style="display:none;">
   <div class="modal-content">
     <span class="close-button">&times;</span>
