@@ -444,3 +444,84 @@ function renderProducts(products) {
   });
 }
 </script>
+
+</script>
+// 1) İhtiyacımız olan stilleri JS ile enjekte et
+(function injectStyles(){
+  const style = document.createElement('style');
+  style.textContent = `
+    .product-frame img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      will-change: transform;
+    }
+    .product-card:hover .product-frame img {
+      transform: scale(1.04);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+    }
+  `;
+  document.head.appendChild(style);
+})();
+
+// 2) Render sonrası görseli dinamik olarak büyüt (kart genişliğine göre)
+function enhanceImages() {
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(card => {
+    const img = card.querySelector('.product-frame img');
+    if (!img) return;
+
+    // Kart genişliğine göre max-height belirle (daha büyük ön plan)
+    const cardWidth = card.getBoundingClientRect().width;
+    const targetMax = Math.max(320, Math.min(460, Math.round(cardWidth * 0.6)));
+    img.style.maxHeight = `${targetMax}px`;
+
+    // Yüksek çözünürlüklü görünüm için hafif odak efekti
+    img.style.filter = 'contrast(1.02) saturate(1.03)';
+  });
+}
+
+// 3) renderProducts bittikten sonra çağır
+// Örnek: renderProducts içinde son satıra bunu ekleyebilirsin
+// grid.appendChild(card); ... döngü bittiğinde:
+function renderProducts(products) {
+  const grid = document.getElementById("product-grid");
+  grid.innerHTML = "";
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    card.dataset.category = product.category;
+    card.dataset.tags = product.tags.join(" ");
+    card.innerHTML = `
+      <div class="product-frame">
+        <img src="${product.image}" alt="${product.title}" />
+        <div class="product-info">
+          <h3>${product.title}</h3>
+          <ul>
+            <li>Material: ${product.material}</li>
+            <li>Druck: ${product.print}</li>
+            <li>Größen: ${product.sizes}</li>
+          </ul>
+          <p class="price">Kontaktieren Sie uns</p>
+          <div class="cart-actions">
+            <input type="number" class="quantity" min="1" value="1" />
+            <button class="add-to-cart">🛒 In den Warenkorb</button>
+          </div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // Görselleri büyüt ve öne çıkar
+  enhanceImages();
+
+  // 4) Pencere boyutu değişirse yeniden hesapla
+  window.addEventListener('resize', () => {
+    enhanceImages();
+  });
+}
+</script>
