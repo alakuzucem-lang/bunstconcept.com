@@ -131,10 +131,17 @@ body {
 
 .product-frame img {
   width: 100%;
-  height: 250px;
+  height: auto;
+  max-height: 320px; /* daha büyük görünüm */
   object-fit: contain;
   border-radius: 8px;
   margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* hafif gölge ile öne çıkar */
+  transition: transform 0.3s ease;
+}
+
+.product-frame img:hover {
+  transform: scale(1.10); /* hover ile hafif büyüme efekti */
 }
 
 /* Ürün Bilgileri */
