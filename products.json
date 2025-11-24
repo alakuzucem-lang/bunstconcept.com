@@ -11,7 +11,7 @@
     "sizes": "S/M/L/XL",
     "description": "Pumpkin-Motiv",
     "category": "t-shirts",
-    "tags": ["halloween", "pumpkin", "ghost"]
+    "tags": ["halloween", "pumpkin", "ghost"],
     "reviews": [
     { "user": "Anna", "rating": 5, "comment": "Super Qualität!" },
     { "user": "Tom", "rating": 4, "comment": "Sehr bequem, aber etwas groß." }
