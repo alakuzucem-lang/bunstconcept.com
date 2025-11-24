@@ -403,6 +403,10 @@ function renderProducts(products) {
           <li>Größen: ${product.sizes}</li>
         </ul>
         <p class="price">Kontaktieren Sie uns</p>
+        <div class="cart-actions">
+          <input type="number" class="quantity" min="1" value="1" />
+          <button class="add-to-cart">🛒 In den Warenkorb</button>
+        </div>
       </div>
     `;
 
@@ -413,7 +417,7 @@ function renderProducts(products) {
       if (detailsBox.style.display === "none" || detailsBox.style.display === "") {
         detailsBox.innerHTML = `
           <div class="extra-images">
-            ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" />`).join("") : ""}
+            ${product.extraImages ? product.extraImages.map(img => `<img src="${img}" alt="Extra" />`).join("") : ""}
           </div>
           <div class="description">
             <p>${product.description}</p>
@@ -426,10 +430,6 @@ function renderProducts(products) {
                 <p>${r.comment}</p>
               </div>
             `).join("") : "<p>Keine Bewertungen vorhanden.</p>"}
-          </div>
-          <div class="cart-actions">
-            <input type="number" class="quantity" min="1" value="1" />
-            <button class="add-to-cart">🛒 In den Warenkorb</button>
           </div>
         `;
         detailsBox.style.display = "block";
