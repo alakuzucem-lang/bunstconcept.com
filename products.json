@@ -13,8 +13,9 @@
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"],
     "reviews": [
-    { "user": "Anna", "rating": 5, "comment": "Super Qualität!" },
-    { "user": "Tom", "rating": 4, "comment": "Sehr bequem, aber etwas groß." }
+    { "user": "XXX", "rating": 5, "comment": "Super Qualität!" },
+    { "user": "YYY", "rating": 4, "comment": "Sehr bequem, aber etwas groß." },
+    { "user": "ZZZ", "rating": 3, "comment": "Sehr bequem, aber etwas groß." }
   ],
     "zoomable": true
   },
