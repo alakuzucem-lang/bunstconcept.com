@@ -419,16 +419,119 @@ function enableZoomIcons() {
   });
 }
 
-// Ortalama puan hesaplama
-function calculateAverage(reviews) {
-  if (!reviews || reviews.length === 0) return "0 – ☆☆☆☆☆";
-  const sum = reviews.reduce((acc, r) => acc + r.rating, 0);
-  const avg = sum / reviews.length;
-  const stars = [1,2,3,4,5].map(i => i <= Math.round(avg) ? "★" : "☆").join("");
-  return `${reviews.length}/5★`;
+// Ortalama puan hesaplama: hem sayısal (1 ondalık) hem yıldız görseli
+function formatAverage(reviews) {
+  const count = reviews?.length || 0;
+  if (count === 0) return { text: "0 – 0.0/5★", stars: "☆☆☆☆☆" };
+  const sum = reviews.reduce((acc, r) => acc + (r.rating || 0), 0);
+  const avg = sum / count;
+  const roundedStars = Math.round(avg); // görsel yıldız için yuvarla
+  const starsVisual = [1,2,3,4,5].map(i => i <= roundedStars ? "★" : "☆").join("");
+  return { text: `${count} – ${avg.toFixed(1)}/5★`, stars: starsVisual };
 }
 
-// Render products
+// Yıldız string oluşturma (puan için)
+function starsOf(rating) {
+  return [1,2,3,4,5].map(i => i <= rating ? "★" : "☆").join("");
+}
+
+// Detay penceresini doldurma (puanlamaları sıralı, son 2 açık + buton)
+function renderDetails(detailsBox, product) {
+  // Sıralama: en yüksekten en düşüğe
+  const sorted = (product.reviews || []).slice().sort((a, b) => b.rating - a.rating);
+  const visible = sorted.slice(0, 2);
+  const hidden = sorted.slice(2);
+
+  detailsBox.innerHTML = `
+    <div class="rating-input" style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
+      <input type="text" class="rating-name" placeholder="Ihr Name" 
+             style="flex:1;padding:8px;border:1px solid #ccc;border-radius:4px;">
+      <div class="rating-stars-input" style="display:flex;gap:6px;">
+        ${[1,2,3,4,5].map(i => `<span class="star-input" data-value="${i}" 
+             style="font-size:22px;cursor:pointer;user-select:none;">☆</span>`).join("")}
+      </div>
+      <button class="submit-rating" 
+              style="padding:8px 12px;background:#ffd700;border:none;border-radius:6px;cursor:pointer;">
+        Senden
+      </button>
+    </div>
+
+    <div class="reviews">
+      <h4 style="margin:8px 0;">Kundenbewertungen</h4>
+      ${visible.map(r => `
+        <div class="review" style="margin:8px 0;">
+          <div class="rating" style="font-weight:bold;">${starsOf(r.rating)}</div>
+          <strong>${r.user || "Anonym"}</strong>
+        </div>
+      `).join("") || '<p>Keine Bewertungen vorhanden.</p>'}
+      ${hidden.length > 0 ? `
+        <button class="show-all-reviews" 
+                style="margin-top:10px;padding:6px 12px;border:none;background:#eee;cursor:pointer;">
+          Alle Bewertungen anzeigen
+        </button>
+        <div class="hidden-reviews" style="display:none;">
+          ${hidden.map(r => `
+            <div class="review" style="margin:8px 0;">
+              <div class="rating" style="font-weight:bold;">${starsOf(r.rating)}</div>
+              <strong>${r.user || "Anonym"}</strong>
+            </div>
+          `).join("")}
+        </div>
+      ` : ""}
+    </div>
+  `;
+
+  // Yıldız input etkileşimi
+  const starInputs = detailsBox.querySelectorAll(".star-input");
+  starInputs.forEach(star => {
+    star.addEventListener("click", (e) => {
+      const value = parseInt(star.dataset.value);
+      starInputs.forEach(s => {
+        const v = parseInt(s.dataset.value);
+        s.textContent = v <= value ? "★" : "☆";
+      });
+      e.stopPropagation();
+    });
+  });
+
+  // Tüm yorumları göster
+  const showAllBtn = detailsBox.querySelector(".show-all-reviews");
+  if (showAllBtn) {
+    showAllBtn.addEventListener("click", (e) => {
+      const hiddenDiv = detailsBox.querySelector(".hidden-reviews");
+      if (hiddenDiv) hiddenDiv.style.display = "block";
+      showAllBtn.style.display = "none";
+      e.stopPropagation();
+    });
+  }
+
+  // Gönder butonu (yeni puan ekle + ortalamayı ve listeyi güncelle)
+  const submitBtn = detailsBox.querySelector(".submit-rating");
+  if (submitBtn) {
+    submitBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const nameInput = detailsBox.querySelector(".rating-name");
+      const chosen = [...detailsBox.querySelectorAll(".star-input")]
+        .reduce((acc, s) => acc + (s.textContent === "★" ? 1 : 0), 0);
+
+      if (!chosen) { alert("Bitte wählen Sie eine Bewertung (★)."); return; }
+
+      const userName = (nameInput.value || "Anonym").trim();
+      // In-memory olarak ekleyelim
+      product.reviews = product.reviews || [];
+      product.reviews.push({ user: userName, rating: chosen });
+
+      // Detay ve ortalama güncelle
+      renderDetails(detailsBox, product);
+      const avgSlot = detailsBox.closest(".product-card")
+        .querySelector(".average-rating");
+      const avgFmt = formatAverage(product.reviews);
+      if (avgSlot) avgSlot.innerHTML = `${avgFmt.text} &nbsp; ${avgFmt.stars}`;
+    });
+  }
+}
+
+// Ürünleri render et
 function renderProducts(products) {
   const grid = document.getElementById("product-grid");
   grid.innerHTML = "";
@@ -437,7 +540,7 @@ function renderProducts(products) {
     const card = document.createElement("div");
     card.className = "product-card";
 
-    const avgRating = calculateAverage(product.reviews);
+    const avgFmt = formatAverage(product.reviews);
 
     const frame = document.createElement("div");
     frame.className = "product-frame";
@@ -453,15 +556,17 @@ function renderProducts(products) {
       <img src="${product.image}" alt="${product.title}">
       <div class="product-info">
         <h3>${product.title}</h3>
-        <div class="average-rating" style="margin:6px 0;font-weight:bold;">${avgRating}</div>
+        <div class="average-rating" style="margin:6px 0;font-weight:bold;">
+          ${avgFmt.text} &nbsp; ${avgFmt.stars}
+        </div>
         <ul>
-          <li>Material: ${product.material}</li>
-          <li>Druck: ${product.print}</li>
-          <li>Größen: ${product.sizes}</li>
+          <li>Material: ${product.material || ""}</li>
+          <li>Druck: ${product.print || ""}</li>
+          <li>Größen: ${product.sizes || ""}</li>
         </ul>
         <p class="price">Kontaktieren Sie uns</p>
         <div class="cart-actions">
-          <input type="number" class="quantity" min="0" value="0">
+          <input type="number" class="quantity" min="1" value="1">
           <button class="add-to-cart">🛒 In den Warenkorb</button>
         </div>
       </div>
@@ -471,55 +576,19 @@ function renderProducts(products) {
     detailsBox.className = "product-details-box";
     detailsBox.style.display = "none";
 
+    // Detay aç/kapat: sadece frame'e tıklayınca, etkileşim alanları hariç
     frame.addEventListener("click", (e) => {
       if (
         e.target.classList.contains("zoom-icon") ||
-        e.target.closest(".cart-actions")
+        e.target.closest(".cart-actions") ||
+        e.target.classList.contains("star-input") ||
+        e.target.classList.contains("rating-name") ||
+        e.target.classList.contains("submit-rating")
       ) return;
 
       if (detailsBox.style.display === "none" || detailsBox.style.display === "") {
-        const reviews = product.reviews?.slice().reverse() || [];
-        const visibleReviews = reviews.slice(0, 2);
-        const hiddenReviews = reviews.slice(2);
-
-        detailsBox.innerHTML = `
-          <div class="reviews">
-            <h4>Kundenbewertungen</h4>
-            ${visibleReviews.map(r => `
-              <div class="review">
-                <div class="rating">
-                  ${[1,2,3,4,5].map(i => i <= r.rating ? "★" : "☆").join("")}
-                </div>
-                <strong>${r.user}</strong>
-              </div>
-            `).join("")}
-            ${hiddenReviews.length > 0 ? `
-              <button class="show-all-reviews" style="margin-top:10px;padding:6px 12px;border:none;background:#eee;cursor:pointer;">
-                Alle Bewertungen anzeigen
-              </button>
-              <div class="hidden-reviews" style="display:none;">
-                ${hiddenReviews.map(r => `
-                  <div class="review">
-                    <div class="rating">
-                      ${[1,2,3,4,5].map(i => i <= r.rating ? "★" : "☆").join("")}
-                    </div>
-                    <strong>${r.user}</strong>
-                  </div>
-                `).join("")}
-              </div>
-            ` : ""}
-          </div>
-        `;
+        renderDetails(detailsBox, product);
         detailsBox.style.display = "block";
-
-        const showAllBtn = detailsBox.querySelector(".show-all-reviews");
-        if (showAllBtn) {
-          showAllBtn.addEventListener("click", () => {
-            const hidden = detailsBox.querySelector(".hidden-reviews");
-            if (hidden) hidden.style.display = "block";
-            showAllBtn.style.display = "none";
-          });
-        }
       } else {
         detailsBox.style.display = "none";
       }
@@ -542,10 +611,9 @@ const products = [
     print: "Verschiedene Farben",
     sizes: "S/M/L/XL",
     reviews: [
-      { user: "Anna", rating: 5 },
-      { user: "Tom", rating: 4 },
-      { user: "Lena", rating: 3 },
-      { user: "Markus", rating: 5 }
+      { user: "ZZZ", rating: 3 },
+      { user: "YYY", rating: 5 },
+      { user: "XXX", rating: 5 }
     ]
   }
 ];
