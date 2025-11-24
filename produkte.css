@@ -180,6 +180,7 @@ body {
 
 .extra-images {
   display: flex;
+  flex-wrap: wrap; /* taşarsa alta geçsin */
   gap: 10px;
   margin-bottom: 15px;
 }
