@@ -2,10 +2,6 @@
   {
     "title": "Pumpkin Design-Unisex",
     "image": "images/Halloween-3.0.png",
-    "extraImages": [
-    "images/Halloween-3.1.png",
-    "images/Halloween-3.2.png"
-  ],
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
     "sizes": "S/M/L/XL",
@@ -14,8 +10,8 @@
     "tags": ["halloween", "pumpkin", "ghost"],
     "reviews": [
     { "user": "XXX", "rating": 5, "comment": "Super Qualität!" },
-    { "user": "YYY", "rating": 4, "comment": "Sehr bequem, aber etwas groß." },
-    { "user": "ZZZ", "rating": 3, "comment": "Sehr bequem, aber etwas groß." }
+    { "user": "YYY", "rating": 4, "comment": "Super Qualität!" },
+    { "user": "ZZZ", "rating": 3, "comment": "Super Qualität!" }
   ],
     "zoomable": true
   },
@@ -60,17 +56,17 @@
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": "Moonlit Manor Series-Unisex",
     "image": "images/Halloween-5.0.png",
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
     "sizes": "S/M/L/XL",
-    "description": "Pumpkin-Motiv",
+    "description": "Moonlit Motiv",
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": "Spooky Design-Unisex",
     "image": "images/Halloween-6.0.png",
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
@@ -80,7 +76,7 @@
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": "Spooky Design-Unisex",
     "image": "images/Halloween-6.1.png",
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
@@ -90,7 +86,7 @@
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": "Ghost Design-Unisex",
     "image": "images/Halloween-8.1.png",
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
@@ -100,7 +96,7 @@
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": "Ghost Design-Unisex",
     "image": "images/Halloween-8.2.png",
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
@@ -110,7 +106,7 @@
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": "Ghost Design-Unisex",
     "image": "images/Halloween-8.3.png",
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
@@ -120,7 +116,7 @@
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": "Ghost Design-Unisex",
     "image": "images/Halloween-8.4.png",
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
@@ -130,7 +126,7 @@
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": "Ghost Design-Unisex",
     "image": "images/Halloween-8.5.png",
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
@@ -140,7 +136,7 @@
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": "Ghost Design-Unisex",
     "image": "images/Halloween-8.6.png",
     "material": "%100 Bio-Baumwolle",
     "print": "Verschiedene Farben",
