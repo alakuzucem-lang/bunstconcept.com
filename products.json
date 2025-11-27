@@ -8,11 +8,6 @@
     "description": "Pumpkin-Motiv",
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"],
-    "reviews": [
-    { "user": "XXX", "rating": 5, "comment": "Super Qualität!" },
-    { "user": "YYY", "rating": 4, "comment": "Super Qualität!" },
-    { "user": "ZZZ", "rating": 3, "comment": "Super Qualität!" }
-  ],
     "zoomable": true
   },
   {
