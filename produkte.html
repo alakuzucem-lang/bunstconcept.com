@@ -382,62 +382,66 @@ document.getElementById("sort-dropdown").addEventListener("change", function () 
 </html>
 
 <script>
-// Fullscreen overlay
+// === Fullscreen overlay (galeri) ===
 const overlay = document.createElement("div");
 overlay.id = "fullscreen-overlay";
 overlay.style.cssText = `
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background: rgba(0,0,0,0.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+  display: none; justify-content: center; align-items: center;
+  z-index: 9999; flex-direction: column;
 `;
 const overlayImg = document.createElement("img");
 overlayImg.style.cssText = `
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  border-radius: 8px;
+  max-width: 90%; max-height: 90%;
+  object-fit: contain; border-radius: 8px;
   box-shadow: 0 0 20px rgba(255,255,255,0.25);
 `;
-overlay.appendChild(overlayImg);
+const overlayControls = document.createElement("div");
+overlayControls.style.cssText = "position:absolute; width:100%; top:50%; display:flex; justify-content:space-between; color:white; font-size:40px; cursor:pointer; user-select:none;";
+const leftArrow = document.createElement("div"); leftArrow.textContent = "⟨";
+const rightArrow = document.createElement("div"); rightArrow.textContent = "⟩";
+overlayControls.appendChild(leftArrow); overlayControls.appendChild(rightArrow);
+overlay.appendChild(overlayImg); overlay.appendChild(overlayControls);
 document.body.appendChild(overlay);
-overlay.addEventListener("click", () => overlay.style.display = "none");
 
-// Zoom ikonlarını aktif et
-function enableZoomIcons() {
-  document.querySelectorAll(".zoom-icon").forEach(icon => {
-    icon.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const img = icon.parentElement.querySelector("img");
-      if (!img) return;
-      overlayImg.src = img.src;
-      overlay.style.display = "flex";
-    });
-  });
+let overlayImages = []; let overlayIndex = 0;
+function showOverlay(images, startIndex=0) {
+  overlayImages = images; overlayIndex = startIndex;
+  overlayImg.src = overlayImages[overlayIndex];
+  overlay.style.display = "flex";
+}
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) overlay.style.display = "none";
+});
+leftArrow.addEventListener("click", (e) => { e.stopPropagation(); overlayIndex = (overlayIndex-1+overlayImages.length)%overlayImages.length; overlayImg.src = overlayImages[overlayIndex]; });
+rightArrow.addEventListener("click", (e) => { e.stopPropagation(); overlayIndex = (overlayIndex+1)%overlayImages.length; overlayImg.src = overlayImages[overlayIndex]; });
+
+// === LocalStorage helpers ===
+function saveRatings(productId, reviews) {
+  localStorage.setItem(`ratings-${productId}`, JSON.stringify(reviews));
+}
+function loadRatings(productId) {
+  const data = localStorage.getItem(`ratings-${productId}`);
+  return data ? JSON.parse(data) : null;
 }
 
-// Ortalama puan hesaplama: hem sayısal (1 ondalık) hem yıldız görseli
+// === Ortalama puan hesaplama ===
 function formatAverage(reviews) {
   const count = reviews?.length || 0;
   if (count === 0) return { text: "0 – 0.0/5★", stars: "☆☆☆☆☆" };
   const sum = reviews.reduce((acc, r) => acc + (r.rating || 0), 0);
   const avg = sum / count;
-  const roundedStars = Math.round(avg); // görsel yıldız için yuvarla
+  const roundedStars = Math.round(avg);
   const starsVisual = [1,2,3,4,5].map(i => i <= roundedStars ? "★" : "☆").join("");
-  return { text: `${avg.toFixed(1)}/5★`, stars: starsVisual };
+  return { text: `${count} – ${avg.toFixed(1)}/5★`, stars: starsVisual };
 }
-
-// Yıldız string oluşturma (puan için)
 function starsOf(rating) {
   return [1,2,3,4,5].map(i => i <= rating ? "★" : "☆").join("");
 }
 
-// Detay penceresini doldurma (puanlamaları sıralı, son 2 açık + buton)
+// === Detay kutusu render ===
 function renderDetails(detailsBox, product) {
-  // Sıralama: en yüksekten en düşüğe
   const sorted = (product.reviews || []).slice().sort((a, b) => b.rating - a.rating);
   const visible = sorted.slice(0, 2);
   const hidden = sorted.slice(2);
@@ -505,7 +509,7 @@ function renderDetails(detailsBox, product) {
     });
   }
 
-  // Gönder butonu (yeni puan ekle + ortalamayı ve listeyi güncelle)
+  // Gönder butonu
   const submitBtn = detailsBox.querySelector(".submit-rating");
   if (submitBtn) {
     submitBtn.addEventListener("click", (e) => {
@@ -517,11 +521,13 @@ function renderDetails(detailsBox, product) {
       if (!chosen) { alert("Bitte wählen Sie eine Bewertung (★)."); return; }
 
       const userName = (nameInput.value || "Anonym").trim();
-      // In-memory olarak ekleyelim
       product.reviews = product.reviews || [];
       product.reviews.push({ user: userName, rating: chosen });
 
-      // Detay ve ortalama güncelle
+      // LocalStorage'a kaydet
+      saveRatings(product.title, product.reviews);
+
+      // Güncelle
       renderDetails(detailsBox, product);
       const avgSlot = detailsBox.closest(".product-card")
         .querySelector(".average-rating");
@@ -531,16 +537,24 @@ function renderDetails(detailsBox, product) {
   }
 }
 
-// Ürünleri render et
+// === Ürünleri render et ===
 function renderProducts(products) {
   const grid = document.getElementById("product-grid");
   grid.innerHTML = "";
 
   products.forEach(product => {
+    // LocalStorage'dan yükle
+    const stored = loadRatings(product.title);
+    if (stored) product.reviews = stored;
+
     const card = document.createElement("div");
     card.className = "product-card";
 
     const avgFmt = formatAverage(product.reviews);
+
+    // Carousel index
+    let currentIndex = 0;
+    const images = [product.image, ...(product.extraImages || [])];
 
     const frame = document.createElement("div");
     frame.className = "product-frame";
@@ -553,7 +567,13 @@ function renderProducts(products) {
                   box-shadow:0 2px 6px rgba(0,0,0,0.2);user-select:none;">
         🔍
       </div>
-      <img src="${product.image}" alt="${product.title}">
+      <div class="carousel" style="position:relative;display:flex;align-items:center;justify-content:center;">
+        <div class="left-arrow" style="position:absolute;left:0;top:50%;transform:translateY(-50%);
+             font-size:30px;cursor:pointer;user-select:none;">⟨</div>
+        <img class="carousel-img" src="${images[0]}" alt="${product.title}" style="max-width:100%;border-radius:8px;">
+        <div class="right-arrow" style="position:absolute;right:0;top:50%;transform:translateY(-50%);
+             font-size:30px;cursor:pointer;user-select:none;">⟩</div>
+      </div>
       <div class="product-info">
         <h3>${product.title}</h3>
         <div class="average-rating" style="margin:6px 0;font-weight:bold;">
@@ -576,7 +596,26 @@ function renderProducts(products) {
     detailsBox.className = "product-details-box";
     detailsBox.style.display = "none";
 
-    // Detay aç/kapat: sadece frame'e tıklayınca, etkileşim alanları hariç
+    // === Carousel arrow events ===
+    const imgEl = frame.querySelector(".carousel-img");
+    frame.querySelector(".left-arrow").addEventListener("click", (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      imgEl.src = images[currentIndex];
+    });
+    frame.querySelector(".right-arrow").addEventListener("click", (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex + 1) % images.length;
+      imgEl.src = images[currentIndex];
+    });
+
+    // === Zoom icon event (fullscreen gallery) ===
+    frame.querySelector(".zoom-icon").addEventListener("click", (e) => {
+      e.stopPropagation();
+      showOverlay(images, currentIndex);
+    });
+
+    // === Frame click: detay kutusu aç/kapat ===
     frame.addEventListener("click", (e) => {
       if (
         e.target.classList.contains("zoom-icon") ||
@@ -602,7 +641,7 @@ function renderProducts(products) {
   enableZoomIcons();
 }
 
-// Demo data
+// === Demo data ===
 const products = [
   {
     title: "Pumpkin Design-Unisex",
@@ -610,14 +649,16 @@ const products = [
     material: "%100 Bio-Baumwolle",
     print: "Verschiedene Farben",
     sizes: "S/M/L/XL",
+    description: "Pumpkin-Motiv",
+    extraImages: ["images/Halloween-3.2.png","images/Halloween-3.3.png"],
     reviews: [
-      { user: "ZZZ", rating: 3 },
-      { user: "YYY", rating: 5 },
-      { user: "XXX", rating: 5 }
+      { user: "XXX", rating: 5 },
+      { user: "YYY", rating: 4 },
+      { user: "ZZZ", rating: 3 }
     ]
   }
 ];
 
-// Init
+// === Init ===
 renderProducts(products);
 </script>
