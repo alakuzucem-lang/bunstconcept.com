@@ -441,16 +441,15 @@ function starsOf(rating) {
 }
 
 // === Detay kutusu render ===
-  detailsBox.innerHTML = `
-  <div class="product-description" style="margin-bottom:12px; font-size:14px; line-height:1.4; white-space:pre-line;">
-    ${product.description || ""}
-  </div>
 function renderDetails(detailsBox, product) {
   const sorted = (product.reviews || []).slice().sort((a, b) => b.rating - a.rating);
   const visible = sorted.slice(0, 2);
   const hidden = sorted.slice(2);
 
   detailsBox.innerHTML = `
+  <div class="product-description" style="margin-bottom:12px; font-size:14px; line-height:1.4; white-space:pre-line;">
+    ${product.description || ""}
+  </div>
     <div class="rating-input" style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
       <input type="text" class="rating-name" placeholder="Ihr Name" 
              style="flex:1;padding:8px;border:1px solid #ccc;border-radius:4px;">
