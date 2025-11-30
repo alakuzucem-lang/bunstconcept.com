@@ -549,13 +549,13 @@ function renderDetails(detailsBox, product) {
 }
 
 // === Ürünleri render et ===
-function renderProducts(products) {
+function renderProducts(products, lang = "de") {
   const grid = document.getElementById("product-grid");
   grid.innerHTML = "";
 
   products.forEach(product => {
-    // LocalStorage'dan yükle
-    const stored = loadRatings(product.title);
+    // LocalStorage'dan yükle (dil bazlı title kullanıyoruz)
+    const stored = loadRatings(product.title[lang]);
     if (stored) product.reviews = stored;
 
     const card = document.createElement("div");
@@ -571,7 +571,7 @@ function renderProducts(products) {
     frame.className = "product-frame";
     frame.style.position = "relative";
     frame.innerHTML = `
-      <div class="zoom-icon" title="Bild vergrößern"
+      <div class="zoom-icon" title="${lang === "de" ? "Bild vergrößern" : "Zoom image"}"
            style="position:absolute;top:10px;right:10px;font-size:20px;
                   background:rgba(255,255,255,0.9);border-radius:50%;
                   padding:6px;cursor:pointer;z-index:5;
@@ -581,24 +581,24 @@ function renderProducts(products) {
       <div class="carousel" style="position:relative;display:flex;align-items:center;justify-content:center;">
         <div class="left-arrow" style="position:absolute;left:0;top:50%;transform:translateY(-50%);
              font-size:30px;cursor:pointer;user-select:none;">⟨</div>
-        <img class="carousel-img" src="${images[0]}" alt="${product.title}" style="max-width:100%;border-radius:8px;">
+        <img class="carousel-img" src="${images[0]}" alt="${product.title[lang]}" style="max-width:100%;border-radius:8px;">
         <div class="right-arrow" style="position:absolute;right:0;top:50%;transform:translateY(-50%);
              font-size:30px;cursor:pointer;user-select:none;">⟩</div>
       </div>
       <div class="product-info">
-        <h3>${product.title}</h3>
+        <h3>${product.title[lang]}</h3>
         <div class="average-rating" style="margin:6px 0;font-weight:bold;">
           ${avgFmt.text} &nbsp; ${avgFmt.stars}
         </div>
         <ul>
-          <li>Material: ${product.material || ""}</li>
-          <li>Druck: ${product.print || ""}</li>
-          <li>Größen: ${product.sizes || ""}</li>
+          <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang] || ""}</li>
+          <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang] || ""}</li>
+          <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang] || ""}</li>
         </ul>
-        <p class="price">Kontaktieren Sie uns</p>
+        <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
         <div class="cart-actions">
           <input type="number" class="quantity" min="1" value="1">
-          <button class="add-to-cart">🛒 In den Warenkorb</button>
+          <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
         </div>
       </div>
     `;
@@ -637,7 +637,7 @@ function renderProducts(products) {
       ) return;
 
       if (detailsBox.style.display === "none" || detailsBox.style.display === "") {
-        renderDetails(detailsBox, product);
+        renderDetails(detailsBox, product, lang);
         detailsBox.style.display = "block";
       } else {
         detailsBox.style.display = "none";
