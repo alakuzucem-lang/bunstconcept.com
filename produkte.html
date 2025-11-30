@@ -276,7 +276,7 @@ fetch("products.json")
   .then(res => res.json())
   .then(data => {
     allProducts = data;
-    renderProducts(allProducts);
+    renderProducts(allProducts, currentLang);
   });
 
 // Ürünleri ekrana basan fonksiyon
@@ -289,23 +289,23 @@ function renderProducts(products) {
     card.dataset.category = product.category || "";
     card.dataset.tags = product.tags ? product.tags.join(" ") : "";
     card.dataset.price = product.price || "0";
-    card.dataset.name = product.title || "";
+    card.dataset.name = product.title[lang] || "";
     card.dataset.date = product.date || "2025-01-01";
     card.dataset.rating = product.rating || "0";
 
     card.innerHTML = `
       <div class="product-frame">
       <div class="zoom-icon" title="Bild vergrößern">🔍</div>
-        <img src="${product.image}" alt="${product.title}" />
+        <img src="${product.image}" alt="${product.title[lang]}" />
         <div class="product-info">
-          <h3>${product.title}</h3>
+          <h3>${product.title[lang]}</h3>
           <ul>
-            <li>Material: ${product.material}</li>
-            <li>Druck: ${product.print}</li>
-            <li>Größen: ${product.sizes}</li>
+            <li>Material: ${product.material[lang]}</li>
+            <li>Druck: ${product.print[lang]}</li>
+            <li>Größen: ${product.sizes[lang]}</li>
           </ul>
           <p class="price">Kontaktieren Sie uns</p>
-          <p>${product.description}</p>
+          <p>${product.description[lang]}</p>
         </div>
         <div class="cart-actions">
           <input type="number" class="quantity" min="0" step="1" value="0" />
