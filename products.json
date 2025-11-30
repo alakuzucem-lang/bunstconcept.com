@@ -1,254 +1,254 @@
 [
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": { "de": "Pumpkin Design-Unisex", "en": "Pumpkin Design-Unisex" },
     "image": "images/Halloween-3.0.png",
-    "extraImages": [
-    "images/Halloween-e.1.png",
-    "images/Halloween-e.2.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n100 % Bio-Baumwolle",
+    "extraImages": ["images/Halloween-e.1.png", "images/Halloween-e.2.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n100 % Bio-Baumwolle",
+      "en": "Round-neck Unisex T-Shirt\n100% Organic Cotton"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"],
     "zoomable": true
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": { "de": "Pumpkin Design-Unisex", "en": "Pumpkin Design-Unisex" },
     "image": "images/Halloween-3.2.png",
-       "extraImages": [
-    "images/Halloween-e.3.png",
-    "images/Halloween-e.4.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.3.png", "images/Halloween-e.4.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": { "de": "Pumpkin Design-Unisex", "en": "Pumpkin Design-Unisex" },
     "image": "images/Halloween-3.3.png",
-    "extraImages": [
-    "images/Halloween-e.5.png",
-    "images/Halloween-e.6.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.5.png", "images/Halloween-e.6.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": { "de": "Pumpkin Design-Unisex", "en": "Pumpkin Design-Unisex" },
     "image": "images/Halloween-4.0.png",
-    "extraImages": [
-    "images/Halloween-e.1.png",
-    "images/Halloween-e.2.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n100 % Bio-Baumwolle",
+    "extraImages": ["images/Halloween-e.1.png", "images/Halloween-e.2.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n100 % Bio-Baumwolle",
+      "en": "Round-neck Unisex T-Shirt\n100% Organic Cotton"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": { "de": "Pumpkin Design-Unisex", "en": "Pumpkin Design-Unisex" },
     "image": "images/Halloween-4.1.png",
-    "extraImages": [
-    "images/Halloween-e.5.png",
-    "images/Halloween-e.6.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.5.png", "images/Halloween-e.6.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Moonlit Manor Series-Unisex",
+    "title": { "de": "Moonlit Manor Series-Unisex", "en": "Moonlit Manor Series-Unisex" },
     "image": "images/Halloween-5.0.png",
-    "extraImages": [
-    "images/Halloween-e.3.png",
-    "images/Halloween-e.4.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.3.png", "images/Halloween-e.4.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Spooky Design-Unisex",
+    "title": { "de": "Spooky Design-Unisex", "en": "Spooky Design-Unisex" },
     "image": "images/Halloween-6.0.png",
-    "extraImages": [
-    "images/Halloween-e.5.png",
-    "images/Halloween-e.6.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.5.png", "images/Halloween-e.6.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
-  {
-    "title": "Spooky Design-Unisex",
+   {
+    "title": { "de": "Spooky Design-Unisex", "en": "Spooky Design-Unisex" },
     "image": "images/Halloween-6.1.png",
-    "extraImages": [
-    "images/Halloween-e.3.png",
-    "images/Halloween-e.4.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.3.png", "images/Halloween-e.4.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Ghost Design-Unisex",
+    "title": { "de": "Ghost Design-Unisex", "en": "Ghost Design-Unisex" },
     "image": "images/Halloween-8.1.png",
-    "extraImages": [
-    "images/Halloween-e.5.png",
-    "images/Halloween-e.6.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.5.png", "images/Halloween-e.6.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Ghost Design-Unisex",
+    "title": { "de": "Ghost Design-Unisex", "en": "Ghost Design-Unisex" },
     "image": "images/Halloween-8.2.png",
-    "extraImages": [
-    "images/Halloween-e.5.png",
-    "images/Halloween-e.6.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.5.png", "images/Halloween-e.6.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Ghost Design-Unisex",
+    "title": { "de": "Ghost Design-Unisex", "en": "Ghost Design-Unisex" },
     "image": "images/Halloween-8.3.png",
-    "extraImages": [
-    "images/Halloween-e.3.png",
-    "images/Halloween-e.4.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.3.png", "images/Halloween-e.4.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Ghost Design-Unisex",
+    "title": { "de": "Ghost Design-Unisex", "en": "Ghost Design-Unisex" },
     "image": "images/Halloween-8.4.png",
-    "extraImages": [
-    "images/Halloween-e.5.png",
-    "images/Halloween-e.6.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.5.png", "images/Halloween-e.6.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Ghost Design-Unisex",
+    "title": { "de": "Ghost Design-Unisex", "en": "Ghost Design-Unisex" },
     "image": "images/Halloween-8.5.png",
-    "extraImages": [
-    "images/Halloween-e.1.png",
-    "images/Halloween-e.2.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n100 % Bio-Baumwolle",
+    "extraImages": ["images/Halloween-e.1.png", "images/Halloween-e.2.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n100 % Bio-Baumwolle",
+      "en": "Round-neck Unisex T-Shirt\n100% Organic Cotton"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Ghost Design-Unisex",
+    "title": { "de": "Ghost Design-Unisex", "en": "Ghost Design-Unisex" },
     "image": "images/Halloween-8.6.png",
-    "extraImages": [
-    "images/Halloween-e.3.png",
-    "images/Halloween-e.4.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.3.png", "images/Halloween-e.4.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": { "de": "Pumpkin Design-Unisex", "en": "Pumpkin Design-Unisex" },
     "image": "images/Halloween-9.0.png",
-    "extraImages": [
-    "images/Halloween-e.3.png",
-    "images/Halloween-e.4.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.3.png", "images/Halloween-e.4.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": { "de": "Pumpkin Design-Unisex", "en": "Pumpkin Design-Unisex" },
     "image": "images/Halloween-9.1.png",
-    "extraImages": [
-    "images/Halloween-e.5.png",
-    "images/Halloween-e.6.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.5.png", "images/Halloween-e.6.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": { "de": "Pumpkin Design-Unisex", "en": "Pumpkin Design-Unisex" },
     "image": "images/Halloween-9.2.png",
-    "extraImages": [
-    "images/Halloween-e.3.png",
-    "images/Halloween-e.4.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.3.png", "images/Halloween-e.4.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   },
   {
-    "title": "Pumpkin Design-Unisex",
+    "title": { "de": "Pumpkin Design-Unisex", "en": "Pumpkin Design-Unisex" },
     "image": "images/Halloween-10.0.png",
-    "extraImages": [
-    "images/Halloween-e.3.png",
-    "images/Halloween-e.4.png"
-  ],
-    "material": "%100 Bio-Baumwolle",
-    "print": "Verschiedene Farben",
-    "sizes": "S/M/L/XL",
-    "description": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+    "extraImages": ["images/Halloween-e.3.png", "images/Halloween-e.4.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
   }
