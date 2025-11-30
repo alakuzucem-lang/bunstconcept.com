@@ -455,53 +455,66 @@ function formatDescription(text) {
 }
 
 // === Detay kutusu render ===
-function renderDetails(detailsBox, product, lang="de") {
+function renderDetails(detailsBox, product, lang = "de") {
+  // Yorumları puana göre sırala
   const sorted = (product.reviews || []).slice().sort((a, b) => b.rating - a.rating);
   const visible = sorted.slice(0, 2);
   const hidden = sorted.slice(2);
 
-detailsBox.innerHTML = `
-  <div class="product-description">
-    ${formatDescription(product.description[lang] || "")}
-  </div>
-  <div class="rating-input" style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
-    <input type="text" class="rating-name" 
-           placeholder="${lang === "de" ? "Ihr Name" : "Your Name"}"
-           style="flex:1;padding:8px;border:1px solid #ccc;border-radius:4px;">
-    <div class="rating-stars-input" style="display:flex;gap:6px;">
-      ${[1,2,3,4,5].map(i => `<span class="star-input" data-value="${i}" 
-           style="font-size:22px;cursor:pointer;user-select:none;">☆</span>`).join("")}
+  // İçeriği doldur
+  detailsBox.innerHTML = `
+    <div class="product-description" style="margin-bottom:12px; font-size:14px; line-height:1.4; white-space:pre-line;">
+      ${formatDescription(product.description?.[lang] || "")}
     </div>
-    <button class="submit-rating" 
-            style="padding:8px 12px;background:#ffd700;border:none;border-radius:6px;cursor:pointer;">
-      ${lang === "de" ? "Senden" : "Submit"}
-    </button>
-  </div>
-
-  <div class="reviews">
-    <h4 style="margin:8px 0;">${lang === "de" ? "Kundenbewertungen" : "Customer Reviews"}</h4>
-    ${visible.map(r => `
-      <div class="review" style="margin:8px 0;">
-        <div class="rating" style="font-weight:bold;">${starsOf(r.rating)}</div>
-        <strong>${r.user || (lang === "de" ? "Anonym" : "Anonymous")}</strong>
+    <div class="rating-input" style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
+      <input type="text" class="rating-name" 
+             placeholder="${lang === "de" ? "Ihr Name" : "Your Name"}"
+             style="flex:1;padding:8px;border:1px solid #ccc;border-radius:4px;">
+      <div class="rating-stars-input" style="display:flex;gap:6px;">
+        ${[1,2,3,4,5].map(i => `
+          <span class="star-input" data-value="${i}" 
+                style="font-size:22px;cursor:pointer;user-select:none;">☆</span>`
+        ).join("")}
       </div>
-    `).join("") || `<p>${lang === "de" ? "Keine Bewertungen vorhanden." : "No reviews available."}</p>`}
-    ${hidden.length > 0 ? `
-      <button class="show-all-reviews" 
-              style="margin-top:10px;padding:6px 12px;border:none;background:#eee;cursor:pointer;">
-        ${lang === "de" ? "Alle Bewertungen anzeigen" : "Show all reviews"}
+      <button class="submit-rating" 
+              style="padding:8px 12px;background:#ffd700;border:none;border-radius:6px;cursor:pointer;">
+        ${lang === "de" ? "Senden" : "Submit"}
       </button>
-      <div class="hidden-reviews" style="display:none;">
-        ${hidden.map(r => `
-          <div class="review" style="margin:8px 0;">
-            <div class="rating" style="font-weight:bold;">${starsOf(r.rating)}</div>
-            <strong>${r.user || (lang === "de" ? "Anonym" : "Anonymous")}</strong>
-          </div>
-        `).join("")}
-      </div>
-    ` : ""}
-  </div>
-`;
+    </div>
+
+    <div class="reviews">
+      <h4 style="margin:8px 0;">${lang === "de" ? "Kundenbewertungen" : "Customer Reviews"}</h4>
+      ${
+        visible.length > 0
+          ? visible.map(r => `
+              <div class="review" style="margin:8px 0;">
+                <div class="rating" style="font-weight:bold;">${starsOf(r.rating)}</div>
+                <strong>${r.user || (lang === "de" ? "Anonym" : "Anonymous")}</strong>
+              </div>
+            `).join("")
+          : `<p>${lang === "de" ? "Keine Bewertungen vorhanden." : "No reviews available."}</p>`
+      }
+      ${
+        hidden.length > 0
+          ? `
+            <button class="show-all-reviews" 
+                    style="margin-top:10px;padding:6px 12px;border:none;background:#eee;cursor:pointer;">
+              ${lang === "de" ? "Alle Bewertungen anzeigen" : "Show all reviews"}
+            </button>
+            <div class="hidden-reviews" style="display:none;">
+              ${hidden.map(r => `
+                <div class="review" style="margin:8px 0;">
+                  <div class="rating" style="font-weight:bold;">${starsOf(r.rating)}</div>
+                  <strong>${r.user || (lang === "de" ? "Anonym" : "Anonymous")}</strong>
+                </div>
+              `).join("")}
+            </div>
+          `
+          : ""
+      }
+    </div>
+  `;
+}
 
   // Yıldız input etkileşimi
   const starInputs = detailsBox.querySelectorAll(".star-input");
