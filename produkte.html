@@ -644,7 +644,7 @@ function renderProducts(products, lang = "de") {
       ) return;
 
       if (detailsBox.style.display === "none" || detailsBox.style.display === "") {
-        renderDetails(detailsBox, product, lang);
+        renderDetails(detailsBox, product, lang); // dil parametresi ile çağırıyoruz
         detailsBox.style.display = "block";
       } else {
         detailsBox.style.display = "none";
@@ -659,7 +659,7 @@ function renderProducts(products, lang = "de") {
   enableZoomIcons();
 }
 
-  // === Dil seçici entegrasyonu ===
+// === Dil seçici entegrasyonu ===
 let currentLang = "de"; // varsayılan
 
 document.getElementById("lang-switch").addEventListener("change", (e) => {
