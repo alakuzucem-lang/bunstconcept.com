@@ -245,8 +245,8 @@
       const lines = text.split("\n").filter(l => l.trim() !== "");
       return `<ul style="padding-left:20px; margin:0; font-size:14px; line-height:1.5;">
       ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
-    </ul>`;
-   }
+  </ul>`;
+}
 
       products.forEach(product => {
         const card = document.createElement("div");
@@ -283,8 +283,8 @@
         const detailsBox = document.createElement("div");
         detailsBox.className = "product-details-box";
         detailsBox.innerHTML = `
-          <h4>${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
-          <p>${product.description[lang]}</p>
+          <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>    
+          <p>${formatDescription(product.description[lang])}</p>
         `;
 
         // Carousel olayları
