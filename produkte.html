@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bunst Concept – Produkte</title>
+  <!-- Stil dosyası -->
   <style>
-      <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -21,6 +21,7 @@
       background-color: rgba(0, 0, 0, 0.7);
       padding: 30px 0 10px;
       text-align: center;
+      position: relative;
     }
 
     .site-header h1 {
@@ -29,6 +30,15 @@
       color: #fff;
       font-weight: 600;
       letter-spacing: 1px;
+    }
+
+    #lang-switch {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      padding: 6px;
+      border-radius: 4px;
+      z-index: 1000;
     }
 
     .main-nav {
@@ -40,7 +50,6 @@
     .nav-list {
       list-style: none;
       display: flex;
-      flex-wrap: wrap;
       gap: 30px;
       justify-content: center;
       margin: 0;
@@ -61,9 +70,6 @@
     .filter-box {
       margin: 20px auto;
       padding: 20px;
-      background-color: transparent;
-      border-radius: 12px;
-      box-shadow: 0 0 10px transparent;
       max-width: 100%;
       overflow-x: auto;
     }
@@ -84,9 +90,15 @@
       justify-content: flex-start;
       flex-wrap: nowrap;
       overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
-    .filter-row li label {
+    .filter-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-row label {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -108,25 +120,25 @@
       margin-bottom: 20px;
     }
 
-    .product-grid {
+    #product-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* Her satırda 3 ürün */
-      gap: 30px; /* Ürünler arası boşluk */
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
       justify-content: center;
       padding: 20px;
     }
 
-     @media (max-width: 768px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr); /* Tablet ve küçük ekranlarda 2 sütun */
-  }
-}
+    @media (max-width: 768px) {
+      #product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
-@media (max-width: 480px) {
-  .product-grid {
-    grid-template-columns: 1fr; /* Telefonlarda tek sütun */
-  }
-}
+    @media (max-width: 480px) {
+      #product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     .product-card {
       background-color: #fff;
@@ -137,94 +149,69 @@
     }
 
     .product-frame {
-  border: 1px solid #000;
-  padding: 20px;
-  background-color: #fff; /* Çerçeveye beyaz zemin ver */
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  transition: transform 0.3s ease; /* Geçiş efekti */
-}
-    .product-frame:hover {
-  transform: translateY(-5px); /* Hafif yukarı kayma */
-}
-
-.product-frame img {
-  width: 250px;
-  height: 250px;
-  object-fit: contain;
-  display: block;
-}
-
-.product-info {
-  text-align: left;
-  width: 100%;
-  max-width: 250px;
-}
-
-.product-info h3 {
-  font-size: 1.1em;
-  margin-bottom: 10px;
-  color: #000;
-}
-
-.product-info ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin: 0 0 10px;
-  color: #000;
-}
-
-.product-info p {
-  margin: 4px 0;
-  color: #000;
-  font-size: 0.95em;
-}
-
-    .product-card img {
-  width: 250px;
-  height: 250px;
-  object-fit: contain;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #fff !important;
-}
-
-    .product-card h3 {
-      margin-top: 0;
-      font-size: 1em;
+      border: 1px solid #000;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      transition: transform 0.3s ease;
     }
 
-    .product-card p {
-      font-size: 0.85em;
+    .product-frame:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-frame img {
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .product-info {
+      text-align: left;
+      width: 100%;
+      max-width: 250px;
+    }
+
+    .product-info h3 {
+      font-size: 1.1em;
+      margin-bottom: 10px;
       color: #000;
     }
 
-    .filter-row::-webkit-scrollbar {
-      display: none;
+    .product-info ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin: 0 0 10px;
+      color: #000;
     }
 
-    .filter-row {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .product-info p {
+      margin: 4px 0;
+      color: #000;
+      font-size: 0.95em;
+    }
+
+    .cart-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
     }
   </style>
 </head>
+
 <body>
   <header class="site-header">
     <h1>Bunst Concept</h1>
-    <div style="position:absolute; top:10px; right:20px; z-index:1000;">
-  <select id="lang-switch" style="padding:6px; border-radius:4px;">
-    <option value="de">Deutsch</option>
-    <option value="en">English</option>
-  </select>
-</div>
+    <select id="lang-switch">
+      <option value="de">Deutsch</option>
+      <option value="en">English</option>
+    </select>
   </header>
 
   <nav class="main-nav">
@@ -234,21 +221,20 @@
       <li><a href="#" data-category="heimtextilien">Heimtextilien</a></li>
     </ul>
   </nav>
-  
-</body> 
+
   <div class="filter-box">
-  <h3>Designs filtern</h3>
-  <ul class="filter-row">
-  <label><input type="checkbox" value="personalisierte" class="filter-checkbox" /> Personalisierte Drucke</label>
-  <label><input type="checkbox" value="paar" class="filter-checkbox" /> Paar Kollektionen</label>
-  <label><input type="checkbox" value="braut" class="filter-checkbox" /> Braut & Bräutigam Designs</label>
-  <label><input type="checkbox" value="schule" class="filter-checkbox" /> Schuldesigns</label>
-  <label><input type="checkbox" value="minimal" class="filter-checkbox" /> Minimalistische Designs</label>
-  <label><input type="checkbox" value="halloween" class="filter-checkbox" /> Halloween Designs</label>
-  <label><input type="checkbox" value="weihnachten" class="filter-checkbox" /> Weihnachtsdesigns</label>
-  <label><input type="checkbox" value="alle" class="filter-checkbox" /> Designs für Alle</label>
-  </ul>
-</div>
+    <h3>Designs filtern</h3>
+    <ul class="filter-row">
+      <label><input type="checkbox" value="personalisierte" class="filter-checkbox" /> Personalisierte Drucke</label>
+      <label><input type="checkbox" value="paar" class="filter-checkbox" /> Paar Kollektionen</label>
+      <label><input type="checkbox" value="braut" class="filter-checkbox" /> Braut & Bräutigam Designs</label>
+      <label><input type="checkbox" value="schule" class="filter-checkbox" /> Schuldesigns</label>
+      <label><input type="checkbox" value="minimal" class="filter-checkbox" /> Minimalistische Designs</label>
+      <label><input type="checkbox" value="halloween" class="filter-checkbox" /> Halloween Designs</label>
+      <label><input type="checkbox" value="weihnachten" class="filter-checkbox" /> Weihnachtsdesigns</label>
+      <label><input type="checkbox" value="alle" class="filter-checkbox" /> Designs für Alle</label>
+    </ul>
+  </div>
 
   <main class="product-area">
     <div class="product-header">
@@ -263,12 +249,14 @@
         <option value="rating-asc">Bewertung: Niedrig → Hoch</option>
       </select>
     </div>
-  
-  <!-- ürün grid -->
-  <div id="product-grid" class="product-grid"></div>
+
+    <div id="product-grid"></div>
+  </main>
+
+  <!-- JS dosyası en sonda -->
   <script src="script.js"></script>
-</head>
-<body>
+</body>
+</html>
 
   <!-- Dil seçici -->
   <div style="position:fixed; top:12px; right:20px; z-index:1000; background:#fff; padding:6px 8px; border:1px solid #ddd; border-radius:6px;">
