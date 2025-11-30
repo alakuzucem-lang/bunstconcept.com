@@ -659,6 +659,15 @@ function renderProducts(products, lang = "de") {
   enableZoomIcons();
 }
 
+  let currentLang = "de"; // varsayılan
+  document.getElementById("lang-switch").addEventListener("change", (e) => {
+  currentLang = e.target.value;
+  renderProducts(products, currentLang);
+});
+
+// İlk yükleme
+renderProducts(products, currentLang);
+
 // === Demo data ===
 const products = [
   {
