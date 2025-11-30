@@ -662,8 +662,9 @@ function renderProducts(products, lang = "de") {
 // === Dil seçici entegrasyonu ===
 let currentLang = "de"; // varsayılan
 
-document.getElementById("lang-switch").addEventListener("change", (e) => {
+  document.getElementById("lang-switch").addEventListener("change", (e) => {
   currentLang = e.target.value;
+  document.documentElement.setAttribute("lang", currentLang); // <html lang="..."> güncellenir
   renderProducts(products, currentLang);
 });
 
