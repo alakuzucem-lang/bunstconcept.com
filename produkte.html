@@ -2,711 +2,153 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bunst Concept – Produkte</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-image: url('images/produkte-main-img.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: #3c3c3c;
-    }
-
-    .site-header {
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 30px 0 10px;
-      text-align: center;
-    }
-
-    .site-header h1 {
-      margin: 0;
-      font-size: 2em;
-      color: #fff;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-
-    .main-nav {
-      background-color: rgba(17, 17, 17, 0.8);
-      padding: 15px 0;
-      text-align: center;
-    }
-
-    .nav-list {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-list li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1em;
-    }
-
-    .nav-list li a:hover {
-      color: #ffd700;
-    }
-
-    .filter-box {
-      margin: 20px auto;
-      padding: 20px;
-      background-color: transparent;
-      border-radius: 12px;
-      box-shadow: 0 0 10px transparent;
-      max-width: 100%;
-      overflow-x: auto;
-    }
-
-    .filter-box h3 {
-      margin-bottom: 15px;
-      color: #000;
-      text-align: center;
-      font-size: 1.2em;
-    }
-
-    .filter-row {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      padding: 0;
-      margin: 0;
-      justify-content: flex-start;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-    }
-
-    .filter-row li label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9em;
-      white-space: nowrap;
-    }
-
-    .filter-row input[type="checkbox"] {
-      accent-color: #ffd700;
-    }
-
-    .product-area {
-      padding: 20px;
-      text-align: center;
-    }
-
-    .product-area h2 {
-      font-size: 1.5em;
-      margin-bottom: 20px;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* Her satırda 3 ürün */
-      gap: 30px; /* Ürünler arası boşluk */
-      justify-content: center;
-      padding: 20px;
-    }
-
-     @media (max-width: 768px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr); /* Tablet ve küçük ekranlarda 2 sütun */
-  }
-}
-
-@media (max-width: 480px) {
-  .product-grid {
-    grid-template-columns: 1fr; /* Telefonlarda tek sütun */
-  }
-}
-
-    .product-card {
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(255,255,255,0.1);
-      text-align: center;
-    }
-
-    .product-frame {
-  border: 1px solid #000;
-  padding: 20px;
-  background-color: #fff; /* Çerçeveye beyaz zemin ver */
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  transition: transform 0.3s ease; /* Geçiş efekti */
-}
-    .product-frame:hover {
-  transform: translateY(-5px); /* Hafif yukarı kayma */
-}
-
-.product-frame img {
-  width: 250px;
-  height: 250px;
-  object-fit: contain;
-  display: block;
-}
-
-.product-info {
-  text-align: left;
-  width: 100%;
-  max-width: 250px;
-}
-
-.product-info h3 {
-  font-size: 1.1em;
-  margin-bottom: 10px;
-  color: #000;
-}
-
-.product-info ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin: 0 0 10px;
-  color: #000;
-}
-
-.product-info p {
-  margin: 4px 0;
-  color: #000;
-  font-size: 0.95em;
-}
-
-    .product-card img {
-  width: 250px;
-  height: 250px;
-  object-fit: contain;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #fff !important;
-}
-
-    .product-card h3 {
-      margin-top: 0;
-      font-size: 1em;
-    }
-
-    .product-card p {
-      font-size: 0.85em;
-      color: #000;
-    }
-
-    .filter-row::-webkit-scrollbar {
-      display: none;
-    }
-
-    .filter-row {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #product-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 16px; }
+    .product-card { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff; }
+    .product-frame { position: relative; padding: 12px; }
+    .product-info { padding: 8px 12px 12px; }
+    .product-details-box { display: none; background: #f7f7f7; padding: 12px; border-top: 1px solid #eee; }
+    .zoom-icon { position:absolute; top:10px; right:10px; font-size:20px; background:#fff; border-radius:50%; padding:6px; cursor:pointer; box-shadow:0 2px 6px rgba(0,0,0,0.2); user-select:none; z-index:5; }
+    .carousel { position:relative; display:flex; align-items:center; justify-content:center; }
+    .carousel-img { max-width:100%; border-radius:8px; }
+    .left-arrow, .right-arrow { position:absolute; top:50%; transform:translateY(-50%); font-size:28px; cursor:pointer; user-select:none; padding:4px 8px; color:#333; }
+    .left-arrow { left:0; } .right-arrow { right:0; }
+    .cart-actions { display:flex; gap:10px; padding:12px; }
+    /* Fullscreen overlay */
+    #fullscreen-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999; }
+    #fullscreen-overlay img { max-width:90%; max-height:90%; object-fit:contain; border-radius:8px; box-shadow:0 0 20px rgba(255,255,255,0.25); }
+    #overlay-controls { position:absolute; width:100%; top:50%; display:flex; justify-content:space-between; color:white; font-size:40px; cursor:pointer; user-select:none; padding:0 24px; }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <h1>Bunst Concept</h1>
-    <div style="position:absolute; top:10px; right:20px; z-index:1000;">
-  <select id="lang-switch" style="padding:6px; border-radius:4px;">
-    <option value="de">Deutsch</option>
-    <option value="en">English</option>
-  </select>
-</div>
-  </header>
 
-  <nav class="main-nav">
-    <ul class="nav-list">
-      <li><a href="#" data-category="t-shirts">T-Shirts</a></li>
-      <li><a href="#" data-category="tragetasche">Tragetasche</a></li>
-      <li><a href="#" data-category="heimtextilien">Heimtextilien</a></li>
-    </ul>
-  </nav>
-  
-</body> 
-  <div class="filter-box">
-  <h3>Designs filtern</h3>
-  <ul class="filter-row">
-  <label><input type="checkbox" value="personalisierte" class="filter-checkbox" /> Personalisierte Drucke</label>
-  <label><input type="checkbox" value="paar" class="filter-checkbox" /> Paar Kollektionen</label>
-  <label><input type="checkbox" value="braut" class="filter-checkbox" /> Braut & Bräutigam Designs</label>
-  <label><input type="checkbox" value="schule" class="filter-checkbox" /> Schuldesigns</label>
-  <label><input type="checkbox" value="minimal" class="filter-checkbox" /> Minimalistische Designs</label>
-  <label><input type="checkbox" value="halloween" class="filter-checkbox" /> Halloween Designs</label>
-  <label><input type="checkbox" value="weihnachten" class="filter-checkbox" /> Weihnachtsdesigns</label>
-  <label><input type="checkbox" value="alle" class="filter-checkbox" /> Designs für Alle</label>
-  </ul>
-</div>
+  <!-- Dil seçici -->
+  <div style="position:fixed; top:12px; right:20px; z-index:1000; background:#fff; padding:6px 8px; border:1px solid #ddd; border-radius:6px;">
+    <select id="lang-switch">
+      <option value="de">Deutsch</option>
+      <option value="en">English</option>
+    </select>
+  </div>
 
-  <main class="product-area">
-    <div class="product-header">
-      <h2>Produkte</h2>
-      <select id="sort-dropdown">
-        <option disabled selected>SORTIERUNG</option>
-        <option value="price-asc">Preis: Aufsteigend</option>
-        <option value="price-desc">Preis: Absteigend</option>
-        <option value="name">Nach Name</option>
-        <option value="date">Nach Hinzufügedatum</option>
-        <option value="rating-desc">Bewertung: Hoch → Niedrig</option>
-        <option value="rating-asc">Bewertung: Niedrig → Hoch</option>
-      </select>
-    </div>
-  
-  <!-- ürün grid -->
-  <div id="product-grid" class="product-grid"></div>
-  <script src="script.js"></script>
-</body>
-    
-<script>
-let allProducts = [];
+  <h1 id="page-title">Bunst Concept – Produkte</h1>
+  <div id="product-grid"></div>
 
-// Ürünleri JSON'dan yükle
-fetch("products.json")
-  .then(res => res.json())
-  .then(data => {
-    allProducts = data;
-    renderProducts(allProducts, currentLang);
-  });
+  <!-- Fullscreen overlay -->
+  <div id="fullscreen-overlay">
+    <img id="overlay-img" src="" alt="Gallery"/>
+    <div id="overlay-controls"><div id="overlay-left">⟨</div><div id="overlay-right">⟩</div></div>
+  </div>
 
-// Ürünleri ekrana basan fonksiyon
-function renderProducts(products, lang = "de") {
-  const grid = document.getElementById("product-grid");
-  grid.innerHTML = "";
+  <script>
+    let currentLang = "de";
+    let allProducts = [];
 
-  products.forEach(product => {
-    const card = document.createElement("div");
-    card.className = "product-card";
+    // JSON yükle ve açılışta tüm ürünleri göster
+    fetch("products.json")
+      .then(res => res.json())
+      .then(data => {
+        allProducts = data;
+        renderProducts(allProducts, currentLang); // ← açılışta tüm ürünler
+      });
 
-    // Dataset bilgileri
-    card.dataset.category = product.category || "";
-    card.dataset.tags = product.tags ? product.tags.join(" ") : "";
-    card.dataset.price = product.price || "0";
-    card.dataset.name = product.title[lang] || "";
-    card.dataset.date = product.date || "2025-01-01";
-    card.dataset.rating = product.rating || "0";
+    // Dil seçici
+    document.getElementById("lang-switch").addEventListener("change", (e) => {
+      currentLang = e.target.value;
+      document.documentElement.setAttribute("lang", currentLang);
+      document.title = currentLang === "de" ? "Bunst Concept – Produkte" : "Bunst Concept – Products";
+      document.getElementById("page-title").textContent = currentLang === "de" ? "Bunst Concept – Produkte" : "Bunst Concept – Products";
+      renderProducts(allProducts, currentLang);
+    });
 
-    // Kart içeriği
-    card.innerHTML = `
-      <div class="product-frame">
-        <div class="zoom-icon" title="${lang === "de" ? "Bild vergrößern" : "Zoom image"}">🔍</div>
-        <img src="${product.image}" alt="${product.title[lang]}" />
-        <div class="product-info">
-          <h3>${product.title[lang]}</h3>
-          <ul>
-            <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang]}</li>
-            <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang]}</li>
-            <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang]}</li>
-          </ul>
-          <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
-          <p>${product.description[lang]}</p>
-        </div>
-        <div class="cart-actions">
-          <input type="number" class="quantity" min="1" step="1" value="1" />
-          <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
-        </div>
-      </div>
-    `;
-
-    grid.appendChild(card);
-  });
-}
-
-// Filtre kutuları
-document.querySelectorAll(".filter-checkbox").forEach(cb => {
-  cb.addEventListener("change", () => {
-    const activeFilters = Array.from(document.querySelectorAll(".filter-checkbox:checked"))
-                               .map(cb => cb.value);
-
-    let filtered = allProducts;
-
-    if (activeFilters.length > 0) {
-      filtered = allProducts.filter(product =>
-        activeFilters.some(tag => product.tags.includes(tag))
-      );
+    // Overlay galeri
+    const overlay = document.getElementById("fullscreen-overlay");
+    const overlayImg = document.getElementById("overlay-img");
+    const overlayLeft = document.getElementById("overlay-left");
+    const overlayRight = document.getElementById("overlay-right");
+    let overlayImages = []; let overlayIndex = 0;
+    function showOverlay(images, startIndex=0) {
+      overlayImages = images; overlayIndex = startIndex;
+      overlayImg.src = overlayImages[overlayIndex];
+      overlay.style.display = "flex";
     }
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.style.display = "none"; });
+    overlayLeft.addEventListener("click", (e) => { e.stopPropagation(); overlayIndex = (overlayIndex-1+overlayImages.length)%overlayImages.length; overlayImg.src = overlayImages[overlayIndex]; });
+    overlayRight.addEventListener("click", (e) => { e.stopPropagation(); overlayIndex = (overlayIndex+1)%overlayImages.length; overlayImg.src = overlayImages[overlayIndex]; });
 
-    renderProducts(filtered);
-  });
-});
+    // Ürünleri render et
+    function renderProducts(products, lang="de") {
+      const grid = document.getElementById("product-grid");
+      grid.innerHTML = "";
 
-// Kategori linkleri
-document.querySelectorAll(".nav-list a").forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    const selectedCategory = link.dataset.category;
-    const filterBox = document.getElementById("filter-box");
+      products.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
 
-    filterBox.style.display = selectedCategory === "t-shirts" ? "block" : "none";
+        let currentIndex = 0;
+        const images = [product.image, ...(product.extraImages || [])];
 
-    const filtered = allProducts.filter(p => p.category === selectedCategory);
-    renderProducts(filtered);
-  });
-});
+        const frame = document.createElement("div");
+        frame.className = "product-frame";
+        frame.innerHTML = `
+          <div class="zoom-icon" title="${lang === "de" ? "Bild vergrößern" : "Zoom image"}">🔍</div>
+          <div class="carousel">
+            <div class="left-arrow">⟨</div>
+            <img class="carousel-img" src="${images[0]}" alt="${product.title[lang]}"/>
+            <div class="right-arrow">⟩</div>
+          </div>
+          <div class="product-info">
+            <h3>${product.title[lang]}</h3>
+            <ul>
+              <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang]}</li>
+              <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang]}</li>
+              <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang]}</li>
+            </ul>
+            <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
+            <p>${product.description[lang]}</p>
+            <div class="cart-actions">
+              <input type="number" class="quantity" min="1" value="1">
+              <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
+            </div>
+          </div>
+        `;
 
-// Sıralama dropdown
-document.getElementById("sort-dropdown").addEventListener("change", function () {
-  const value = this.value;
-  const grid = document.getElementById("product-grid");
-  const cards = Array.from(grid.querySelectorAll(".product-card"));
+        const detailsBox = document.createElement("div");
+        detailsBox.className = "product-details-box";
+        detailsBox.textContent = lang === "de" ? "Details hier..." : "Details here...";
 
-  let sorted = [];
+        // Carousel olayları
+        const imgEl = frame.querySelector(".carousel-img");
+        frame.querySelector(".left-arrow").addEventListener("click", (e) => {
+          e.stopPropagation();
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          imgEl.src = images[currentIndex];
+        });
+        frame.querySelector(".right-arrow").addEventListener("click", (e) => {
+          e.stopPropagation();
+          currentIndex = (currentIndex + 1) % images.length;
+          imgEl.src = images[currentIndex];
+        });
 
-  switch (value) {
-    case 'price-asc':
-      sorted = cards.sort((a, b) => parseFloat(a.dataset.price) - parseFloat(b.dataset.price));
-      break;
-    case 'price-desc':
-      sorted = cards.sort((a, b) => parseFloat(b.dataset.price) - parseFloat(a.dataset.price));
-      break;
-    case 'name':
-      sorted = cards.sort((a, b) => a.dataset.name.localeCompare(b.dataset.name));
-      break;
-    case 'date':
-      sorted = cards.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
-      break;
-    case 'rating-desc':
-      sorted = cards.sort((a, b) => parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating));
-      break;
-    case 'rating-asc':
-      sorted = cards.sort((a, b) => parseFloat(a.dataset.rating) - parseFloat(b.dataset.rating));
-      break;
-    default:
-      sorted = cards;
-  }
+        // Zoom ikon
+        frame.querySelector(".zoom-icon").addEventListener("click", (e) => {
+          e.stopPropagation();
+          showOverlay(images, currentIndex);
+        });
 
-  grid.innerHTML = '';
-  sorted.forEach(card => grid.appendChild(card));
-});
-</script>
+        // Frame click → detay kutusu aç/kapat
+        frame.addEventListener("click", (e) => {
+          if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
+          detailsBox.style.display = detailsBox.style.display === "block" ? "none" : "block";
+        });
+
+        card.appendChild(frame);
+        card.appendChild(detailsBox);
+        grid.appendChild(card);
+      });
+    }
+  </script>
 </body>
 </html>
-
-<script>
-// === Fullscreen overlay (galeri) ===
-const overlay = document.createElement("div");
-overlay.id = "fullscreen-overlay";
-overlay.style.cssText = `
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.9);
-  display: none; justify-content: center; align-items: center;
-  z-index: 9999; flex-direction: column;
-`;
-const overlayImg = document.createElement("img");
-overlayImg.style.cssText = `
-  max-width: 90%; max-height: 90%;
-  object-fit: contain; border-radius: 8px;
-  box-shadow: 0 0 20px rgba(255,255,255,0.25);
-`;
-const overlayControls = document.createElement("div");
-overlayControls.style.cssText = "position:absolute; width:100%; top:50%; display:flex; justify-content:space-between; color:white; font-size:40px; cursor:pointer; user-select:none;";
-const leftArrow = document.createElement("div"); leftArrow.textContent = "⟨";
-const rightArrow = document.createElement("div"); rightArrow.textContent = "⟩";
-overlayControls.appendChild(leftArrow); overlayControls.appendChild(rightArrow);
-overlay.appendChild(overlayImg); overlay.appendChild(overlayControls);
-document.body.appendChild(overlay);
-
-let overlayImages = []; let overlayIndex = 0;
-function showOverlay(images, startIndex=0) {
-  overlayImages = images; overlayIndex = startIndex;
-  overlayImg.src = overlayImages[overlayIndex];
-  overlay.style.display = "flex";
-}
-overlay.addEventListener("click", (e) => {
-  if (e.target === overlay) overlay.style.display = "none";
-});
-leftArrow.addEventListener("click", (e) => { e.stopPropagation(); overlayIndex = (overlayIndex-1+overlayImages.length)%overlayImages.length; overlayImg.src = overlayImages[overlayIndex]; });
-rightArrow.addEventListener("click", (e) => { e.stopPropagation(); overlayIndex = (overlayIndex+1)%overlayImages.length; overlayImg.src = overlayImages[overlayIndex]; });
-
-// === LocalStorage helpers ===
-function saveRatings(productId, reviews) {
-  localStorage.setItem(`ratings-${productId}`, JSON.stringify(reviews));
-}
-function loadRatings(productId) {
-  const data = localStorage.getItem(`ratings-${productId}`);
-  return data ? JSON.parse(data) : null;
-}
-
-// === Ortalama puan hesaplama ===
-function formatAverage(reviews) {
-  const count = reviews?.length || 0;
-  if (count === 0) return { text: "0 – 0.0/5★", stars: "☆☆☆☆☆" };
-  const sum = reviews.reduce((acc, r) => acc + (r.rating || 0), 0);
-  const avg = sum / count;
-  const roundedStars = Math.round(avg);
-  const starsVisual = [1,2,3,4,5].map(i => i <= roundedStars ? "★" : "☆").join("");
-  return { text: `${count} – ${avg.toFixed(1)}/5★`, stars: starsVisual };
-}
-function starsOf(rating) {
-  return [1,2,3,4,5].map(i => i <= rating ? "★" : "☆").join("");
-}
-
-// Açıklamayı satır satır bölüp <li> ile liste haline getiriyoruz
-function formatDescription(text) {
-  const lines = text.split("\n").filter(l => l.trim() !== "");
-  return `<ul style="padding-left:20px; margin-bottom:12px; font-size:14px; line-height:1.5;">
-    ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
-  </ul>`;
-}
-
-// === Detay kutusu render ===
-function renderDetails(detailsBox, product, lang = "de") {
-  // Yorumları puana göre sırala
-  const sorted = (product.reviews || []).slice().sort((a, b) => b.rating - a.rating);
-  const visible = sorted.slice(0, 2);
-  const hidden = sorted.slice(2);
-
-  // İçeriği doldur
-  detailsBox.innerHTML = `
-    <div class="product-description" style="margin-bottom:12px; font-size:14px; line-height:1.4; white-space:pre-line;">
-      ${formatDescription(product.description?.[lang] || "")}
-    </div>
-    <div class="rating-input" style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
-      <input type="text" class="rating-name" 
-             placeholder="${lang === "de" ? "Ihr Name" : "Your Name"}"
-             style="flex:1;padding:8px;border:1px solid #ccc;border-radius:4px;">
-      <div class="rating-stars-input" style="display:flex;gap:6px;">
-        ${[1,2,3,4,5].map(i => `
-          <span class="star-input" data-value="${i}" 
-                style="font-size:22px;cursor:pointer;user-select:none;">☆</span>`
-        ).join("")}
-      </div>
-      <button class="submit-rating" 
-              style="padding:8px 12px;background:#ffd700;border:none;border-radius:6px;cursor:pointer;">
-        ${lang === "de" ? "Senden" : "Submit"}
-      </button>
-    </div>
-
-    <div class="reviews">
-      <h4 style="margin:8px 0;">${lang === "de" ? "Kundenbewertungen" : "Customer Reviews"}</h4>
-      ${
-        visible.length > 0
-          ? visible.map(r => `
-              <div class="review" style="margin:8px 0;">
-                <div class="rating" style="font-weight:bold;">${starsOf(r.rating)}</div>
-                <strong>${r.user || (lang === "de" ? "Anonym" : "Anonymous")}</strong>
-              </div>
-            `).join("")
-          : `<p>${lang === "de" ? "Keine Bewertungen vorhanden." : "No reviews available."}</p>`
-      }
-      ${
-        hidden.length > 0
-          ? `
-            <button class="show-all-reviews" 
-                    style="margin-top:10px;padding:6px 12px;border:none;background:#eee;cursor:pointer;">
-              ${lang === "de" ? "Alle Bewertungen anzeigen" : "Show all reviews"}
-            </button>
-            <div class="hidden-reviews" style="display:none;">
-              ${hidden.map(r => `
-                <div class="review" style="margin:8px 0;">
-                  <div class="rating" style="font-weight:bold;">${starsOf(r.rating)}</div>
-                  <strong>${r.user || (lang === "de" ? "Anonym" : "Anonymous")}</strong>
-                </div>
-              `).join("")}
-            </div>
-          `
-          : ""
-      }
-    </div>
-  `;
-}
-
-  // Yıldız input etkileşimi
-  const starInputs = detailsBox.querySelectorAll(".star-input");
-  starInputs.forEach(star => {
-    star.addEventListener("click", (e) => {
-      const value = parseInt(star.dataset.value);
-      starInputs.forEach(s => {
-        const v = parseInt(s.dataset.value);
-        s.textContent = v <= value ? "★" : "☆";
-      });
-      e.stopPropagation();
-    });
-  });
-
-  // Tüm yorumları göster
-  const showAllBtn = detailsBox.querySelector(".show-all-reviews");
-  if (showAllBtn) {
-    showAllBtn.addEventListener("click", (e) => {
-      const hiddenDiv = detailsBox.querySelector(".hidden-reviews");
-      if (hiddenDiv) hiddenDiv.style.display = "block";
-      showAllBtn.style.display = "none";
-      e.stopPropagation();
-    });
-  }
-
-  // Gönder butonu
-  const submitBtn = detailsBox.querySelector(".submit-rating");
-  if (submitBtn) {
-    submitBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const nameInput = detailsBox.querySelector(".rating-name");
-      const chosen = [...detailsBox.querySelectorAll(".star-input")]
-        .reduce((acc, s) => acc + (s.textContent === "★" ? 1 : 0), 0);
-
-      if (!chosen) { alert("Bitte wählen Sie eine Bewertung (★)."); return; }
-
-      const userName = (nameInput.value || "Anonym").trim();
-      product.reviews = product.reviews || [];
-      product.reviews.push({ user: userName, rating: chosen });
-
-      // LocalStorage'a kaydet
-      saveRatings(product.title, product.reviews);
-
-      // Güncelle
-      renderDetails(detailsBox, product);
-      const avgSlot = detailsBox.closest(".product-card")
-        .querySelector(".average-rating");
-      const avgFmt = formatAverage(product.reviews);
-      if (avgSlot) avgSlot.innerHTML = `${avgFmt.text} &nbsp; ${avgFmt.stars}`;
-    });
-  }
-}
-
-// === Ürünleri render et ===
-function renderProducts(products, lang = "de") {
-  const grid = document.getElementById("product-grid");
-  grid.innerHTML = "";
-
-  products.forEach(product => {
-    // LocalStorage'dan yükle (dil bazlı title kullanıyoruz)
-    const stored = loadRatings(product.title[lang]);
-    if (stored) product.reviews = stored;
-
-    const card = document.createElement("div");
-    card.className = "product-card";
-
-    const avgFmt = formatAverage(product.reviews);
-
-    // Carousel index
-    let currentIndex = 0;
-    const images = [product.image, ...(product.extraImages || [])];
-
-    const frame = document.createElement("div");
-    frame.className = "product-frame";
-    frame.style.position = "relative";
-    frame.innerHTML = `
-      <div class="zoom-icon" title="${lang === "de" ? "Bild vergrößern" : "Zoom image"}"
-           style="position:absolute;top:10px;right:10px;font-size:20px;
-                  background:rgba(255,255,255,0.9);border-radius:50%;
-                  padding:6px;cursor:pointer;z-index:5;
-                  box-shadow:0 2px 6px rgba(0,0,0,0.2);user-select:none;">
-        🔍
-      </div>
-      <div class="carousel" style="position:relative;display:flex;align-items:center;justify-content:center;">
-        <div class="left-arrow" style="position:absolute;left:0;top:50%;transform:translateY(-50%);
-             font-size:30px;cursor:pointer;user-select:none;">⟨</div>
-        <img class="carousel-img" src="${images[0]}" alt="${product.title[lang]}" style="max-width:100%;border-radius:8px;">
-        <div class="right-arrow" style="position:absolute;right:0;top:50%;transform:translateY(-50%);
-             font-size:30px;cursor:pointer;user-select:none;">⟩</div>
-      </div>
-      <div class="product-info">
-        <h3>${product.title[lang]}</h3>
-        <div class="average-rating" style="margin:6px 0;font-weight:bold;">
-          ${avgFmt.text} &nbsp; ${avgFmt.stars}
-        </div>
-        <ul>
-          <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang] || ""}</li>
-          <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang] || ""}</li>
-          <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang] || ""}</li>
-        </ul>
-        <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
-        <div class="cart-actions">
-          <input type="number" class="quantity" min="1" value="1">
-          <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
-        </div>
-      </div>
-    `;
-
-    const detailsBox = document.createElement("div");
-    detailsBox.className = "product-details-box";
-    detailsBox.style.display = "none";
-
-    // === Carousel arrow events ===
-    const imgEl = frame.querySelector(".carousel-img");
-    frame.querySelector(".left-arrow").addEventListener("click", (e) => {
-      e.stopPropagation();
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      imgEl.src = images[currentIndex];
-    });
-    frame.querySelector(".right-arrow").addEventListener("click", (e) => {
-      e.stopPropagation();
-      currentIndex = (currentIndex + 1) % images.length;
-      imgEl.src = images[currentIndex];
-    });
-
-    // === Zoom icon event (fullscreen gallery) ===
-    frame.querySelector(".zoom-icon").addEventListener("click", (e) => {
-      e.stopPropagation();
-      showOverlay(images, currentIndex);
-    });
-
-    // === Frame click: detay kutusu aç/kapat ===
-    frame.addEventListener("click", (e) => {
-      if (
-        e.target.classList.contains("zoom-icon") ||
-        e.target.closest(".cart-actions") ||
-        e.target.classList.contains("star-input") ||
-        e.target.classList.contains("rating-name") ||
-        e.target.classList.contains("submit-rating")
-      ) return;
-
-      if (detailsBox.style.display === "none" || detailsBox.style.display === "") {
-        renderDetails(detailsBox, product, lang); // dil parametresi ile çağırıyoruz
-        detailsBox.style.display = "block";
-      } else {
-        detailsBox.style.display = "none";
-      }
-    });
-
-    card.appendChild(frame);
-    card.appendChild(detailsBox);
-    grid.appendChild(card);
-  });
-
-  enableZoomIcons();
-}
-
-// === Dil seçici entegrasyonu ===
-let currentLang = "de"; // varsayılan
-
-  document.getElementById("lang-switch").addEventListener("change", (e) => {
-  currentLang = e.target.value;
-  document.documentElement.setAttribute("lang", currentLang); // <html lang="..."> güncellenir
-  renderProducts(products, currentLang);
-});
-
-// İlk yükleme
-renderProducts(products, currentLang);
-
-// === Demo data ===
-const products = [
-  {
-    title: "Pumpkin Design-Unisex",
-    image: "images/Halloween-3.0.png",
-    material: "%100 Bio-Baumwolle",
-    print: "Verschiedene Farben",
-    sizes: "S/M/L/XL",
-    description: "Pumpkin-Motiv",
-    extraImages: ["images/Halloween-3.2.png","images/Halloween-3.3.png"],
-    reviews: [
-      { user: "XXX", rating: 5 },
-      { user: "YYY", rating: 4 },
-      { user: "ZZZ", rating: 3 }
-    ]
-  }
-];
-
-// === Init ===
-renderProducts(products);
-</script>
