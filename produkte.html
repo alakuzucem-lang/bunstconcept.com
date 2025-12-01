@@ -4,26 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bunst Concept</title>
-  <header class="site-header">
-  <h1>Bunst Concept</h1>
-
-  <div class="filter-bar">
-    <div class="category-links">
-      <a href="#" data-category="t-shirts">T-Shirts</a>
-      <a href="#" data-category="tragetasche">Tragetasche</a>
-      <a href="#" data-category="heimtextilien">Heimtextilien</a>
-    </div>
-
-    <select id="tag-filter">
-      <option value="">${currentLang === "de" ? "Filter" : "Filter"}</option>
-      <option value="personalisierte">${currentLang === "de" ? "Personalisierte Drucke" : "Personalized prints"}</option>
-      <option value="paar">${currentLang === "de" ? "Paar Kollektionen" : "Couple collections"}</option>
-      <option value="halloween">${currentLang === "de" ? "Halloween Designs" : "Halloween designs"}</option>
-      <option value="weihnachten">${currentLang === "de" ? "Weihnachtsdesigns" : "Christmas designs"}</option>
-      <option value="Sonstige">${currentLang === "de" ? "Design für Alle" : "Design for Everyone"}</option>
-    </select>
-  </div>
-</header>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -32,10 +12,46 @@
       background-color: #f2f2f2;
     }
 
+    .site-header {
+      text-align: center;
+      padding: 30px 20px 10px;
+      background-color: rgba(0,0,0,0.7);
+      color: #fff;
+    }
+
+    .filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .category-links a {
+      margin-right: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #ffd700;
+    }
+
+    .category-links a:hover {
+      text-decoration: underline;
+    }
+
+    #tag-filter {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.95em;
+    }
+
     #product-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
+      margin-top: 20px;
     }
 
     @media (max-width: 1024px) {
@@ -54,9 +70,7 @@
       transition: transform 0.3s ease;
     }
 
-    .product-card:hover {
-      transform: translateY(-4px);
-    }
+    .product-card:hover { transform: translateY(-4px); }
 
     .product-frame {
       padding: 16px;
@@ -74,11 +88,11 @@
     }
 
     .carousel-img {
-     width: 100%;
-     height: 100%;
-     object-fit: contain;
-     border-radius: 8px;
-   }
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
 
     .left-arrow, .right-arrow {
       position: absolute;
@@ -107,37 +121,13 @@
       z-index: 5;
     }
 
-    .product-info {
-      text-align: left;
-      margin-top: 12px;
-    }
+    .product-info { text-align: left; margin-top: 12px; }
+    .product-info h3 { font-size: 1.1em; margin-bottom: 8px; }
+    .product-info ul { list-style: none; padding-left: 0; font-size: 0.95em; margin-bottom: 8px; }
+    .product-info ul li { margin-bottom: 4px; }
+    .price { font-weight: bold; margin-bottom: 8px; }
 
-    .product-info h3 {
-      font-size: 1.1em;
-      margin-bottom: 8px;
-    }
-
-    .product-info ul {
-      list-style: none;
-      padding-left: 0;
-      font-size: 0.95em;
-      margin-bottom: 8px;
-    }
-
-    .product-info ul li {
-      margin-bottom: 4px;
-    }
-
-    .price {
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .cart-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-    }
+    .cart-actions { display: flex; gap: 10px; margin-top: 10px; }
 
     .product-details-box {
       display: none;
@@ -198,7 +188,25 @@
     <option value="en">English</option>
   </select>
 
-  <h1 id="page-title">Bunst Concept</h1>
+  <header class="site-header">
+    <h1 id="page-title">Bunst Concept</h1>
+    <div class="filter-bar">
+      <div class="category-links">
+        <a href="#" id="cat-tshirts" data-category="t-shirts">T-Shirts</a>
+        <a href="#" id="cat-bag" data-category="tragetasche">Tragetasche</a>
+        <a href="#" id="cat-home" data-category="heimtextilien">Heimtextilien</a>
+      </div>
+      <select id="tag-filter">
+        <option value="">Designs filtern</option>
+        <option value="personalisierte">Personalisierte Drucke</option>
+        <option value="paar">Paar Kollektionen</option>
+        <option value="halloween">Halloween Designs</option>
+        <option value="weihnachten">Weihnachtsdesigns</option>
+        <option value="alle">Design für Alle</option>
+      </select>
+    </div>
+  </header>
+
   <div id="product-grid"></div>
 
   <div id="fullscreen-overlay">
@@ -221,63 +229,43 @@
       });
 
     document.getElementById("lang-switch").addEventListener("change", (e) => {
-  currentLang = e.target.value;
-  updateFilterTexts(currentLang);
-});
-
-function updateFilterTexts(lang) {
-  const filter = document.getElementById("tag-filter");
-  filter.options[0].text = lang === "de" ? "Designs filtern" : "Filter designs";
-  filter.options[1].text = lang === "de" ? "Personalisierte Drucke" : "Personalized prints";
-  filter.options[2].text = lang === "de" ? "Paar Kollektionen" : "Couple collections";
-  filter.options[3].text = lang === "de" ? "Halloween Designs" : "Halloween designs";
-  filter.options[4].text = lang === "de" ? "Weihnachtsdesigns" : "Christmas designs";
-}
+      currentLang = e.target.value;
       document.documentElement.setAttribute("lang", currentLang);
-      document.title = currentLang === "de" ? "Bunst Concept" : "Bunst Concept";
-      document.getElementById("page-title").textContent = document.title;
+      document.title = "Bunst Concept";
+      document.getElementById("page-title").textContent = "Bunst Concept";
       renderProducts(allProducts, currentLang);
+      updateFilterTexts(currentLang);
+      updateCategoryLabels(currentLang);
     });
 
-    const overlay = document.getElementById("fullscreen-overlay");
-    const overlayImg = document.getElementById("overlay-img");
-    const overlayLeft = document.getElementById("overlay-left");
-    const overlayRight = document.getElementById("overlay-right");
-    let overlayImages = []; let overlayIndex = 0;
-
-    function showOverlay(images, startIndex=0) {
-      overlayImages = images;
-      overlayIndex = startIndex;
-      overlayImg.src = overlayImages[overlayIndex];
-      overlay.style.display = "flex";
+    function updateFilterTexts(lang) {
+      const filter = document.getElementById("tag-filter");
+      filter.options[0].text = lang === "de" ? "Designs filtern" : "Filter designs";
+      filter.options[1].text = lang === "de" ? "Personalisierte Drucke" : "Personalized prints";
+      filter.options[2].text = lang === "de" ? "Paar Kollektionen" : "Couple collections";
+      filter.options[3].text = lang === "de" ? "Halloween Designs" : "Halloween designs";
+      filter.options[4].text = lang === "de" ? "Weihnachtsdesigns" : "Christmas designs";
+      filter.options[5].text = lang === "de" ? "Design für Alle" : "Design for Everyone";
     }
 
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) overlay.style.display = "none";
-    });
+    function updateCategoryLabels(lang) {
+      document.getElementById("cat-tshirts").textContent = lang === "de" ? "T-Shirts" : "T-Shirts";
+      document.getElementById("cat-bag").textContent = lang === "de" ? "Tragetasche" : "Tote Bags
+      document.getElementById("cat-home").textContent = lang === "de" ? "Heimtextilien" : "Home Textiles";
+    }
 
-    overlayLeft.addEventListener("click", (e) => {
-      e.stopPropagation();
-      overlayIndex = (overlayIndex - 1 + overlayImages.length) % overlayImages.length;
-      overlayImg.src = overlayImages[overlayIndex];
-    });
-
-    overlayRight.addEventListener("click", (e) => {
-      e.stopPropagation();
-      overlayIndex = (overlayIndex + 1) % overlayImages.length;
-      overlayImg.src = overlayImages[overlayIndex];
-    });
+    // Overlay fonksiyonları yukarıda tanımlı
 
     function renderProducts(products, lang="de") {
       const grid = document.getElementById("product-grid");
       grid.innerHTML = "";
 
       function formatDescription(text) {
-      const lines = text.split("\n").filter(l => l.trim() !== "");
-      return `<ul style="padding-left:20px; margin:0; font-size:14px; line-height:1.5;">
-      ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
-  </ul>`;
-}
+        const lines = text.split("\n").filter(l => l.trim() !== "");
+        return `<ul style="padding-left:20px; margin:0; font-size:14px; line-height:1.5;">
+          ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
+        </ul>`;
+      }
 
       products.forEach(product => {
         const card = document.createElement("div");
@@ -305,7 +293,6 @@ function updateFilterTexts(lang) {
             <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
             <div class="cart-actions">
               <input type="number" class="quantity" min="1" value="1">
-              <button
               <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
             </div>
           </div>
@@ -314,8 +301,8 @@ function updateFilterTexts(lang) {
         const detailsBox = document.createElement("div");
         detailsBox.className = "product-details-box";
         detailsBox.innerHTML = `
-          <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>    
-          <p>${formatDescription(product.description[lang])}</p>
+          <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
+          ${formatDescription(product.description[lang])}
         `;
 
         // Carousel olayları
