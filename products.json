@@ -254,7 +254,7 @@
   },
   {
     "title": { "de": "Weihnachtendesign-Unisex", "en": "Christmas Design-Unisex" },
-    "image": "images/Christmas.1.png",
+    "image": "images/Christmas-1.png",
     "extraImages": ["images/Halloween-e.5.png", "images/Halloween-e.6.png"],
     "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
     "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
