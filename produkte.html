@@ -185,9 +185,12 @@
       <select id="tag-filter">
         <option value="">Designs filtern</option>
         <option value="personalisierte">Personalisierte Drucke</option>
-        <option value="paar">Paar Kollektionen</option>
-        <option value="halloween">Halloween Designs</option>
+        <option value="halloween">Halloweendesigns</option>
         <option value="weihnachten">Weihnachtsdesigns</option>
+        <option value="tier">Tierdesigns</option>
+        <option value="paar">familienkollektion</option>
+        <option value="schule">Schulkollektion</option>
+        <option value="braut">Braut & Bräutigam Kollektion</option>
         <option value="alle">Design für Alle</option>
       </select>
     </div>
@@ -226,10 +229,10 @@
 
     function updateFilterTexts(lang) {
       const filter = document.getElementById("tag-filter");
-      filter.options[0].text = lang === "de" ? "Designs filtern" : "Filter designs";
-      filter.options[1].text = lang === "de" ? "Personalisierte Drucke" : "Personalized prints";
-      filter.options[2].text = lang === "de" ? "Halloween Designs" : "Halloween designs";
-      filter.options[3].text = lang === "de" ? "Weihnachtsdesigns" : "Christmas designs";
+      filter.options[0].text = lang === "de" ? "Designs Filtern" : "Filter Designs";
+      filter.options[1].text = lang === "de" ? "Personalisierte Drucke" : "Personalized Prints";
+      filter.options[2].text = lang === "de" ? "Halloweendesigns" : "Halloween Designs";
+      filter.options[3].text = lang === "de" ? "Weihnachtsdesigns" : "Christmas Designs";
       filter.options[4].text = lang === "de" ? "Tierdesigns" : "Animal Designs";
       filter.options[5].text = lang === "de" ? "Familienkollektion" : "Family Collection";
       filter.options[6].text = lang === "de" ? "Schulkollektion" : "School Collection";
