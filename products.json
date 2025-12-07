@@ -251,5 +251,19 @@
     },
     "category": "t-shirts",
     "tags": ["halloween", "pumpkin", "ghost"]
-  }
+  },
+  {
+    "title": { "de": "Weihnachtendesign-Unisex", "en": "Christmas Design-Unisex" },
+    "image": "images/Christmas.1.png",
+    "extraImages": ["images/Halloween-e.5.png", "images/Halloween-e.6.png"],
+    "material": { "de": "%100 Bio-Baumwolle", "en": "100% Organic Cotton" },
+    "print": { "de": "Verschiedene Farben", "en": "Various Colors" },
+    "sizes": { "de": "S/M/L/XL", "en": "S/M/L/XL" },
+    "description": {
+      "de": "Rundhals T-Shirt Unisex\n140 g/m² Jersey - Unisex\n100 % Bio-Baumwolle\nKardiert und Enzymbehandelt\nRundhals\nEingebautes Schnitt\nSchlauchware",
+      "en": "Round-neck Unisex T-Shirt\n140 g/m² Jersey - Unisex\n100% Organic Cotton\nCarded and enzyme-treated\nRound-neck\nBuilt-in cut\nTubular fabric"
+    },
+    "category": "t-shirts",
+    "tags": ["weihnachten", "christmas", "weihnachtsmann"]
+  }  
 ]
