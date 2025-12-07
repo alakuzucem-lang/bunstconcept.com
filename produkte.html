@@ -217,6 +217,16 @@
         renderProducts(allProducts, currentLang);
       });
 
+  document.getElementById("tag-filter").addEventListener("change", (e) => {
+    const selectedTag = e.target.value;
+    if (!selectedTag) {
+    renderProducts(allProducts, currentLang); // tüm ürünleri göster
+    } else {
+    const filtered = allProducts.filter(p => p.tags.includes(selectedTag));
+    renderProducts(filtered, currentLang);
+    }
+   });
+
     document.getElementById("lang-switch").addEventListener("change", (e) => {
       currentLang = e.target.value;
       document.documentElement.setAttribute("lang", currentLang);
