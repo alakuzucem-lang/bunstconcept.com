@@ -176,6 +176,19 @@
 
   <header class="site-header">
     <h1 id="page-title">Bunst Concept</h1>
+<div class="category-links">
+  <div class="dropdown">
+    <a href="#" id="cat-tshirts" data-category="t-shirts">T-Shirts</a>
+    <div class="submenu">
+      <a href="#" data-sub="men">Manner</a>
+      <a href="#" data-sub="women">Frauen</a>
+      <a href="#" data-sub="unisex">Unisex</a>
+      <a href="#" data-sub="kids">Kinder</a>
+    </div>
+  </div>
+  <a href="#" id="cat-bag" data-category="tragetasche">Tragetasche</a>
+  <a href="#" id="cat-home" data-category="heimtextilien">Heimtextilien</a>
+</div>
     <div class="filter-bar">
       <div class="category-links">
         <a href="#" id="cat-tshirts" data-category="t-shirts">T-Shirts</a>
@@ -216,7 +229,14 @@
         allProducts = data;
         renderProducts(allProducts, currentLang);
       });
-
+document.querySelectorAll(".submenu a").forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const sub = link.getAttribute("data-sub");
+    const filtered = allProducts.filter(p => p.subCategory === sub);
+    renderProducts(filtered, currentLang);
+  });
+});
 // Kategori linklerine tıklama olayları
 document.querySelectorAll(".category-links a").forEach(link => {
   link.addEventListener("click", (e) => {
