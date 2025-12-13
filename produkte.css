@@ -36,6 +36,10 @@
   text-decoration: underline;
 }
 
+.dropdown {
+  position: relative;
+}
+
 .sub-filter {
   position: absolute;
   top: 100%;
@@ -62,7 +66,6 @@
 .dropdown:hover .sub-filter {
   display: flex;
 }
-
 #tag-filter {
   padding: 6px 10px;
   border-radius: 6px;
