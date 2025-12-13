@@ -36,13 +36,22 @@
   text-decoration: underline;
 }
 
-.category-links {
+.category-bar {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+  font-weight: bold;
+  font-size: 1em;
+  color: #000;
 }
 
-.dropdown {
+.category-item {
   position: relative;
+}
+
+.main-category {
+  cursor: pointer;
 }
 
 .submenu {
@@ -53,15 +62,14 @@
   border: 1px solid #ccc;
   display: none;
   flex-direction: column;
-  min-width: 120px;
+  min-width: 140px;
   z-index: 10;
 }
 
 .submenu a {
-  padding: 8px 12px;
+  padding: 10px 14px;
   text-decoration: none;
   color: #000;
-  font-size: 0.95em;
   border-bottom: 1px solid #eee;
 }
 
