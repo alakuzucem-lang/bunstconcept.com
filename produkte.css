@@ -36,7 +36,7 @@
   text-decoration: underline;
 }
 
-.category-bar {
+.main-filter-bar {
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -46,15 +46,15 @@
   color: #000;
 }
 
-.category-item {
+.filter-item {
   position: relative;
 }
 
-.main-category {
+.main-filter {
   cursor: pointer;
 }
 
-.submenu {
+.sub-filter {
   position: absolute;
   top: 100%;
   left: 0;
@@ -66,18 +66,18 @@
   z-index: 10;
 }
 
-.submenu a {
+.sub-filter a {
   padding: 10px 14px;
   text-decoration: none;
   color: #000;
   border-bottom: 1px solid #eee;
 }
 
-.submenu a:hover {
+.sub-filter a:hover {
   background: #f2f2f2;
 }
 
-.dropdown:hover .submenu {
+.dropdown:hover .sub-filter {
   display: flex;
 }
 
