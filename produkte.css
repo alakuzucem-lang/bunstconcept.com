@@ -36,47 +36,54 @@
   text-decoration: underline;
 }
 
+/* Layout: main categories side-by-side */
 .category-bar {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  margin-top: 40px;
-  font-weight: bold;
-  font-size: 1em;
+  gap: 32px;
+  margin: 24px 0;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Ensure links look consistent */
+.category-bar a {
   color: #000;
+  text-decoration: none;
+}
+.category-bar a:hover {
+  text-decoration: underline;
 }
 
 .category-item {
-  position: relative;
+  position: relative; /* needed for submenu positioning */
 }
 
-.main-category {
-  cursor: pointer;
-}
-
+/* Submenu (hidden by default) */
 .submenu {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #fff;
-  border: 1px solid #ccc;
   display: none;
   flex-direction: column;
-  min-width: 140px;
-  z-index: 10;
+  min-width: 160px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  z-index: 20;
 }
 
+/* Submenu items */
 .submenu a {
   padding: 10px 14px;
-  text-decoration: none;
   color: #000;
+  text-decoration: none;
   border-bottom: 1px solid #eee;
 }
+.submenu a:last-child { border-bottom: none; }
+.submenu a:hover { background: #f5f5f5; }
 
-.submenu a:hover {
-  background: #f2f2f2;
-}
-
+/* Only open submenu when hovering the T-Shirts item */
 .dropdown:hover .submenu {
   display: flex;
 }
