@@ -14,64 +14,60 @@
   letter-spacing: 1px;
 }
 
-/* Menü genel */
-.category-bar {
-  padding: 20px;
-}
-
-.categories {
+/* TÜM BULLET'LERİ KALDIR */
+.category-bar ul,
+.category-bar li {
   list-style: none;
-  display: flex;
-  gap: 40px;
   margin: 0;
   padding: 0;
 }
 
-/* Ana kategori */
+/* ANA KATEGORİLER YAN YANA */
+.categories {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+/* ANA KATEGORİ YAZILARI */
 .category-item > a,
 .main-category {
-  color: #000;              /* SİYAH */
-  text-decoration: none;    /* ALT ÇİZGİ YOK */
+  color: #000;
+  text-decoration: none;
   font-weight: 500;
   cursor: pointer;
 }
 
-/* Dropdown */
+/* DROPDOWN KONUM */
 .dropdown {
   position: relative;
 }
 
-/* Alt menü gizli */
+/* ALT MENÜ BAŞTA GİZLİ */
 .submenu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   background: #fff;
-  list-style: none;
-  padding: 10px 0;
-  margin: 0;
-  min-width: 160px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   z-index: 999;
 }
 
-/* Alt menü linkleri */
+/* ALT MENÜ LINKLERİ */
 .submenu li a {
   display: block;
-  padding: 8px 15px;
+  padding: 10px 15px;
   color: #000;
   text-decoration: none;
 }
 
-.submenu li a:hover {
-  background: #f2f2f2;
-}
-
-/* 🔥 HOVER OLUNCA AÇ */
+/* HOVER OLUNCA AÇ */
 .dropdown:hover .submenu {
   display: block;
 }
+
 
 #tag-filter {
   padding: 6px 10px;
