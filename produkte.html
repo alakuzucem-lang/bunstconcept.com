@@ -176,8 +176,7 @@
 
   <header class="site-header">
     <h1 id="page-title">Bunst Concept</h1>
-    <!-- Category bar -->
-<div class="category-bar">
+    <div class="category-bar">
   <!-- T-Shirts with dropdown -->
   <div class="category-item dropdown">
     <a href="#" class="main-category" data-category="t-shirts">T-Shirts</a>
@@ -189,7 +188,7 @@
     </div>
   </div>
 
-  <!-- Other categories (no dropdown) -->
+  <!-- Other categories -->
   <div class="category-item">
     <a href="#" data-category="tragetasche">Tragetasche</a>
   </div>
@@ -197,7 +196,6 @@
     <a href="#" data-category="heimtextilien">Heimtextilien</a>
   </div>
 </div>
-
       <select id="tag-filter">
         <option value="">Designs Filtern</option>
         <option value="personalisierte">Personalisierte Drucke</option>
@@ -251,6 +249,7 @@ document.querySelectorAll('.submenu a').forEach(link => {
     renderProducts(filtered, currentLang);
   });
 });
+
 // Kategori linklerine tıklama olayları
 document.querySelectorAll(".category-links a").forEach(link => {
   link.addEventListener("click", (e) => {
