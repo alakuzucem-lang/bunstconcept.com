@@ -22,7 +22,6 @@
   margin-top: 30px;
   font-family: Arial, sans-serif;
   font-size: 1.1em;
-  color: #000;
 }
 
 /* Her kategori öğesi */
@@ -30,17 +29,17 @@
   position: relative;
 }
 
-/* Ana kategori linkleri */
+/* Ana kategori linkleri (override için !important) */
 .category-bar a,
 .main-category {
-  color: #000;              /* siyah yazı */
-  text-decoration: none;    /* alt çizgi yok */
+  color: #000 !important;          /* siyah yazı */
+  text-decoration: none !important;/* alt çizgi yok */
   cursor: pointer;
 }
 
 .category-bar a:hover,
 .main-category:hover {
-  text-decoration: underline; /* hover’da alt çizgi */
+  text-decoration: underline !important; /* hover’da alt çizgi */
 }
 
 /* Alt menü (sadece T-Shirts için) */
@@ -54,13 +53,13 @@
   flex-direction: column;
   min-width: 160px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  z-index: 10;
+  z-index: 1000;
 }
 
 .submenu a {
   padding: 10px 14px;
-  color: #000;
-  text-decoration: none;
+  color: #000 !important;
+  text-decoration: none !important;
   border-bottom: 1px solid #eee;
 }
 
@@ -72,6 +71,7 @@
 .dropdown:hover .submenu {
   display: flex;
 }
+
 #tag-filter {
   padding: 6px 10px;
   border-radius: 6px;
