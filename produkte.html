@@ -231,7 +231,7 @@
         allProducts = data;
         renderProducts(allProducts, currentLang);
       });
-// Main category filtering (Tragetasche, Heimtextilien, T-Shirts root)
+// Ana kategori filtreleme
 document.querySelectorAll('.category-item a[data-category]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -241,7 +241,7 @@ document.querySelectorAll('.category-item a[data-category]').forEach(link => {
   });
 });
 
-// T-Shirts subcategory filtering via tags: men/women/unisex/kids
+// T-Shirts alt menü filtreleme
 document.querySelectorAll('.submenu a').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
