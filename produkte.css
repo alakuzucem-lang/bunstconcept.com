@@ -36,24 +36,6 @@
   text-decoration: underline;
 }
 
-.main-filter-bar {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 40px;
-  font-weight: bold;
-  font-size: 1em;
-  color: #000;
-}
-
-.filter-item {
-  position: relative;
-}
-
-.main-filter {
-  cursor: pointer;
-}
-
 .sub-filter {
   position: absolute;
   top: 100%;
