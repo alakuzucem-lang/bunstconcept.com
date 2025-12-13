@@ -217,6 +217,20 @@
         renderProducts(allProducts, currentLang);
       });
 
+// Kategori linklerine tıklama olayları
+document.querySelectorAll(".category-links a").forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault(); // sayfa yenilenmesin
+    const selectedCategory = link.getAttribute("data-category");
+
+    // Seçilen kategoriye göre filtrele
+    const filtered = allProducts.filter(p => p.category === selectedCategory);
+
+    // Ürünleri yeniden render et
+    renderProducts(filtered, currentLang);
+  });
+});
+    
   document.getElementById("tag-filter").addEventListener("change", (e) => {
     const selectedTag = e.target.value;
     if (!selectedTag) {
