@@ -176,9 +176,11 @@
 
   <header class="site-header">
     <h1 id="page-title">Bunst Concept</h1>
-    <div class="category-bar">
+    <!-- Category bar -->
+<div class="category-bar">
+  <!-- T-Shirts with dropdown -->
   <div class="category-item dropdown">
-    <span class="main-category">T-Shirts</span>
+    <a href="#" class="main-category" data-category="t-shirts">T-Shirts</a>
     <div class="submenu">
       <a href="#" data-sub="men">Männer</a>
       <a href="#" data-sub="women">Frauen</a>
@@ -186,8 +188,14 @@
       <a href="#" data-sub="kids">Kinder</a>
     </div>
   </div>
-  <div class="category-item"><a href="#" data-category="tragetasche">Tragetasche</a></div>
-  <div class="category-item"><a href="#" data-category="heimtextilien">Heimtextilien</a></div>
+
+  <!-- Other categories (no dropdown) -->
+  <div class="category-item">
+    <a href="#" data-category="tragetasche">Tragetasche</a>
+  </div>
+  <div class="category-item">
+    <a href="#" data-category="heimtextilien">Heimtextilien</a>
+  </div>
 </div>
       <select id="tag-filter">
         <option value="">Designs Filtern</option>
@@ -223,22 +231,22 @@
         allProducts = data;
         renderProducts(allProducts, currentLang);
       });
-// Ana kategori filtreleme
-document.querySelectorAll(".category-item a[data-category]").forEach(link => {
-  link.addEventListener("click", (e) => {
+// Main category filtering (Tragetasche, Heimtextilien, T-Shirts root)
+document.querySelectorAll('.category-item a[data-category]').forEach(link => {
+  link.addEventListener('click', e => {
     e.preventDefault();
-    const cat = link.getAttribute("data-category");
+    const cat = link.getAttribute('data-category');
     const filtered = allProducts.filter(p => p.category === cat);
     renderProducts(filtered, currentLang);
   });
 });
 
-// T-Shirts alt menü filtreleme
-document.querySelectorAll(".submenu a").forEach(link => {
-  link.addEventListener("click", (e) => {
+// T-Shirts subcategory filtering via tags: men/women/unisex/kids
+document.querySelectorAll('.submenu a').forEach(link => {
+  link.addEventListener('click', e => {
     e.preventDefault();
-    const sub = link.getAttribute("data-sub");
-    const filtered = allProducts.filter(p => p.tags.includes(sub));
+    const sub = link.getAttribute('data-sub');
+    const filtered = allProducts.filter(p => p.tags && p.tags.includes(sub));
     renderProducts(filtered, currentLang);
   });
 });
