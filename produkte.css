@@ -36,54 +36,57 @@
   text-decoration: underline;
 }
 
-/* Layout: main categories side-by-side */
 .category-bar {
   display: flex;
   justify-content: center;
-  gap: 32px;
-  margin: 24px 0;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-/* Ensure links look consistent */
-.category-bar a {
+  gap: 40px;
+  margin-top: 30px;
+  font-family: Arial, sans-serif;
+  font-size: 1.1em;
+  font-weight: normal;
   color: #000;
-  text-decoration: none;
-}
-.category-bar a:hover {
-  text-decoration: underline;
 }
 
 .category-item {
-  position: relative; /* needed for submenu positioning */
+  position: relative;
 }
 
-/* Submenu (hidden by default) */
+.category-bar a,
+.main-category {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.category-bar a:hover,
+.main-category:hover {
+  text-decoration: underline;
+}
+
 .submenu {
   position: absolute;
   top: 100%;
   left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
   display: none;
   flex-direction: column;
   min-width: 160px;
-  background: #fff;
-  border: 1px solid #ddd;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-  z-index: 20;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 10;
 }
 
-/* Submenu items */
 .submenu a {
   padding: 10px 14px;
   color: #000;
   text-decoration: none;
   border-bottom: 1px solid #eee;
 }
-.submenu a:last-child { border-bottom: none; }
-.submenu a:hover { background: #f5f5f5; }
 
-/* Only open submenu when hovering the T-Shirts item */
+.submenu a:hover {
+  background: #f9f9f9;
+}
+
 .dropdown:hover .submenu {
   display: flex;
 }
