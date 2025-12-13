@@ -176,26 +176,32 @@
 
   <header class="site-header">
     <h1 id="page-title">Bunst Concept</h1>
-    <div class="category-bar">
-  <!-- T-Shirts with dropdown -->
-  <div class="category-item dropdown">
-    <a href="#" class="main-category" data-category="t-shirts">T-Shirts</a>
-    <div class="submenu">
-      <a href="#" data-sub="men">Männer</a>
-      <a href="#" data-sub="women">Frauen</a>
-      <a href="#" data-sub="unisex">Unisex</a>
-      <a href="#" data-sub="kids">Kinder</a>
-    </div>
-  </div>
+    <nav class="category-bar">
+  <ul class="categories">
 
-  <!-- Other categories -->
-  <div class="category-item">
-    <a href="#" data-category="tragetasche">Tragetasche</a>
-  </div>
-  <div class="category-item">
-    <a href="#" data-category="heimtextilien">Heimtextilien</a>
-  </div>
-</div>
+    <!-- T-Shirts -->
+    <li class="category-item dropdown">
+      <button class="main-category" data-i18n="tshirts"></button>
+
+      <ul class="submenu">
+        <li><a href="/collections/t-shirts-men" data-i18n="men"></a></li>
+        <li><a href="/collections/t-shirts-women" data-i18n="women"></a></li>
+        <li><a href="/collections/t-shirts-unisex" data-i18n="unisex"></a></li>
+        <li><a href="/collections/t-shirts-kids" data-i18n="kids"></a></li>
+      </ul>
+    </li>
+
+    <!-- Other categories -->
+    <li class="category-item">
+      <a href="/collections/tragetasche" data-i18n="bag"></a>
+    </li>
+
+    <li class="category-item">
+      <a href="/collections/heimtextilien" data-i18n="home_textiles"></a>
+    </li>
+
+  </ul>
+</nav>
       <select id="tag-filter">
         <option value="">Designs Filtern</option>
         <option value="personalisierte">Personalisierte Drucke</option>
