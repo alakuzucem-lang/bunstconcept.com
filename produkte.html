@@ -176,16 +176,19 @@
 
   <header class="site-header">
     <h1 id="page-title">Bunst Concept</h1>
-<div class="category-links">
-  <div class="dropdown">
-    <a href="#" id="cat-tshirts" data-category="t-shirts">T-Shirts</a>
+  <div class="category-bar">
+  <div class="category-item dropdown">
+    <span class="main-category">T-Shirts</span>
     <div class="submenu">
-      <a href="#" data-sub="men">Manner</a>
+      <a href="#" data-sub="men">Männer</a>
       <a href="#" data-sub="women">Frauen</a>
       <a href="#" data-sub="unisex">Unisex</a>
       <a href="#" data-sub="kids">Kinder</a>
     </div>
   </div>
+  <div class="category-item"><a href="#" data-category="tragetasche">Tragetasche</a></div>
+  <div class="category-item"><a href="#" data-category="heimtextilien">Heimtextilien</a></div>
+</div>
   <a href="#" id="cat-bag" data-category="tragetasche">Tragetasche</a>
   <a href="#" id="cat-home" data-category="heimtextilien">Heimtextilien</a>
 </div>
@@ -229,11 +232,22 @@
         allProducts = data;
         renderProducts(allProducts, currentLang);
       });
+// Ana kategori filtreleme
+document.querySelectorAll(".category-item a[data-category]").forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const cat = link.getAttribute("data-category");
+    const filtered = allProducts.filter(p => p.category === cat);
+    renderProducts(filtered, currentLang);
+  });
+});
+
+// T-Shirts alt menü filtreleme
 document.querySelectorAll(".submenu a").forEach(link => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     const sub = link.getAttribute("data-sub");
-    const filtered = allProducts.filter(p => p.subCategory === sub);
+    const filtered = allProducts.filter(p => p.tags.includes(sub));
     renderProducts(filtered, currentLang);
   });
 });
