@@ -176,21 +176,18 @@
 
   <header class="site-header">
     <h1 id="page-title">Bunst Concept</h1>
-  <div class="category-bar">
-  <div class="category-item dropdown">
-    <span class="main-category">T-Shirts</span>
-    <div class="submenu">
+  <div class="main-filter-bar">
+  <div class="filter-item dropdown">
+    <span class="main-filter">T-Shirts</span>
+    <div class="sub-filter">
       <a href="#" data-sub="men">Männer</a>
       <a href="#" data-sub="women">Frauen</a>
       <a href="#" data-sub="unisex">Unisex</a>
       <a href="#" data-sub="kids">Kinder</a>
     </div>
   </div>
-  <div class="category-item"><a href="#" data-category="tragetasche">Tragetasche</a></div>
-  <div class="category-item"><a href="#" data-category="heimtextilien">Heimtextilien</a></div>
-</div>
-  <a href="#" id="cat-bag" data-category="tragetasche">Tragetasche</a>
-  <a href="#" id="cat-home" data-category="heimtextilien">Heimtextilien</a>
+  <div class="filter-item"><a href="#" data-category="tragetasche">Tragetasche</a></div>
+  <div class="filter-item"><a href="#" data-category="heimtextilien">Heimtextilien</a></div>
 </div>
     <div class="filter-bar">
       <div class="category-links">
@@ -233,7 +230,7 @@
         renderProducts(allProducts, currentLang);
       });
 // Ana kategori filtreleme
-document.querySelectorAll(".category-item a[data-category]").forEach(link => {
+document.querySelectorAll(".filter-item a[data-category]").forEach(link => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     const cat = link.getAttribute("data-category");
@@ -243,7 +240,7 @@ document.querySelectorAll(".category-item a[data-category]").forEach(link => {
 });
 
 // T-Shirts alt menü filtreleme
-document.querySelectorAll(".submenu a").forEach(link => {
+document.querySelectorAll(".sub-filter a").forEach(link => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     const sub = link.getAttribute("data-sub");
