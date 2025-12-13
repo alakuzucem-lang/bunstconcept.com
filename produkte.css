@@ -14,62 +14,63 @@
   letter-spacing: 1px;
 }
 
-/* Ana kategoriler yan yana */
+/* Menü genel */
 .category-bar {
+  padding: 20px;
+}
+
+.categories {
+  list-style: none;
   display: flex;
-  justify-content: center;
   gap: 40px;
-  margin-top: 30px;
-  font-family: Arial, sans-serif;
-  font-size: 1.1em;
+  margin: 0;
+  padding: 0;
 }
 
-/* Her kategori öğesi */
-.category-item {
-  position: relative;
-}
-
-/* Ana kategori linkleri (override için !important) */
-.category-bar a,
+/* Ana kategori */
+.category-item > a,
 .main-category {
-  color: #000 !important;          /* siyah yazı */
-  text-decoration: none !important;/* alt çizgi yok */
+  color: #000;              /* SİYAH */
+  text-decoration: none;    /* ALT ÇİZGİ YOK */
+  font-weight: 500;
   cursor: pointer;
 }
 
-.category-bar a:hover,
-.main-category:hover {
-  text-decoration: underline !important; /* hover’da alt çizgi */
+/* Dropdown */
+.dropdown {
+  position: relative;
 }
 
-/* Alt menü (sadece T-Shirts için) */
+/* Alt menü gizli */
 .submenu {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
   background: #fff;
-  border: 1px solid #ccc;
-  display: none;
-  flex-direction: column;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
   min-width: 160px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  z-index: 999;
 }
 
-.submenu a {
-  padding: 10px 14px;
-  color: #000 !important;
-  text-decoration: none !important;
-  border-bottom: 1px solid #eee;
+/* Alt menü linkleri */
+.submenu li a {
+  display: block;
+  padding: 8px 15px;
+  color: #000;
+  text-decoration: none;
 }
 
-.submenu a:hover {
-  background: #f9f9f9;
+.submenu li a:hover {
+  background: #f2f2f2;
 }
 
-/* Hover ile açılma */
+/* 🔥 HOVER OLUNCA AÇ */
 .dropdown:hover .submenu {
-  display: flex;
+  display: block;
 }
 
 #tag-filter {
