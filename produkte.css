@@ -36,11 +36,25 @@
   text-decoration: underline;
 }
 
-.dropdown {
+.category-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+  font-weight: bold;
+  font-size: 1em;
+  color: #000;
+}
+
+.category-item {
   position: relative;
 }
 
-.sub-filter {
+.main-category {
+  cursor: pointer;
+}
+
+.submenu {
   position: absolute;
   top: 100%;
   left: 0;
@@ -52,20 +66,21 @@
   z-index: 10;
 }
 
-.sub-filter a {
+.submenu a {
   padding: 10px 14px;
   text-decoration: none;
   color: #000;
   border-bottom: 1px solid #eee;
 }
 
-.sub-filter a:hover {
+.submenu a:hover {
   background: #f2f2f2;
 }
 
-.dropdown:hover .sub-filter {
+.dropdown:hover .submenu {
   display: flex;
 }
+
 #tag-filter {
   padding: 6px 10px;
   border-radius: 6px;
