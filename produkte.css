@@ -5,6 +5,8 @@
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   position: relative;
+  overflow: visible; /* dropdown taşmasını engelleme */
+  z-index: 1;
 }
 
 .site-header h1 {
@@ -12,13 +14,6 @@
   margin-bottom: 20px;
   font-weight: 600;
   letter-spacing: 1px;
-}
-
-/* Ensure header doesn't clip the dropdown */
-.site-header {
-  overflow: visible;
-  position: relative;
-  z-index: 1;
 }
 
 /* Category bar layout */
@@ -31,21 +26,20 @@
   font-size: 1.1em;
 }
 
-/* Strong, state-specific overrides for anchors */
+/* Ana kategori linkleri: tüm state'leri override et */
 .site-header .category-bar .category-item > a:link,
 .site-header .category-bar .category-item > a:visited,
 .site-header .category-bar .main-category:link,
 .site-header .category-bar .main-category:visited {
-  color: #000 !important;
-  text-decoration: none !important;
-  font-weight: 500; /* clean, readable */
+  color: #000 !important;            /* siyah yazı */
+  text-decoration: none !important;  /* alt çizgi yok */
+  font-weight: 500;
 }
 
-/* Hover and active states (underline only on hover) */
 .site-header .category-bar .category-item > a:hover,
 .site-header .category-bar .main-category:hover {
   color: #000 !important;
-  text-decoration: underline !important;
+  text-decoration: underline !important; /* hover’da alt çizgi */
 }
 
 .site-header .category-bar .category-item > a:active,
@@ -72,7 +66,7 @@
   z-index: 1000;
 }
 
-/* Submenu links with full state coverage */
+/* Submenu links */
 .site-header .submenu a:link,
 .site-header .submenu a:visited {
   padding: 10px 14px;
@@ -88,6 +82,7 @@
   display: flex;
 }
 
+/* Tag filter */
 #tag-filter {
   padding: 6px 10px;
   border-radius: 6px;
