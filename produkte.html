@@ -182,20 +182,87 @@
   let currentLang = "de";
   let allProducts = [];
 
-  // Ürünleri yükle
-  fetch("products.json")
-    .then(res => res.json())
-    .then(data => {
-      allProducts = data;
-      renderProducts(allProducts, currentLang);
-    })
-    .catch(err => {
-      console.error("products.json yüklenemedi:", err);
-      // Yüklenemezse boş liste ile devam
-      allProducts = [];
-      renderProducts(allProducts, currentLang);
+  function renderProducts(products, lang="de") {
+  const grid = document.getElementById("product-grid");
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  function formatDescription(text) {
+    const lines = text.split("\n").filter(l => l.trim() !== "");
+    return `<ul style="padding-left:20px; margin:0; font-size:14px; line-height:1.5;">
+      ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
+    </ul>`;
+  }
+
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+
+    let currentIndex = 0;
+    const images = [product.image, ...(product.extraImages || [])];
+
+    const frame = document.createElement("div");
+    frame.className = "product-frame";
+    frame.innerHTML = `
+      <div class="zoom-icon" title="${lang === "de" ? "Bild vergrößern" : "Zoom image"}">🔍</div>
+      <div class="carousel">
+        <div class="left-arrow">⟨</div>
+        <img class="carousel-img" src="${images[0]}" alt="${product.title[lang]}"/>
+        <div class="right-arrow">⟩</div>
+      </div>
+      <div class="product-info">
+        <h3>${product.title[lang]}</h3>
+        <ul>
+          <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang]}</li>
+          <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang]}</li>
+          <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang]}</li>
+        </ul>
+        <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
+        <div class="cart-actions">
+          <input type="number" class="quantity" min="1" value="1">
+          <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
+        </div>
+      </div>
+    `;
+
+    const detailsBox = document.createElement("div");
+    detailsBox.className = "product-details-box";
+    detailsBox.innerHTML = `
+      <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
+      ${formatDescription(product.description[lang])}
+    `;
+
+    // Carousel olayları
+    const imgEl = frame.querySelector(".carousel-img");
+    frame.querySelector(".left-arrow").addEventListener("click", (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      imgEl.src = images[currentIndex];
+    });
+    frame.querySelector(".right-arrow").addEventListener("click", (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex + 1) % images.length;
+      imgEl.src = images[currentIndex];
     });
 
+    // Zoom ikon
+    frame.querySelector(".zoom-icon").addEventListener("click", (e) => {
+      e.stopPropagation();
+      showOverlay(images, currentIndex);
+    });
+
+    // Frame click → detay kutusu aç/kapat
+    frame.addEventListener("click", (e) => {
+      if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
+      detailsBox.style.display = detailsBox.style.display === "block" ? "none" : "block";
+    });
+
+    card.appendChild(frame);
+    card.appendChild(detailsBox);
+    grid.appendChild(card);
+  });
+}
+    
   // Header container (id yerine class kullanıyordun)
   const header = document.querySelector(".site-header");
 
