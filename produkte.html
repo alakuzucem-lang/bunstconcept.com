@@ -175,7 +175,7 @@
     </div>
   </div>
 
-  <script>
+ <script>
   let currentLang = "de";
   let allProducts = [];
 
@@ -281,12 +281,24 @@
         </div>
       `;
 
+      // Görseli JS ile de sınırla
+      const imgEl = frame.querySelector(".carousel-img");
+      imgEl.style.maxHeight = "200px";
+      imgEl.style.width = "100%";
+      imgEl.style.objectFit = "contain";
+
       const detailsBox = document.createElement("div");
       detailsBox.className = "product-details-box";
       detailsBox.innerHTML = `
         <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
         ${formatDescription(product.description[lang])}
       `;
+
+      // Kartı grid'e ekle
+      card.appendChild(frame);
+      card.appendChild(detailsBox);
+      grid.appendChild(card);
+    });
 // Carousel görseli
 const imgEl = frame.querySelector(".carousel-img");
 
