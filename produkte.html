@@ -182,101 +182,102 @@
   let currentLang = "de";
   let allProducts = [];
 
-  function renderProducts(products, lang="de") {
-  const grid = document.getElementById("product-grid");
-  if (!grid) return;
-  grid.innerHTML = "";
+  // Ürünleri JSON'dan yükle
+  fetch("products.json")
+    .then(res => res.json())
+    .then(data => {
+      allProducts = data;
+      renderProducts(allProducts, currentLang);
+    })
+    .catch(err => console.error("products.json yüklenemedi:", err));
 
-  function formatDescription(text) {
-    const lines = text.split("\n").filter(l => l.trim() !== "");
-    return `<ul style="padding-left:20px; margin:0; font-size:14px; line-height:1.5;">
-      ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
-    </ul>`;
+  // Ürünleri render et
+  function renderProducts(products, lang="de") {
+    const grid = document.getElementById("product-grid");
+    if (!grid) return;
+    grid.innerHTML = "";
+
+    function formatDescription(text) {
+      const lines = text.split("\n").filter(l => l.trim() !== "");
+      return `<ul style="padding-left:20px; margin:0; font-size:14px; line-height:1.5;">
+        ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
+      </ul>`;
+    }
+
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+
+      let currentIndex = 0;
+      const images = [product.image, ...(product.extraImages || [])];
+
+      const frame = document.createElement("div");
+      frame.className = "product-frame";
+      frame.innerHTML = `
+        <div class="zoom-icon" title="${lang === "de" ? "Bild vergrößern" : "Zoom image"}">🔍</div>
+        <div class="carousel">
+          <div class="left-arrow">⟨</div>
+          <img class="carousel-img" src="${images[0]}" alt="${product.title[lang]}"/>
+          <div class="right-arrow">⟩</div>
+        </div>
+        <div class="product-info">
+          <h3>${product.title[lang]}</h3>
+          <ul>
+            <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang]}</li>
+            <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang]}</li>
+            <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang]}</li>
+          </ul>
+          <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
+          <div class="cart-actions">
+            <input type="number" class="quantity" min="1" value="1">
+            <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
+          </div>
+        </div>
+      `;
+
+      const detailsBox = document.createElement("div");
+      detailsBox.className = "product-details-box";
+      detailsBox.innerHTML = `
+        <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
+        ${formatDescription(product.description[lang])}
+      `;
+
+      // Carousel olayları
+      const imgEl = frame.querySelector(".carousel-img");
+      frame.querySelector(".left-arrow").addEventListener("click", (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        imgEl.src = images[currentIndex];
+      });
+      frame.querySelector(".right-arrow").addEventListener("click", (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % images.length;
+        imgEl.src = images[currentIndex];
+      });
+
+      // Zoom ikon
+      frame.querySelector(".zoom-icon").addEventListener("click", (e) => {
+        e.stopPropagation();
+        showOverlay(images, currentIndex);
+      });
+
+      // Frame click → detay kutusu aç/kapat
+      frame.addEventListener("click", (e) => {
+        if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
+        detailsBox.style.display = detailsBox.style.display === "block" ? "none" : "block";
+      });
+
+      card.appendChild(frame);
+      card.appendChild(detailsBox);
+      grid.appendChild(card);
+    });
   }
 
-  products.forEach(product => {
-    const card = document.createElement("div");
-    card.className = "product-card";
-
-    let currentIndex = 0;
-    const images = [product.image, ...(product.extraImages || [])];
-
-    const frame = document.createElement("div");
-    frame.className = "product-frame";
-    frame.innerHTML = `
-      <div class="zoom-icon" title="${lang === "de" ? "Bild vergrößern" : "Zoom image"}">🔍</div>
-      <div class="carousel">
-        <div class="left-arrow">⟨</div>
-        <img class="carousel-img" src="${images[0]}" alt="${product.title[lang]}"/>
-        <div class="right-arrow">⟩</div>
-      </div>
-      <div class="product-info">
-        <h3>${product.title[lang]}</h3>
-        <ul>
-          <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang]}</li>
-          <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang]}</li>
-          <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang]}</li>
-        </ul>
-        <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
-        <div class="cart-actions">
-          <input type="number" class="quantity" min="1" value="1">
-          <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
-        </div>
-      </div>
-    `;
-
-    const detailsBox = document.createElement("div");
-    detailsBox.className = "product-details-box";
-    detailsBox.innerHTML = `
-      <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
-      ${formatDescription(product.description[lang])}
-    `;
-
-    // Carousel olayları
-    const imgEl = frame.querySelector(".carousel-img");
-    frame.querySelector(".left-arrow").addEventListener("click", (e) => {
-      e.stopPropagation();
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      imgEl.src = images[currentIndex];
-    });
-    frame.querySelector(".right-arrow").addEventListener("click", (e) => {
-      e.stopPropagation();
-      currentIndex = (currentIndex + 1) % images.length;
-      imgEl.src = images[currentIndex];
-    });
-
-    // Zoom ikon
-    frame.querySelector(".zoom-icon").addEventListener("click", (e) => {
-      e.stopPropagation();
-      showOverlay(images, currentIndex);
-    });
-
-    // Frame click → detay kutusu aç/kapat
-    frame.addEventListener("click", (e) => {
-      if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
-      detailsBox.style.display = detailsBox.style.display === "block" ? "none" : "block";
-    });
-
-    card.appendChild(frame);
-    card.appendChild(detailsBox);
-    grid.appendChild(card);
-  });
-}
-    
-  // Header container (id yerine class kullanıyordun)
+  // Kategori barı oluştur
   const header = document.querySelector(".site-header");
-
-  // Category bar container
   const categoryBar = document.createElement("div");
-  categoryBar.className = "category-bar"; // CSS ile uyumlu
-  categoryBar.style.display = "flex";
-  categoryBar.style.justifyContent = "center";
-  categoryBar.style.gap = "40px";
-  categoryBar.style.marginTop = "12px";
-  categoryBar.style.fontFamily = "Arial, sans-serif";
-  categoryBar.style.fontSize = "1.1em";
+  categoryBar.className = "category-bar";
 
-  // Yardımcı: kategori item oluştur
   function createCategory(label, categoryKey, subItems = []) {
     const item = document.createElement("div");
     item.className = "category-item";
@@ -285,54 +286,92 @@
     const link = document.createElement("a");
     link.textContent = label;
     link.href = "#";
-    link.dataset.category = categoryKey; // data-category ata
+    link.dataset.category = categoryKey;
     link.style.color = "#000";
     link.style.textDecoration = "none";
     link.style.cursor = "pointer";
 
-    // Hover underline
-    link.addEventListener("mouseover", () => {
-      link.style.textDecoration = "underline";
-    });
-    link.addEventListener("mouseout", () => {
-      link.style.textDecoration = "none";
+    // Ana kategori tıklama
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const filtered = allProducts.filter(p => p.category === categoryKey);
+      renderProducts(filtered, currentLang);
     });
 
     item.appendChild(link);
 
-    // Alt menü varsa (sadece T-Shirts için)
+    // Alt menü varsa
     if (subItems.length > 0) {
       item.classList.add("dropdown");
-
       const submenu = document.createElement("div");
       submenu.className = "submenu";
-      submenu.style.position = "absolute";
-      submenu.style.top = "100%";
-      submenu.style.left = "0";
-      submenu.style.background = "#fff";
-      submenu.style.border = "1px solid #ccc";
       submenu.style.display = "none";
-      submenu.style.flexDirection = "column";
-      submenu.style.minWidth = "160px";
-      submenu.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
-      submenu.style.zIndex = "1000";
 
       subItems.forEach(({ label: subLabel, key: subKey }) => {
         const subLink = document.createElement("a");
         subLink.textContent = subLabel;
         subLink.href = "#";
-        subLink.dataset.sub = subKey; // data-sub ata
-        subLink.style.padding = "10px 14px";
-        subLink.style.color = "#000";
-        subLink.style.textDecoration = "none";
-        subLink.style.borderBottom = "1px solid #eee";
+        subLink.dataset.sub = subKey;
 
-        subLink.addEventListener("mouseover", () => {
-          subLink.style.background = "#f5f5f5";
+        subLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          const filtered = allProducts.filter(p => p.tags && p.tags.includes(subKey));
+          renderProducts(filtered, currentLang);
         });
-        subLink.addEventListener("mouseout", () => {
-          subLink.style.background = "#fff";
-        });
+
+        submenu.appendChild(subLink);
+      });
+
+      item.appendChild(submenu);
+
+      // Hover ile aç/kapat
+      item.addEventListener("mouseover", () => { submenu.style.display = "flex"; });
+      item.addEventListener("mouseout", () => { submenu.style.display = "none"; });
+    }
+
+    return item;
+  }
+
+  categoryBar.appendChild(
+    createCategory("T-Shirts", "t-shirts", [
+      { label: "Männer", key: "men" },
+      { label: "Frauen", key: "women" },
+      { label: "Unisex", key: "unisex" },
+      { label: "Kinder", key: "kids" }
+    ])
+  );
+  categoryBar.appendChild(createCategory("Tragetasche", "tragetasche"));
+  categoryBar.appendChild(createCategory("Heimtextilien", "heimtextilien"));
+
+  header.appendChild(categoryBar);
+
+  // Filtre dropdown
+  const tagFilter = document.getElementById("tag-filter");
+  if (tagFilter) {
+    tagFilter.addEventListener("change", (e) => {
+      const selectedTag = e.target.value;
+      if (!selectedTag) {
+        renderProducts(allProducts, currentLang);
+      } else {
+        const filtered = allProducts.filter(p => p.tags && p.tags.includes(selectedTag));
+        renderProducts(filtered, currentLang);
+      }
+    });
+  }
+
+  // Dil değişimi
+  const langSwitch = document.getElementById("lang-switch");
+  if (langSwitch) {
+    langSwitch.addEventListener("change", (e) => {
+      currentLang = e.target.value;
+      document.documentElement.setAttribute("lang", currentLang);
+      document.title = "Bunst Concept";
+      document.getElementById("page-title").textContent = "Bunst Concept";
+      renderProducts(allProducts, currentLang);
+      updateFilterTexts(currentLang);
+      updateCategoryLabels(currentLang);
+    });
+  }
 
         // Alt kategori tıklama: tags içeriyor mu?
         subLink.addEventListener("click", (e) => {
