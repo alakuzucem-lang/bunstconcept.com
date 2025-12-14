@@ -296,37 +296,57 @@
         <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
         ${formatDescription(product.description[lang])}
       `;
+// Carousel görseli
+const imgEl = frame.querySelector(".carousel-img");
 
-      // Carousel olayları
-      const imgEl = frame.querySelector(".carousel-img");
-      frame.querySelector(".left-arrow").addEventListener("click", (e) => {
-        e.stopPropagation();
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        imgEl.src = images[currentIndex];
-      });
-      frame.querySelector(".right-arrow").addEventListener("click", (e) => {
-        e.stopPropagation();
-        currentIndex = (currentIndex + 1) % images.length;
-        imgEl.src = images[currentIndex];
-      });
+// Görsel boyutunu JS ile güvenli şekilde sınırlıyoruz
+imgEl.style.maxHeight = "200px";
+imgEl.style.width = "100%";
+imgEl.style.objectFit = "contain";
+imgEl.style.borderRadius = "8px";
 
-      // Zoom ikon
-      frame.querySelector(".zoom-icon").addEventListener("click", (e) => {
-        e.stopPropagation();
-        showOverlay(images, currentIndex);
-      });
+// Sol ok tıklama → önceki görsel
+frame.querySelector(".left-arrow").addEventListener("click", (e) => {
+  e.stopPropagation();
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  imgEl.src = images[currentIndex];
+});
 
-      // Frame click → detay kutusu aç/kapat
-      frame.addEventListener("click", (e) => {
-        if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
-        detailsBox.style.display = detailsBox.style.display === "block" ? "none" : "block";
-      });
+// Sağ ok tıklama → sonraki görsel
+frame.querySelector(".right-arrow").addEventListener("click", (e) => {
+  e.stopPropagation();
+  currentIndex = (currentIndex + 1) % images.length;
+  imgEl.src = images[currentIndex];
+});
 
-      card.appendChild(frame);
-      card.appendChild(detailsBox);
-      grid.appendChild(card);
-    });
-  }
+// Büyüteç ikonuna tıklama → fullscreen overlay aç
+const zoomIcon = frame.querySelector(".zoom-icon");
+if (zoomIcon) {
+  zoomIcon.style.position = "absolute";
+  zoomIcon.style.top = "12px";
+  zoomIcon.style.right = "12px";
+  zoomIcon.style.zIndex = "10";
+  zoomIcon.style.background = "rgba(255,255,255,0.95)";
+  zoomIcon.style.borderRadius = "50%";
+  zoomIcon.style.padding = "6px";
+  zoomIcon.style.cursor = "pointer";
+  zoomIcon.style.boxShadow = "0 2px 6px rgba(0,0,0,0.2)";
+  zoomIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    showOverlay(images, currentIndex);
+  });
+}
+
+// Kartın tamamına tıklama → detay kutusunu aç/kapat
+frame.addEventListener("click", (e) => {
+  if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
+  detailsBox.style.display = detailsBox.style.display === "block" ? "none" : "block";
+});
+
+// Kartı grid'e ekle
+card.appendChild(frame);
+card.appendChild(detailsBox);
+grid.appendChild(card);
 
   // Filtre dropdown
   const tagFilter = document.getElementById("tag-filter");
