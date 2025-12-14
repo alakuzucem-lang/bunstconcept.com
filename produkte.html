@@ -137,12 +137,12 @@
     <div class="category-bar">
       <div class="category-item dropdown">
         <a href="#" id="cat-tshirts" class="main-category" data-category="t-shirts">T-Shirts</a>
-        <div class="submenu">
-          <a href="#" data-sub="men">Männer</a>
-          <a href="#" data-sub="women">Frauen</a>
-          <a href="#" data-sub="unisex">Unisex</a>
-          <a href="#" data-sub="kids">Kinder</a>
-        </div>
+<div class="submenu">
+  <a href="#" id="sub-men" data-sub="men">Männer</a>
+  <a href="#" id="sub-women" data-sub="women">Frauen</a>
+  <a href="#" id="sub-unisex" data-sub="unisex">Unisex</a>
+  <a href="#" id="sub-kids" data-sub="kids">Kinder</a>
+</div>
       </div>
       <div class="category-item">
         <a href="#" id="cat-bag" data-category="tragetasche">Tragetasche</a>
@@ -201,13 +201,24 @@
 
     // Kategori etiketlerini güncelle
     function updateCategoryLabels(lang) {
-      const tshirts = document.getElementById("cat-tshirts");
-      const bag = document.getElementById("cat-bag");
-      const home = document.getElementById("cat-home");
-      if (tshirts) tshirts.textContent = lang === "de" ? "T-Shirts" : "T-Shirts";
-      if (bag) bag.textContent = lang === "de" ? "Tragetasche" : "Tote Bags";
-      if (home) home.textContent = lang === "de" ? "Heimtextilien" : "Home Textiles";
-    }
+  const tshirts = document.getElementById("cat-tshirts");
+  const bag = document.getElementById("cat-bag");
+  const home = document.getElementById("cat-home");
+
+  const subMen = document.getElementById("sub-men");
+  const subWomen = document.getElementById("sub-women");
+  const subUnisex = document.getElementById("sub-unisex");
+  const subKids = document.getElementById("sub-kids");
+
+  if (tshirts) tshirts.textContent = lang === "de" ? "T-Shirts" : "T-Shirts";
+  if (bag) bag.textContent = lang === "de" ? "Tragetasche" : "Tote Bags";
+  if (home) home.textContent = lang === "de" ? "Heimtextilien" : "Home Textiles";
+
+  if (subMen) subMen.textContent = lang === "de" ? "Männer" : "Men";
+  if (subWomen) subWomen.textContent = lang === "de" ? "Frauen" : "Women";
+  if (subUnisex) subUnisex.textContent = lang === "de" ? "Unisex" : "Unisex";
+  if (subKids) subKids.textContent = lang === "de" ? "Kinder" : "Kids";
+}
 
     // Overlay
     const overlay = document.getElementById("fullscreen-overlay");
