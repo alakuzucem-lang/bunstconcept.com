@@ -11,7 +11,7 @@
       "en": "Round-neck Unisex T-Shirt\n100% Organic Cotton"
     },
     "category": "t-shirts",
-    "subcategories": ["unisex"],
+    "subcategories": "unisex",
     "tags": ["halloween", "pumpkin", "ghost"],
     "zoomable": true
   },
