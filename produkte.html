@@ -240,93 +240,161 @@
 
     // Ürünleri render et
     function renderProducts(products, lang = "de") {
-      const grid = document.getElementById("product-grid");
-      if (!grid) return;
-      grid.innerHTML = "";
+  const grid = document.getElementById("product-grid");
+  if (!grid) return;
+  grid.innerHTML = "";
 
-      function formatDescription(text) {
-        const lines = text.split("\n").filter(l => l.trim() !== "");
-        return `<ul style="padding-left:20px; margin:0; font-size:14px; line-height:1.5;">
-          ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
-        </ul>`;
-      }
+  function formatDescription(text) {
+    const lines = text.split("\n").filter(l => l.trim() !== "");
+    return `<ul style="padding-left:20px; margin:0; font-size:14px; line-height:1.5;">
+      ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
+    </ul>`;
+  }
 
-      products.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
+  products.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "product-card";
+    Object.assign(card.style, {
+      width: "300px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: "16px",
+      backgroundColor: "#f5f5f5",
+      borderRadius: "12px",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+      margin: "0 auto"
+    });
 
-        let currentIndex = 0;
-        const images = [product.image, ...(product.extraImages || [])];
+    let currentIndex = 0;
+    const images = [product.image, ...(product.extraImages || [])];
 
-        const frame = document.createElement("div");
-        frame.className = "product-frame";
-        frame.innerHTML = `
-          <div class="zoom-icon" title="${lang === "de" ? "Bild vergrößern" : "Zoom image"}">🔍</div>
-          <div class="carousel">
-            <div class="left-arrow">⟨</div>
-            <img class="carousel-img" src="${images[0]}" alt="${product.title[lang]}"/>
-            <div class="right-arrow">⟩</div>
-          </div>
-          <div class="product-info">
-            <h3>${product.title[lang]}</h3>
-            <ul>
-              <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang]}</li>
-              <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang]}</li>
-              <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang]}</li>
-            </ul>
-            <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
-            <div class="cart-actions">
-              <input type="number" class="quantity" min="1" value="1">
-              <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
-            </div>
-          </div>
-        `;
+    const frame = document.createElement("div");
+    frame.className = "product-frame";
+    Object.assign(frame.style, {
+      width: "100%",
+      position: "relative",
+      backgroundColor: "#fff",
+      border: "1px solid #ccc",
+      borderRadius: "8px",
+      padding: "12px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    });
 
-        const imgEl = frame.querySelector(".carousel-img");
-        imgEl.style.maxHeight = "200px";
-        imgEl.style.width = "100%";
-        imgEl.style.objectFit = "contain";
-        imgEl.style.borderRadius = "8px";
+    const zoomIcon = document.createElement("div");
+    zoomIcon.className = "zoom-icon";
+    zoomIcon.textContent = "🔍";
+    zoomIcon.title = lang === "de" ? "Bild vergrößern" : "Zoom image";
+    Object.assign(zoomIcon.style, {
+      position: "absolute",
+      top: "12px",
+      right: "12px",
+      fontSize: "18px",
+      background: "rgba(255,255,255,0.95)",
+      borderRadius: "50%",
+      padding: "6px",
+      cursor: "pointer",
+      boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+      zIndex: "10"
+    });
 
-        const detailsBox = document.createElement("div");
-        detailsBox.className = "product-details-box";
-        detailsBox.innerHTML = `
-          <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
-          ${formatDescription(product.description[lang])}
-        `;
+    const carousel = document.createElement("div");
+    carousel.className = "carousel";
+    Object.assign(carousel.style, {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      position: "relative",
+      width: "100%"
+    });
 
-        // Carousel olayları
-        frame.querySelector(".left-arrow").addEventListener("click", (e) => {
-          e.stopPropagation();
-          currentIndex = (currentIndex - 1 + images.length) % images.length;
-          imgEl.src = images[currentIndex];
-        });
-        frame.querySelector(".right-arrow").addEventListener("click", (e) => {
-          e.stopPropagation();
-          currentIndex = (currentIndex + 1) % images.length;
-          imgEl.src = images[currentIndex];
-        });
+    const leftArrow = document.createElement("div");
+    leftArrow.className = "left-arrow";
+    leftArrow.textContent = "⟨";
+    Object.assign(leftArrow.style, {
+      cursor: "pointer",
+      marginRight: "8px"
+    });
 
-        // Zoom ikon
-        const zoomIcon = frame.querySelector(".zoom-icon");
-        if (zoomIcon) {
-          zoomIcon.addEventListener("click", (e) => {
-            e.stopPropagation();
-            showOverlay(images, currentIndex);
-          });
-        }
+    const imgEl = document.createElement("img");
+    imgEl.className = "carousel-img";
+    imgEl.src = images[0];
+    imgEl.alt = product.title[lang];
+    Object.assign(imgEl.style, {
+      maxHeight: "200px",
+      width: "100%",
+      objectFit: "contain",
+      borderRadius: "8px"
+    });
 
-        // Frame click → detay kutusu aç/kapat
-        frame.addEventListener("click", (e) => {
-          if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
-          detailsBox.style.display = detailsBox.style.display === "block" ? "none" : "block";
-        });
+    const rightArrow = document.createElement("div");
+    rightArrow.className = "right-arrow";
+    rightArrow.textContent = "⟩";
+    Object.assign(rightArrow.style, {
+      cursor: "pointer",
+      marginLeft: "8px"
+    });
 
-        card.appendChild(frame);
-        card.appendChild(detailsBox);
-        grid.appendChild(card);
-      });
-    }
+    carousel.appendChild(leftArrow);
+    carousel.appendChild(imgEl);
+    carousel.appendChild(rightArrow);
+
+    const info = document.createElement("div");
+    info.className = "product-info";
+    info.innerHTML = `
+      <h3>${product.title[lang]}</h3>
+      <ul>
+        <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang]}</li>
+        <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang]}</li>
+        <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang]}</li>
+      </ul>
+      <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
+      <div class="cart-actions">
+        <input type="number" class="quantity" min="1" value="1">
+        <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
+      </div>
+    `;
+
+    const detailsBox = document.createElement("div");
+    detailsBox.className = "product-details-box";
+    detailsBox.innerHTML = `
+      <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
+      ${formatDescription(product.description[lang])}
+    `;
+
+    // Carousel olayları
+    leftArrow.addEventListener("click", (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      imgEl.src = images[currentIndex];
+    });
+    rightArrow.addEventListener("click", (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex + 1) % images.length;
+      imgEl.src = images[currentIndex];
+    });
+
+    zoomIcon.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showOverlay(images, currentIndex);
+    });
+
+    frame.addEventListener("click", (e) => {
+      if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
+      detailsBox.style.display = detailsBox.style.display === "block" ? "none" : "block";
+    });
+
+    frame.appendChild(zoomIcon);
+    frame.appendChild(carousel);
+    frame.appendChild(info);
+
+    card.appendChild(frame);
+    card.appendChild(detailsBox);
+    grid.appendChild(card);
+  });
+}
 
     // Filtre dropdown
     const tagFilter = document.getElementById("tag-filter");
