@@ -388,6 +388,7 @@ document.querySelectorAll(".submenu a").forEach(link => {
     const detailsBox = document.createElement("div");
     detailsBox.className = "product-details-box";
     detailsBox.style.display = "none"; // başlangıçta gizli
+    detailsBox.style.textAlign = "left"; // tüm kutuyu sola yasla
     detailsBox.innerHTML = `
       <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
       ${formatDescription(product.description[lang])}
