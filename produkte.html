@@ -239,7 +239,7 @@
     });
 
     // Ürünleri render et
-    function renderProducts(products, lang = "de") {
+  function renderProducts(products, lang = "de") {
   const grid = document.getElementById("product-grid");
   if (!grid) return;
   grid.innerHTML = "";
@@ -255,12 +255,15 @@
     const card = document.createElement("div");
     card.className = "product-card";
     Object.assign(card.style, {
-  width: "400px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  margin: "0 auto"
-});
+      width: "400px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: "16px",
+      backgroundColor: "#fff", // sadece beyaz kart
+      borderRadius: "12px",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+    });
 
     let currentIndex = 0;
     const images = [product.image, ...(product.extraImages || [])];
@@ -270,9 +273,7 @@
     Object.assign(frame.style, {
       width: "100%",
       position: "relative",
-      backgroundColor: "#fff",
-      borderRadius: "8px",
-      padding: "0",
+      padding: "0", // arka plan çerçeve kaldırıldı
       display: "flex",
       flexDirection: "column",
       alignItems: "center"
@@ -310,7 +311,7 @@
     leftArrow.textContent = "⟨";
     Object.assign(leftArrow.style, {
       cursor: "pointer",
-      marginRight: "12px"
+      marginRight: "8px"
     });
 
     const imgEl = document.createElement("img");
@@ -329,7 +330,7 @@
     rightArrow.textContent = "⟩";
     Object.assign(rightArrow.style, {
       cursor: "pointer",
-      marginLeft: "12px"
+      marginLeft: "8px"
     });
 
     carousel.appendChild(leftArrow);
@@ -354,6 +355,7 @@
 
     const detailsBox = document.createElement("div");
     detailsBox.className = "product-details-box";
+    detailsBox.style.display = "none"; // başlangıçta gizli
     detailsBox.innerHTML = `
       <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
       ${formatDescription(product.description[lang])}
