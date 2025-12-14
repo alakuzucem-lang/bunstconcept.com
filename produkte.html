@@ -81,7 +81,7 @@
       border-radius: 6px;
     }
 
-    /* Product grid and overlay styles remain unchanged */
+    /* Product grid */
     #product-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -91,6 +91,7 @@
     @media (max-width: 1024px) { #product-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 640px) { #product-grid { grid-template-columns: 1fr; } }
 
+    /* Overlay */
     #fullscreen-overlay {
       position: fixed;
       inset: 0;
@@ -135,7 +136,7 @@
     <!-- Ana kategoriler -->
     <div class="category-bar">
       <div class="category-item dropdown">
-        <a href="#" class="main-category" data-category="t-shirts">T-Shirts</a>
+        <a href="#" id="cat-tshirts" class="main-category" data-category="t-shirts">T-Shirts</a>
         <div class="submenu">
           <a href="#" data-sub="men">Männer</a>
           <a href="#" data-sub="women">Frauen</a>
@@ -144,10 +145,10 @@
         </div>
       </div>
       <div class="category-item">
-        <a href="#" data-category="tragetasche">Tragetasche</a>
+        <a href="#" id="cat-bag" data-category="tragetasche">Tragetasche</a>
       </div>
       <div class="category-item">
-        <a href="#" data-category="heimtextilien">Heimtextilien</a>
+        <a href="#" id="cat-home" data-category="heimtextilien">Heimtextilien</a>
       </div>
     </div>
 
@@ -175,211 +176,186 @@
     </div>
   </div>
 
- <script>
-  let currentLang = "de";
-  let allProducts = [];
+  <script>
+    let currentLang = "de";
+    let allProducts = [];
 
-  // Ürünleri JSON'dan yükle
-  fetch("products.json")
-    .then(res => res.json())
-    .then(data => {
-      allProducts = data;
-      renderProducts(allProducts, currentLang);
-    })
-    .catch(err => console.error("products.json yüklenemedi:", err));
+    // Ürünleri JSON'dan yükle
+    fetch("products.json")
+      .then(res => res.json())
+      .then(data => {
+        allProducts = data;
+        renderProducts(allProducts, currentLang);
+      })
+      .catch(err => console.error("products.json yüklenemedi:", err));
 
-  // Filtre metinlerini güncelle
-  function updateFilterTexts(lang) {
-    const filter = document.getElementById("tag-filter");
-    if (!filter) return;
-    const de = ["Designs Filtern","Personalisierte Drucke","Halloweendesigns","Weihnachtsdesigns","Tierdesigns","Familienkollektion","Schulkollektion","Braut & Bräutigam Kollektion","Design für Alle"];
-    const en = ["Filter Designs","Personalized Prints","Halloween Designs","Christmas Designs","Animal Designs","Family Collection","School Collection","Bride & Groom Collection","Design for Everyone"];
-    const labels = lang === "de" ? de : en;
-    [...filter.options].forEach((opt, i) => { if (labels[i]) opt.text = labels[i]; });
-  }
-
-  // Kategori etiketlerini güncelle
-  function updateCategoryLabels(lang) {
-    const tshirts = document.getElementById("cat-tshirts");
-    const bag = document.getElementById("cat-bag");
-    const home = document.getElementById("cat-home");
-    if (tshirts) tshirts.textContent = lang === "de" ? "T-Shirts" : "T-Shirts";
-    if (bag) bag.textContent = lang === "de" ? "Tragetasche" : "Tote Bags";
-    if (home) home.textContent = lang === "de" ? "Heimtextilien" : "Home Textiles";
-  }
-
-  // Overlay
-  const overlay = document.getElementById("fullscreen-overlay");
-  const overlayImg = document.getElementById("overlay-img");
-  const overlayLeft = document.getElementById("overlay-left");
-  const overlayRight = document.getElementById("overlay-right");
-  let overlayImages = [];
-  let overlayIndex = 0;
-
-  function showOverlay(images, startIndex = 0) {
-    overlayImages = images;
-    overlayIndex = startIndex;
-    overlayImg.src = overlayImages[overlayIndex];
-    overlay.style.display = "flex";
-  }
-
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) overlay.style.display = "none";
-  });
-  overlayLeft.addEventListener("click", (e) => {
-    e.stopPropagation();
-    overlayIndex = (overlayIndex - 1 + overlayImages.length) % overlayImages.length;
-    overlayImg.src = overlayImages[overlayIndex];
-  });
-  overlayRight.addEventListener("click", (e) => {
-    e.stopPropagation();
-    overlayIndex = (overlayIndex + 1) % overlayImages.length;
-    overlayImg.src = overlayImages[overlayIndex];
-  });
-
-  // Ürünleri render et
-  function renderProducts(products, lang = "de") {
-    const grid = document.getElementById("product-grid");
-    if (!grid) return;
-    grid.innerHTML = "";
-
-    function formatDescription(text) {
-      const lines = text.split("\n").filter(l => l.trim() !== "");
-      return `<ul style="padding-left:20px; margin:0; font-size:14px; line-height:1.5;">
-        ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
-      </ul>`;
+    // Filtre metinlerini güncelle
+    function updateFilterTexts(lang) {
+      const filter = document.getElementById("tag-filter");
+      if (!filter) return;
+      const de = ["Designs Filtern","Personalisierte Drucke","Halloweendesigns","Weihnachtsdesigns","Tierdesigns","Familienkollektion","Schulkollektion","Braut & Bräutigam Kollektion","Design für Alle"];
+      const en = ["Filter Designs","Personalized Prints","Halloween Designs","Christmas Designs","Animal Designs","Family Collection","School Collection","Bride & Groom Collection","Design for Everyone"];
+      const labels = lang === "de" ? de : en;
+      [...filter.options].forEach((opt, i) => { if (labels[i]) opt.text = labels[i]; });
     }
 
-    products.forEach(product => {
-      const card = document.createElement("div");
-      card.className = "product-card";
+    // Kategori etiketlerini güncelle
+    function updateCategoryLabels(lang) {
+      const tshirts = document.getElementById("cat-tshirts");
+      const bag = document.getElementById("cat-bag");
+      const home = document.getElementById("cat-home");
+      if (tshirts) tshirts.textContent = lang === "de" ? "T-Shirts" : "T-Shirts";
+      if (bag) bag.textContent = lang === "de" ? "Tragetasche" : "Tote Bags";
+      if (home) home.textContent = lang === "de" ? "Heimtextilien" : "Home Textiles";
+    }
 
-      let currentIndex = 0;
-      const images = [product.image, ...(product.extraImages || [])];
+    // Overlay
+    const overlay = document.getElementById("fullscreen-overlay");
+    const overlayImg = document.getElementById("overlay-img");
+    const overlayLeft = document.getElementById("overlay-left");
+    const overlayRight = document.getElementById("overlay-right");
+    let overlayImages = [];
+    let overlayIndex = 0;
 
-      const frame = document.createElement("div");
-      frame.className = "product-frame";
-      frame.innerHTML = `
-        <div class="zoom-icon" title="${lang === "de" ? "Bild vergrößern" : "Zoom image"}">🔍</div>
-        <div class="carousel">
-          <div class="left-arrow">⟨</div>
-          <img class="carousel-img" src="${images[0]}" alt="${product.title[lang]}"/>
-          <div class="right-arrow">⟩</div>
-        </div>
-        <div class="product-info">
-          <h3>${product.title[lang]}</h3>
-          <ul>
-            <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang]}</li>
-            <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang]}</li>
-            <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang]}</li>
-          </ul>
-          <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
-          <div class="cart-actions">
-            <input type="number" class="quantity" min="1" value="1">
-            <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
-          </div>
-        </div>
-      `;
+    function showOverlay(images, startIndex = 0) {
+      overlayImages = images;
+      overlayIndex = startIndex
+      overlayImg.src = overlayImages[overlayIndex];
+      overlay.style.display = "flex";
+    }
 
-      // Görseli JS ile de sınırla
-      const imgEl = frame.querySelector(".carousel-img");
-      imgEl.style.maxHeight = "200px";
-      imgEl.style.width = "100%";
-      imgEl.style.objectFit = "contain";
-
-      const detailsBox = document.createElement("div");
-      detailsBox.className = "product-details-box";
-      detailsBox.innerHTML = `
-        <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
-        ${formatDescription(product.description[lang])}
-      `;
-
-      // Kartı grid'e ekle
-      card.appendChild(frame);
-      card.appendChild(detailsBox);
-      grid.appendChild(card);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) overlay.style.display = "none";
     });
-// Carousel görseli
-const imgEl = frame.querySelector(".carousel-img");
+    overlayLeft.addEventListener("click", (e) => {
+      e.stopPropagation();
+      overlayIndex = (overlayIndex - 1 + overlayImages.length) % overlayImages.length;
+      overlayImg.src = overlayImages[overlayIndex];
+    });
+    overlayRight.addEventListener("click", (e) => {
+      e.stopPropagation();
+      overlayIndex = (overlayIndex + 1) % overlayImages.length;
+      overlayImg.src = overlayImages[overlayIndex];
+    });
 
-// Görsel boyutunu JS ile güvenli şekilde sınırlıyoruz
-imgEl.style.maxHeight = "200px";
-imgEl.style.width = "100%";
-imgEl.style.objectFit = "contain";
-imgEl.style.borderRadius = "8px";
+    // Ürünleri render et
+    function renderProducts(products, lang = "de") {
+      const grid = document.getElementById("product-grid");
+      if (!grid) return;
+      grid.innerHTML = "";
 
-// Sol ok tıklama → önceki görsel
-frame.querySelector(".left-arrow").addEventListener("click", (e) => {
-  e.stopPropagation();
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  imgEl.src = images[currentIndex];
-});
-
-// Sağ ok tıklama → sonraki görsel
-frame.querySelector(".right-arrow").addEventListener("click", (e) => {
-  e.stopPropagation();
-  currentIndex = (currentIndex + 1) % images.length;
-  imgEl.src = images[currentIndex];
-});
-
-// Büyüteç ikonuna tıklama → fullscreen overlay aç
-const zoomIcon = frame.querySelector(".zoom-icon");
-if (zoomIcon) {
-  zoomIcon.style.position = "absolute";
-  zoomIcon.style.top = "12px";
-  zoomIcon.style.right = "12px";
-  zoomIcon.style.zIndex = "10";
-  zoomIcon.style.background = "rgba(255,255,255,0.95)";
-  zoomIcon.style.borderRadius = "50%";
-  zoomIcon.style.padding = "6px";
-  zoomIcon.style.cursor = "pointer";
-  zoomIcon.style.boxShadow = "0 2px 6px rgba(0,0,0,0.2)";
-  zoomIcon.addEventListener("click", (e) => {
-    e.stopPropagation();
-    showOverlay(images, currentIndex);
-  });
-}
-
-// Kartın tamamına tıklama → detay kutusunu aç/kapat
-frame.addEventListener("click", (e) => {
-  if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
-  detailsBox.style.display = detailsBox.style.display === "block" ? "none" : "block";
-});
-
-// Kartı grid'e ekle
-card.appendChild(frame);
-card.appendChild(detailsBox);
-grid.appendChild(card);
-
-  // Filtre dropdown
-  const tagFilter = document.getElementById("tag-filter");
-  if (tagFilter) {
-    tagFilter.addEventListener("change", (e) => {
-      const selectedTag = e.target.value;
-      if (!selectedTag) {
-        renderProducts(allProducts, currentLang);
-      } else {
-        const filtered = allProducts.filter(p => Array.isArray(p.tags) && p.tags.includes(selectedTag));
-        renderProducts(filtered, currentLang);
+      function formatDescription(text) {
+        const lines = text.split("\n").filter(l => l.trim() !== "");
+        return `<ul style="padding-left:20px; margin:0; font-size:14px; line-height:1.5;">
+          ${lines.map(line => `<li style="text-align:left;">${line}</li>`).join("")}
+        </ul>`;
       }
-    });
-  }
 
-  // Dil değişimi
-  const langSwitch = document.getElementById("lang-switch");
-  if (langSwitch) {
-    langSwitch.addEventListener("change", (e) => {
-      currentLang = e.target.value;
-      document.documentElement.setAttribute("lang", currentLang);
-      document.title = "Bunst Concept";
-      const pageTitle = document.getElementById("page-title");
-      if (pageTitle) pageTitle.textContent = "Bunst Concept";
+      products.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
 
-      updateFilterTexts(currentLang);
-      updateCategoryLabels(currentLang);
-      renderProducts(allProducts, currentLang);
-    });
-  }
-</script>
+        let currentIndex = 0;
+        const images = [product.image, ...(product.extraImages || [])];
+
+        const frame = document.createElement("div");
+        frame.className = "product-frame";
+        frame.innerHTML = `
+          <div class="zoom-icon" title="${lang === "de" ? "Bild vergrößern" : "Zoom image"}">🔍</div>
+          <div class="carousel">
+            <div class="left-arrow">⟨</div>
+            <img class="carousel-img" src="${images[0]}" alt="${product.title[lang]}"/>
+            <div class="right-arrow">⟩</div>
+          </div>
+          <div class="product-info">
+            <h3>${product.title[lang]}</h3>
+            <ul>
+              <li>${lang === "de" ? "Material" : "Material"}: ${product.material[lang]}</li>
+              <li>${lang === "de" ? "Druck" : "Print"}: ${product.print[lang]}</li>
+              <li>${lang === "de" ? "Größen" : "Sizes"}: ${product.sizes[lang]}</li>
+            </ul>
+            <p class="price">${lang === "de" ? "Kontaktieren Sie uns" : "Contact us"}</p>
+            <div class="cart-actions">
+              <input type="number" class="quantity" min="1" value="1">
+              <button class="add-to-cart">🛒 ${lang === "de" ? "In den Warenkorb" : "Add to cart"}</button>
+            </div>
+          </div>
+        `;
+
+        const imgEl = frame.querySelector(".carousel-img");
+        imgEl.style.maxHeight = "200px";
+        imgEl.style.width = "100%";
+        imgEl.style.objectFit = "contain";
+        imgEl.style.borderRadius = "8px";
+
+        const detailsBox = document.createElement("div");
+        detailsBox.className = "product-details-box";
+        detailsBox.innerHTML = `
+          <h4 style="margin-bottom:8px;">${lang === "de" ? "Produktdetails" : "Product Details"}</h4>
+          ${formatDescription(product.description[lang])}
+        `;
+
+        // Carousel olayları
+        frame.querySelector(".left-arrow").addEventListener("click", (e) => {
+          e.stopPropagation();
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          imgEl.src = images[currentIndex];
+        });
+        frame.querySelector(".right-arrow").addEventListener("click", (e) => {
+          e.stopPropagation();
+          currentIndex = (currentIndex + 1) % images.length;
+          imgEl.src = images[currentIndex];
+        });
+
+        // Zoom ikon
+        const zoomIcon = frame.querySelector(".zoom-icon");
+        if (zoomIcon) {
+          zoomIcon.addEventListener("click", (e) => {
+            e.stopPropagation();
+            showOverlay(images, currentIndex);
+          });
+        }
+
+        // Frame click → detay kutusu aç/kapat
+        frame.addEventListener("click", (e) => {
+          if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
+          detailsBox.style.display = detailsBox.style.display === "block" ? "none" : "block";
+        });
+
+        card.appendChild(frame);
+        card.appendChild(detailsBox);
+        grid.appendChild(card);
+      });
+    }
+
+    // Filtre dropdown
+    const tagFilter = document.getElementById("tag-filter");
+    if (tagFilter) {
+      tagFilter.addEventListener("change", (e) => {
+        const selectedTag = e.target.value;
+        if (!selectedTag) {
+          renderProducts(allProducts, currentLang);
+        } else {
+          const filtered = allProducts.filter(p => Array.isArray(p.tags) && p.tags.includes(selectedTag));
+          renderProducts(filtered, currentLang);
+        }
+      });
+    }
+
+    // Dil değişimi
+    const langSwitch = document.getElementById("lang-switch");
+    if (langSwitch) {
+      langSwitch.addEventListener("change", (e) => {
+        currentLang = e.target.value;
+        document.documentElement.setAttribute("lang", currentLang);
+        document.title = "Bunst Concept";
+        const pageTitle = document.getElementById("page-title");
+        if (pageTitle) pageTitle.textContent = "Bunst Concept";
+        updateFilterTexts(currentLang);
+        updateCategoryLabels(currentLang);
+        renderProducts(allProducts, currentLang);
+      });
+    }
+  </script>
 </body>
 </html>
