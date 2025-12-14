@@ -231,25 +231,93 @@
         allProducts = data;
         renderProducts(allProducts, currentLang);
       });
-// Ana kategori filtreleme
-document.querySelectorAll('.category-item a[data-category]').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const cat = link.getAttribute('data-category');
-    const filtered = allProducts.filter(p => p.category === cat);
-    renderProducts(filtered, currentLang);
-  });
-});
+// Ana container
+    const header = document.getElementById("site-header");
 
-// T-Shirts alt menü filtreleme
-document.querySelectorAll('.submenu a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const sub = link.getAttribute('data-sub');
-    const filtered = allProducts.filter(p => p.tags && p.tags.includes(sub));
-    renderProducts(filtered, currentLang);
-  });
-});
+    // Category bar div
+    const categoryBar = document.createElement("div");
+    categoryBar.style.display = "flex";
+    categoryBar.style.justifyContent = "center";
+    categoryBar.style.gap = "40px";
+    categoryBar.style.marginTop = "12px";
+    categoryBar.style.fontFamily = "Arial, sans-serif";
+    categoryBar.style.fontSize = "1.1em";
+
+    // Helper: kategori linki oluştur
+    function createCategory(name, subItems = []) {
+      const item = document.createElement("div");
+      item.style.position = "relative";
+
+      const link = document.createElement("a");
+      link.textContent = name;
+      link.href = "#";
+      link.style.color = "#000";
+      link.style.textDecoration = "none";
+      link.style.cursor = "pointer";
+
+      // Hover underline
+      link.addEventListener("mouseover", () => {
+        link.style.textDecoration = "underline";
+      });
+      link.addEventListener("mouseout", () => {
+        link.style.textDecoration = "none";
+      });
+
+      item.appendChild(link);
+
+      // Alt menü varsa
+      if (subItems.length > 0) {
+        const submenu = document.createElement("div");
+        submenu.style.position = "absolute";
+        submenu.style.top = "100%";
+        submenu.style.left = "0";
+        submenu.style.background = "#fff";
+        submenu.style.border = "1px solid #ccc";
+        submenu.style.display = "none";
+        submenu.style.flexDirection = "column";
+        submenu.style.minWidth = "160px";
+        submenu.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+        submenu.style.zIndex = "1000";
+
+        subItems.forEach(sub => {
+          const subLink = document.createElement("a");
+          subLink.textContent = sub;
+          subLink.href = "#";
+          subLink.style.padding = "10px 14px";
+          subLink.style.color = "#000";
+          subLink.style.textDecoration = "none";
+          subLink.style.borderBottom = "1px solid #eee";
+
+          subLink.addEventListener("mouseover", () => {
+            subLink.style.background = "#f5f5f5";
+          });
+          subLink.addEventListener("mouseout", () => {
+            subLink.style.background = "#fff";
+          });
+
+          submenu.appendChild(subLink);
+        });
+
+        item.appendChild(submenu);
+
+        // Hover ile aç/kapat
+        item.addEventListener("mouseover", () => {
+          submenu.style.display = "flex";
+        });
+        item.addEventListener("mouseout", () => {
+          submenu.style.display = "none";
+        });
+      }
+
+      return item;
+    }
+
+    // Kategorileri ekle
+    categoryBar.appendChild(createCategory("T-Shirts", ["Männer", "Frauen", "Unisex", "Kinder"]));
+    categoryBar.appendChild(createCategory("Tragetasche"));
+    categoryBar.appendChild(createCategory("Heimtextilien"));
+
+    header.appendChild(categoryBar);
 
 // Kategori linklerine tıklama olayları
 document.querySelectorAll(".category-links a").forEach(link => {
