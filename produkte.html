@@ -457,7 +457,7 @@ document.querySelectorAll(".submenu a").forEach(link => {
       });
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   // Dil ayarı (örnek)
   let currentLang = "de"; // veya "en"
 
@@ -487,46 +487,57 @@ document.querySelectorAll(".submenu a").forEach(link => {
     })
   );
 
-  // Overlay içindeki selector alanını bul
-  const selector = document.getElementById("print-selector");
-  if (selector) {
-    selector.innerHTML = `
-      <h3 style="margin-bottom:12px;">
-        ${currentLang === "de" ? "Wählen Sie ein Druckmotiv" : "Choose a print design"}
-      </h3>
-      ${printOptions.map(opt => `
-        <label style="display:flex; align-items:center; margin-bottom:12px; cursor:pointer;">
-          <input type="radio" name="print-option" value="${opt.id}" style="margin-right:8px;">
-          <img src="${opt.src}" alt="${opt.label[currentLang]}" style="width:60px; height:auto; margin-right:8px;">
-          ${opt.label[currentLang]}
-        </label>
-      `).join("")}
-    `;
-  }
-
-  // Radio buton seçimlerini dinle
-  document.querySelectorAll('input[name="print-option"]').forEach(radio => {
-    radio.addEventListener("change", (e) => {
-      const selected = e.target.value;
-      const fig = printOptions.find(opt => opt.id === selected);
-      if (fig) {
-        showFigureOnShirt(fig.src, "chest"); // örn. göğüs kısmına yerleştir
-      }
-    });
-  });
-
-  // Slot konumları
+  // Slot konumları (örnek)
   const slots = {
     chest: { top: "40%", left: "50%", transform: "translate(-50%, -50%)" },
     sleeve: { top: "60%", left: "80%", transform: "translate(-50%, -50%)" }
   };
 
+  // Overlay açma fonksiyonu
+  function showOverlay(images, startIndex = 0) {
+    const overlay = document.getElementById("overlay");
+    const overlayImg = document.getElementById("overlay-img");
+
+    if (!overlay || !overlayImg) return;
+
+    overlayImg.src = images[startIndex];
+    overlay.style.display = "flex";
+
+    // Figür seçim kutusu doldur
+    const selector = document.getElementById("print-selector");
+    if (selector) {
+      selector.innerHTML = `
+        <h3 style="margin-bottom:12px;">
+          ${currentLang === "de" ? "Wählen Sie ein Druckmotiv" : "Choose a print design"}
+        </h3>
+        ${printOptions.map(opt => `
+          <label style="display:flex; align-items:center; margin-bottom:12px; cursor:pointer;">
+            <input type="radio" name="print-option" value="${opt.id}" style="margin-right:8px;">
+            <img src="${opt.src}" alt="${opt.label[currentLang]}" style="width:60px; height:auto; margin-right:8px;">
+            ${opt.label[currentLang]}
+          </label>
+        `).join("")}
+      `;
+    }
+
+    // Radio buton seçimlerini dinle
+    document.querySelectorAll('input[name="print-option"]').forEach(radio => {
+      radio.addEventListener("change", (e) => {
+        const selected = e.target.value;
+        const fig = printOptions.find(opt => opt.id === selected);
+        if (fig) {
+          showFigureOnShirt(fig.src, "chest"); // örn. göğüs kısmına yerleştir
+        }
+      });
+    });
+  }
+
   // Figürü tişört üzerine yerleştirme
   function showFigureOnShirt(src, slotName) {
-    const overlay = document.getElementById("overlay-figures");
-    if (!overlay) return;
+    const overlayFigures = document.getElementById("overlay-figures");
+    if (!overlayFigures) return;
 
-    overlay.innerHTML = "";
+    overlayFigures.innerHTML = "";
 
     const img = document.createElement("img");
     img.src = src;
@@ -534,8 +545,19 @@ document.querySelectorAll(".submenu a").forEach(link => {
     Object.assign(img.style, slots[slotName]); // senin belirlediğin konum
     img.style.width = "80px"; // figür boyutu
 
-    overlay.appendChild(img);
+    overlayFigures.appendChild(img);
   }
+
+  // Ürün kartına tıklama → overlay aç
+  document.querySelectorAll(".product-card").forEach(card => {
+    card.addEventListener("click", (e) => {
+      if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
+      const img = card.querySelector("img");
+      if (img) {
+        showOverlay([img.src], 0);
+      }
+    });
+  });
 });
   </script>
 </body>
