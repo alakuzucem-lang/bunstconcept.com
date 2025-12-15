@@ -456,47 +456,87 @@ document.querySelectorAll(".submenu a").forEach(link => {
         renderProducts(allProducts, currentLang);
       });
     }
-    const printOptions = [
-  { id: "pumpkin", src: "images/prints/pumpkin.png", label: { de: "Kürbis", en: "Pumpkin" } },
-  { id: "bat", src: "images/prints/bat.png", label: { de: "Fledermaus", en: "Bat" } },
-  { id: "ghost", src: "images/prints/ghost.png", label: { de: "Geist", en: "Ghost" } },
-  { id: "skull", src: "images/prints/skull.png", label: { de: "Schädel", en: "Skull" } },
-  { id: "christmas", src: "images/prints/christmas.png", label: { de: "Weichnachten", en: "Christmas" } }
-];
-    printOptions.forEach(opt => {
-  const text = opt.label[currentLang]; // "de" veya "en"
-  // bunu HTML içine basabilirsin
-});
+
+    document.addEventListener("DOMContentLoaded", () => {
+  // Dil ayarı (örnek)
+  let currentLang = "de"; // veya "en"
+
+  // Kategoriler ve her biri için kaç görsel olduğunu tanımla
+  const figureConfig = {
+    Christmas: 3,
+    Bride: 2,
+    Halloween: 4,
+    School: 2,
+    Animal: 5,
+    Family: 3
+  };
+
+  // Otomatik printOptions üret
+  const printOptions = Object.entries(figureConfig).flatMap(([name, count]) =>
+    Array.from({ length: count }, (_, i) => {
+      const num = i + 1;
+      const id = `${name.toLowerCase()}-${num}`;
+      return {
+        id: id,
+        src: `images/Figure-${name}-${num}.png`, // senin yüklediğin dosya adı
+        label: {
+          de: `${name} ${num}`,
+          en: `${name} ${num}`
+        }
+      };
+    })
+  );
+
+  // Overlay içindeki selector alanını bul
+  const selector = document.getElementById("print-selector");
+  if (selector) {
     selector.innerHTML = `
-  <h3 style="margin-bottom:12px;">${currentLang === "de" ? "Wählen Sie ein Druckmotiv" : "Choose a print design"}</h3>
-  ${printOptions.map(opt => `
-    <label style="display:flex; align-items:center; margin-bottom:12px; cursor:pointer;">
-      <input type="radio" name="print-option" value="${opt.id}" style="margin-right:8px;">
-      <img src="${opt.src}" alt="${opt.label[currentLang]}" style="width:60px; height:auto; margin-right:8px;">
-      ${opt.label[currentLang]}
-    </label>
-  `).join("")}
-`;
-    document.querySelectorAll('input[name="print-option"]').forEach(radio => {
-  radio.addEventListener("change", (e) => {
-    const selected = e.target.value;
-    const fig = printOptions.find(opt => opt.id === selected);
-    showFigureOnShirt(fig.src, "chest"); // örn. göğüs kısmına yerleştir
+      <h3 style="margin-bottom:12px;">
+        ${currentLang === "de" ? "Wählen Sie ein Druckmotiv" : "Choose a print design"}
+      </h3>
+      ${printOptions.map(opt => `
+        <label style="display:flex; align-items:center; margin-bottom:12px; cursor:pointer;">
+          <input type="radio" name="print-option" value="${opt.id}" style="margin-right:8px;">
+          <img src="${opt.src}" alt="${opt.label[currentLang]}" style="width:60px; height:auto; margin-right:8px;">
+          ${opt.label[currentLang]}
+        </label>
+      `).join("")}
+    `;
+  }
+
+  // Radio buton seçimlerini dinle
+  document.querySelectorAll('input[name="print-option"]').forEach(radio => {
+    radio.addEventListener("change", (e) => {
+      const selected = e.target.value;
+      const fig = printOptions.find(opt => opt.id === selected);
+      if (fig) {
+        showFigureOnShirt(fig.src, "chest"); // örn. göğüs kısmına yerleştir
+      }
+    });
   });
+
+  // Slot konumları
+  const slots = {
+    chest: { top: "40%", left: "50%", transform: "translate(-50%, -50%)" },
+    sleeve: { top: "60%", left: "80%", transform: "translate(-50%, -50%)" }
+  };
+
+  // Figürü tişört üzerine yerleştirme
+  function showFigureOnShirt(src, slotName) {
+    const overlay = document.getElementById("overlay-figures");
+    if (!overlay) return;
+
+    overlay.innerHTML = "";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.className = "figure-slot";
+    Object.assign(img.style, slots[slotName]); // senin belirlediğin konum
+    img.style.width = "80px"; // figür boyutu
+
+    overlay.appendChild(img);
+  }
 });
-
-function showFigureOnShirt(src, slotName) {
-  const overlay = document.getElementById("overlay-figures");
-  overlay.innerHTML = "";
-
-  const img = document.createElement("img");
-  img.src = src;
-  img.className = "figure-slot";
-  Object.assign(img.style, slots[slotName]); // senin belirlediğin konum
-  img.style.width = "80px"; // figür boyutu
-
-  overlay.appendChild(img);
-}
   </script>
 </body>
 </html>
