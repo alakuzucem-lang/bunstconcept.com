@@ -555,10 +555,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Ürün kartına tıklama → overlay aç
-  document.querySelectorAll(".product-card").forEach(card => {
-    card.addEventListener("click", (e) => {
+  document.querySelectorAll(".product-grid").forEach(grid => {
+    grid.addEventListener("click", (e) => {
       if (e.target.classList.contains("zoom-icon") || e.target.closest(".cart-actions")) return;
-      const img = card.querySelector("img");
+      const img = grid.querySelector("img");
       if (img) {
         showOverlay([img.src], 0);
       }
