@@ -456,6 +456,47 @@ document.querySelectorAll(".submenu a").forEach(link => {
         renderProducts(allProducts, currentLang);
       });
     }
+    const printOptions = [
+  { id: "pumpkin", src: "images/prints/pumpkin.png", label: { de: "Kürbis", en: "Pumpkin" } },
+  { id: "bat", src: "images/prints/bat.png", label: { de: "Fledermaus", en: "Bat" } },
+  { id: "ghost", src: "images/prints/ghost.png", label: { de: "Geist", en: "Ghost" } },
+  { id: "skull", src: "images/prints/skull.png", label: { de: "Schädel", en: "Skull" } },
+  { id: "christmas", src: "images/prints/christmas.png", label: { de: "Weichnachten", en: "Christmas" } }
+];
+    printOptions.forEach(opt => {
+  const text = opt.label[currentLang]; // "de" veya "en"
+  // bunu HTML içine basabilirsin
+});
+    selector.innerHTML = `
+  <h3 style="margin-bottom:12px;">${currentLang === "de" ? "Wählen Sie ein Druckmotiv" : "Choose a print design"}</h3>
+  ${printOptions.map(opt => `
+    <label style="display:flex; align-items:center; margin-bottom:12px; cursor:pointer;">
+      <input type="radio" name="print-option" value="${opt.id}" style="margin-right:8px;">
+      <img src="${opt.src}" alt="${opt.label[currentLang]}" style="width:60px; height:auto; margin-right:8px;">
+      ${opt.label[currentLang]}
+    </label>
+  `).join("")}
+`;
+    document.querySelectorAll('input[name="print-option"]').forEach(radio => {
+  radio.addEventListener("change", (e) => {
+    const selected = e.target.value;
+    const fig = printOptions.find(opt => opt.id === selected);
+    showFigureOnShirt(fig.src, "chest"); // örn. göğüs kısmına yerleştir
+  });
+});
+
+function showFigureOnShirt(src, slotName) {
+  const overlay = document.getElementById("overlay-figures");
+  overlay.innerHTML = "";
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.className = "figure-slot";
+  Object.assign(img.style, slots[slotName]); // senin belirlediğin konum
+  img.style.width = "80px"; // figür boyutu
+
+  overlay.appendChild(img);
+}
   </script>
 </body>
 </html>
